@@ -33,8 +33,7 @@ const prevSlide = () => {
 
 <template>
   <section class="relative py-2 flex flex-col items-center text-center w-full overflow-hidden">
-    <!-- Decorative background -->
-    <div class="absolute inset-0 bg-mesh-gradient opacity-60 -z-10"></div>
+    <!-- Hero content is now transparent to show page-level background animation -->
     
     <!-- Side Navigation -->
     <button @click="prevSlide" class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white/40 hover:bg-white/80 backdrop-blur border border-white/50 text-brand-green-dark transition-all z-30 mx-2 md:mx-6 shadow-lg hover:scale-110 opacity-40 hover:opacity-100" aria-label="Previous Slide">

@@ -1,8 +1,8 @@
-Berikut adalah **Color Style Guidelines** berbasis logo KLHK — diekstrak dari warna-warna utama logo tersebut.
+Berikut adalah **Color Style Guidelines** berbasis logo KLH/BPLH — diekstrak dari warna-warna utama logo tersebut.
 
 ---
 
-## 🎨 Style Guidelines — KLHK Brand Colors
+## 🎨 Style Guidelines — KLH/BPLH Brand Colors
 
 ### 1. Palet Warna Utama
 

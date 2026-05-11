@@ -1,0 +1,11 @@
+[
+  { "id": 1, "title": "Restorasi Mangrove Teluk Jakarta", "date": "15 Mei 2026", "image": "/images/01.jpg", "category": "Restorasi" },
+  { "id": 2, "title": "Monitoring Air Danau Toba", "date": "12 Mei 2026", "image": "/images/02.jpg", "category": "Monitoring" },
+  { "id": 3, "title": "Ekspedisi Kapuas Hulu", "date": "10 Mei 2026", "image": "/images/03.jpg", "category": "Ekspedisi" },
+  { "id": 4, "title": "Workshop Konservasi PPEPD", "date": "08 Mei 2026", "image": "/images/003.jpeg", "category": "Workshop" },
+  { "id": 5, "title": "Seminar Ekosistem Darat", "date": "05 Mei 2026", "image": "/event-1.png", "category": "Seminar" },
+  { "id": 6, "title": "Penanaman Pohon Riparian", "date": "01 Mei 2026", "image": "/event-2.png", "category": "Konservasi" },
+  { "id": 7, "title": "Audit Lingkungan Industri", "date": "28 April 2026", "image": "/event-3.png", "category": "Audit" },
+  { "id": 8, "title": "Pelatihan Ranger Perairan", "date": "25 April 2026", "image": "/images/01.jpg", "category": "Pelatihan" },
+  { "id": 9, "title": "Festival Sungai Bersih", "date": "20 April 2026", "image": "/images/02.jpg", "category": "Festival" }
+]

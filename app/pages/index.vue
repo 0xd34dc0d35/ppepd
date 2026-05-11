@@ -1,28 +1,87 @@
 <script setup lang="ts">
-const events = [
-  { id: 1, title: 'Restorasi Mangrove Teluk Jakarta', date: '15 Mei 2026', image: '/event-1.png', category: 'Restorasi' },
-  { id: 2, title: 'Monitoring Air Danau Toba', date: '12 Mei 2026', image: '/event-2.png', category: 'Monitoring' },
-  { id: 3, title: 'Ekspedisi Kapuas Hulu', date: '10 Mei 2026', image: '/event-3.png', category: 'Ekspedisi' },
-  { id: 4, title: 'Workshop Konservasi PPEPD', date: '08 Mei 2026', image: '/event-1.png', category: 'Workshop' },
-  { id: 5, title: 'Seminar Ekosistem Darat', date: '05 Mei 2026', image: '/event-2.png', category: 'Seminar' },
-  { id: 6, title: 'Penanaman Pohon Riparian', date: '01 Mei 2026', image: '/event-3.png', category: 'Konservasi' },
-  { id: 7, title: 'Audit Lingkungan Industri', date: '28 April 2026', image: '/event-1.png', category: 'Audit' },
-  { id: 8, title: 'Pelatihan Ranger Perairan', date: '25 April 2026', image: '/event-2.png', category: 'Pelatihan' },
-  { id: 9, title: 'Festival Sungai Bersih', date: '20 April 2026', image: '/event-3.png', category: 'Festival' },
-]
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const events = ref<any[]>([])
+const isLoading = ref(true)
+
+const scrollContainer = ref<HTMLElement | null>(null)
+let autoPlayInterval: any = null
+
+const scrollNext = () => {
+  if (scrollContainer.value) {
+    const container = scrollContainer.value
+    const scrollAmount = container.clientWidth * 0.8
+    const maxScroll = container.scrollWidth - container.clientWidth
+    
+    if (container.scrollLeft >= maxScroll - 10) {
+      container.scrollTo({ left: 0, behavior: 'smooth' })
+    } else {
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+    }
+  }
+}
+
+const scrollPrev = () => {
+  if (scrollContainer.value) {
+    const container = scrollContainer.value
+    const scrollAmount = container.clientWidth * 0.8
+    
+    if (container.scrollLeft <= 10) {
+      container.scrollTo({ left: container.scrollWidth, behavior: 'smooth' })
+    } else {
+      container.scrollBy({ left: -scrollAmount, behavior: 'smooth' })
+    }
+  }
+}
+
+const startAutoPlay = () => {
+  autoPlayInterval = setInterval(scrollNext, 5000)
+}
+
+const stopAutoPlay = () => {
+  if (autoPlayInterval) clearInterval(autoPlayInterval)
+}
+
+onMounted(() => {
+  // Tunggu 3 detik sebelum load data
+  setTimeout(async () => {
+    try {
+      const response = await fetch('/static/last-event.json')
+      if (response.ok) {
+        events.value = await response.json()
+      }
+    } catch (error) {
+      console.error('Failed to load events:', error)
+    } finally {
+      isLoading.value = false
+      // Berikan sedikit jeda untuk render DOM sebelum mulai autoPlay
+      setTimeout(startAutoPlay, 100)
+    }
+  }, 3000)
+})
+
+onUnmounted(() => {
+  stopAutoPlay()
+})
 
 useSeoMeta({
   title: 'PPEPD - Sistem Informasi Ekosistem Perairan Darat',
-  description: 'Perlindungan dan Pengelolaan Ekosistem Perairan Darat.',
+  description: 'Sistem Informasi Perlindungan dan Pengelolaan Ekosistem Perairan Darat.',
   ogTitle: 'PPEPD',
-  ogDescription: 'Sistem perairan darat terpadu.',
+  ogDescription: 'Sistem Informasi Perlindungan dan Pengelolaan Ekosistem Perairan Darat.',
   twitterCard: 'summary_large_image',
+})
+
+useHead({
+  bodyAttrs: {
+    class: 'index-gradient-body',
+  },
 })
 </script>
 
 <template>
-  <div class="-mt-12 -mx-6">
-    <div class="space-y-24 pb-24">
+  <div class="relative -mt-12 -mx-6 overflow-hidden">
+    <div class="space-y-24 pb-12">
       <!-- Hero & Services Group -->
       <div class="md:min-h-[100vh] px-6 pt-[70px] pb-[2vh] flex flex-col justify-between">
         <div class="flex-grow flex flex-col justify-center">
@@ -35,26 +94,41 @@ useSeoMeta({
       <!-- Event Carousel Section -->
       <section id="events" class="scroll-mt-24 px-6">
       <div class="container mx-auto px-4">
-        <div class="flex justify-between items-end mb-12">
-          <div>
+        <div class="relative mb-12">
+          <div class="mx-auto max-w-2xl text-center">
             <h2 class="text-4xl font-black text-brand-green-dark tracking-tight">Event Terakhir</h2>
             <p class="text-brand-charcoal/60 mt-2">Aktivitas terbaru dalam perlindungan ekosistem perairan.</p>
           </div>
-          <div class="hidden md:flex gap-2">
-            <div class="w-10 h-10 rounded-full border border-brand-green/10 flex items-center justify-center text-brand-green/40 hover:text-brand-green hover:border-brand-green transition-colors cursor-pointer">
+          <div class="absolute bottom-0 right-0 hidden md:flex gap-2">
+            <div @click="scrollPrev(); stopAutoPlay(); startAutoPlay()" class="w-10 h-10 rounded-full border border-brand-green/10 flex items-center justify-center text-brand-green/40 hover:text-brand-green hover:border-brand-green transition-colors cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             </div>
-            <div class="w-10 h-10 rounded-full border border-brand-green/10 flex items-center justify-center text-brand-green/40 hover:text-brand-green hover:border-brand-green transition-colors cursor-pointer">
+            <div @click="scrollNext(); stopAutoPlay(); startAutoPlay()" class="w-10 h-10 rounded-full border border-brand-green/10 flex items-center justify-center text-brand-green/40 hover:text-brand-green hover:border-brand-green transition-colors cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </div>
           </div>
         </div>
 
-        <div class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 no-scrollbar scroll-smooth">
+        <!-- Skeleton Loader -->
+        <div v-if="isLoading" class="flex gap-6 overflow-hidden pb-8 no-scrollbar">
+          <div v-for="i in 3" :key="'skeleton-' + i" class="min-w-[300px] md:min-w-[400px]">
+            <div class="glass-card overflow-hidden border-2 border-transparent rounded-2xl h-full animate-pulse bg-brand-charcoal/5">
+              <div class="aspect-[16/10] bg-brand-charcoal/10 shimmer"></div>
+              <div class="p-6 space-y-4">
+                <div class="h-3 w-20 bg-brand-charcoal/10 rounded shimmer"></div>
+                <div class="h-6 w-full bg-brand-charcoal/10 rounded shimmer"></div>
+                <div class="h-4 w-32 bg-brand-charcoal/10 rounded shimmer"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Cards -->
+        <div v-else ref="scrollContainer" class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 no-scrollbar scroll-smooth" @mouseenter="stopAutoPlay" @mouseleave="startAutoPlay">
           <div v-for="event in events" :key="event.id" class="min-w-[300px] md:min-w-[400px] snap-start">
             <div class="group glass-card overflow-hidden border-2 border-transparent hover:border-brand-green hover:shadow-2xl hover:shadow-brand-green/10 transition-all duration-500 rounded-2xl">
               <div class="aspect-[16/10] overflow-hidden relative">
-                <img :src="event.image" :alt="event.title" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img :src="event.image" :alt="event.title" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div class="absolute top-4 left-4">
                   <span class="px-3 py-1 rounded-full bg-brand-green text-white text-[10px] font-bold uppercase tracking-widest">{{ event.category }}</span>
                 </div>
@@ -75,6 +149,7 @@ useSeoMeta({
     <!-- Features Grid -->
     <FeatureGrid />
     <PengelolaanGrid/>
+    <EdukasiSection />
     </div>
   </div>
 </template>
@@ -93,5 +168,31 @@ useSeoMeta({
 }
 .animate-fade-in {
   animation: fade-in 0.8s ease-out forwards;
+}
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }
 </style>
