@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
+useHead({
+  meta: [
+    {
+      name: 'google-site-verification',
+      content: 'rth7zi2XFcnt4jkFIGyKWIo20IM4_a9ZYfVIb5hMGrw'
+    }
+  ]
+})
+
 const isScrolledPast100vh = ref(false)
 
 const handleScroll = () => {
