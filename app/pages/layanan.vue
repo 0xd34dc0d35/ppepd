@@ -32,16 +32,9 @@ useSeoMeta({
         <span class="text-brand-green-dark">Layanan</span>
       </nav>
 
-      <header class="mb-12 max-w-3xl">
-        <div class="mb-4 inline-flex items-center rounded-full border border-brand-green/10 bg-white/70 px-4 py-2 text-xs font-black uppercase tracking-wide text-brand-green shadow-sm">
-          Layanan PPEPD
-        </div>
-        <h1 class="text-[34px] font-black leading-tight tracking-tight text-brand-green-dark md:text-[56px]">
-          Pilih Layanan Ekosistem Perairan Darat
-        </h1>
-        <p class="mt-5 text-base font-medium leading-relaxed text-brand-charcoal/65 md:text-lg">
-          Halaman dummy untuk menampilkan tiga kategori layanan utama yang dapat dikembangkan menjadi halaman detail.
-        </p>
+      <header class="mb-12 max-auto text-center">
+        <h1 class="text-4xl font-black text-brand-green-dark mb-4 text-center">Layanan</h1>
+      
       </header>
 
       <div class="grid gap-6 md:grid-cols-3">
