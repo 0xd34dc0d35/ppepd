@@ -66,9 +66,9 @@ useSeoMeta({
   <div class="flex flex-col h-screen overflow-hidden bg-brand-cream/30">
 
     <!-- ══════════════════════════════
-         HEADER  ·  30vh
+         TOOLBAR  ·  single row
          ══════════════════════════════ -->
-    <header class="relative h-[30vh] min-h-[240px] flex flex-col overflow-hidden bg-white/60 border-b border-brand-green/10" role="region" aria-label="Filter and search area">
+    <header class="relative flex-shrink-0 flex flex-col overflow-hidden bg-white/60 border-b border-brand-green/10" role="region" aria-label="Filter and search area">
 
       <!-- Ambient background blobs -->
       <div class="absolute inset-0 pointer-events-none">
@@ -79,33 +79,34 @@ useSeoMeta({
       <!-- Navbar spacer -->
       <div class="h-[50px] flex-shrink-0"></div>
 
-      <!-- Center content -->
-      <div class="flex-grow flex flex-col items-center justify-center px-6 relative z-10 gap-5">
+      <!-- Single control row -->
+      <div class="flex justify-center py-3 relative z-10">
+      <div class="flex items-center gap-3 w-[70vw]">
 
-        <!-- Tab Switcher (top-center, prominent) -->
-        <div class="flex items-center bg-white/80 backdrop-blur-md border border-brand-green/15 rounded-2xl p-1.5 shadow-lg shadow-brand-green/5" role="tablist">
+        <!-- Tab Switcher -->
+        <div class="flex-shrink-0 flex items-center gap-1 bg-brand-cream/80 border border-brand-green/10 rounded-lg p-0.5" role="tablist">
           <button
             id="tab-raw"
             @click="setTab('raw')"
             :class="[
-              'relative px-10 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300',
+              'h-7 px-3 flex items-center justify-center rounded-md text-xs font-medium transition-all duration-200',
               activeTab === 'raw'
-                ? 'bg-brand-green text-white shadow-lg shadow-brand-green/30'
-                : 'text-brand-charcoal/40 hover:text-brand-green'
+                ? 'bg-white shadow text-brand-green'
+                : 'text-brand-charcoal/30 hover:text-brand-green'
             ]"
             :aria-selected="activeTab === 'raw'"
             role="tab"
           >
-            RAW Data
+            Raw
           </button>
           <button
             id="tab-statistic"
             @click="setTab('statistic')"
             :class="[
-              'relative px-10 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all duration-300',
+              'h-7 px-3 flex items-center justify-center rounded-md text-xs font-medium transition-all duration-200',
               activeTab === 'statistic'
-                ? 'bg-brand-green text-white shadow-lg shadow-brand-green/30'
-                : 'text-brand-charcoal/40 hover:text-brand-green'
+                ? 'bg-white shadow text-brand-green'
+                : 'text-brand-charcoal/30 hover:text-brand-green'
             ]"
             :aria-selected="activeTab === 'statistic'"
             role="tab"
@@ -115,33 +116,24 @@ useSeoMeta({
         </div>
 
         <!-- Search Input -->
-        <div class="w-full max-w-2xl relative group">
-          <div class="absolute inset-0 bg-brand-green/5 rounded-2xl blur-xl group-focus-within:bg-brand-green/10 transition-all duration-500"></div>
+        <div class="flex-grow relative group">
+          <div class="absolute inset-0 bg-brand-green/5 rounded-xl blur-xl group-focus-within:bg-brand-green/10 transition-all duration-500"></div>
           <div class="relative flex items-center">
-            <div class="absolute left-5 text-brand-charcoal/30 pointer-events-none">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <div class="absolute left-4 text-brand-charcoal/30 pointer-events-none">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             </div>
             <input
               v-model="searchQuery"
               type="text"
               placeholder="Cari dataset, penulis, atau tag..."
-              class="w-full pl-12 pr-5 py-3 rounded-2xl bg-white/90 border border-brand-green/10 focus:border-brand-green focus:outline-none focus:shadow-xl transition-all duration-300 text-brand-charcoal text-sm font-medium placeholder-brand-charcoal/30"
+              class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/90 border border-brand-green/10 focus:border-brand-green focus:outline-none focus:shadow-xl transition-all duration-300 text-brand-charcoal text-sm font-medium placeholder-brand-charcoal/30"
               aria-label="Search datasets"
             />
           </div>
         </div>
-      </div>
-    </header>
 
-    <!-- ══════════════════════════════
-         ITEMS SECTION  ·  flex-grow
-         ══════════════════════════════ -->
-    <div class="flex-grow flex flex-col overflow-hidden">
-
-      <!-- Items Title Bar -->
-      <div class="flex-shrink-0 flex items-center justify-center px-6 h-14 bg-white/80 backdrop-blur-md border-b border-brand-green/5">
         <!-- Card / Table Toggle -->
-        <div class="flex items-center gap-1 bg-brand-cream/80 border border-brand-green/10 rounded-lg p-0.5" role="group" aria-label="View mode toggle">
+        <div class="flex-shrink-0 flex items-center gap-1 bg-brand-cream/80 border border-brand-green/10 rounded-lg p-0.5" role="group" aria-label="View mode toggle">
           <button
             id="view-card"
             @click="viewMode = 'card'"
@@ -168,6 +160,13 @@ useSeoMeta({
           </button>
         </div>
       </div>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════════
+         ITEMS SECTION  ·  flex-grow
+         ══════════════════════════════ -->
+    <div class="flex-grow flex flex-col overflow-hidden">
 
       <!-- Scrollable Content Area -->
       <div class="flex-grow overflow-y-auto px-6 py-8 flex justify-center" id="data-scroll-area">
