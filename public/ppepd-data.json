@@ -1,0 +1,254 @@
+[
+  {
+    "id": 1,
+    "type": "raw",
+    "title": "Batas Administrasi Ekosistem Perairan Darat Indonesia",
+    "year": 2024,
+    "image": "/images/01.jpg",
+    "author": "Direktorat PPEPD",
+    "metadata": {
+      "format": "SHP",
+      "category": "Spasial",
+      "size": "45 MB",
+      "tags": ["Batas", "Administrasi", "Nasional", "Pemetaan"]
+    }
+  },
+  {
+    "id": 2,
+    "type": "raw",
+    "title": "Peta Tutupan Lahan Mangrove Nasional 2023",
+    "year": 2023,
+    "image": "/images/02.jpg",
+    "author": "BPLH Pusat",
+    "metadata": {
+      "format": "GeoJSON",
+      "category": "Spasial",
+      "size": "120 MB",
+      "tags": ["Mangrove", "Tutupan Lahan", "Peta", "Monitoring"]
+    }
+  },
+  {
+    "id": 3,
+    "type": "raw",
+    "title": "Data Sensor IoT Kualitas Air Danau Toba Real-time",
+    "year": 2024,
+    "image": "/event-1.png",
+    "author": "Tim Monitoring Lapangan",
+    "metadata": {
+      "format": "CSV",
+      "category": "Real-time",
+      "size": "250 MB",
+      "tags": ["IoT", "Danau Toba", "Real-time", "Sensor"]
+    }
+  },
+  {
+    "id": 4,
+    "type": "raw",
+    "title": "Inventarisasi Mata Air Lindung Jawa Tengah 2024",
+    "year": 2024,
+    "image": "/images/003.jpeg",
+    "author": "Dinas LH Jawa Tengah",
+    "metadata": {
+      "format": "CSV",
+      "category": "Tabular",
+      "size": "8 MB",
+      "tags": ["Mata Air", "Jawa Tengah", "Inventarisasi", "Lindung"]
+    }
+  },
+  {
+    "id": 5,
+    "type": "raw",
+    "title": "Citra Satelit Ekosistem Sungai Kapuas 2022-2023",
+    "year": 2023,
+    "image": "/event-2.png",
+    "author": "LAPAN / BRIN",
+    "metadata": {
+      "format": "TIFF",
+      "category": "Spasial",
+      "size": "2.3 GB",
+      "tags": ["Kapuas", "Citra", "Satelit", "Pengamatan"]
+    }
+  },
+  {
+    "id": 6,
+    "type": "raw",
+    "title": "Peta Kerentanan Banjir DAS Citarum 2023",
+    "year": 2023,
+    "image": "/event-3.png",
+    "author": "BBWS Citarum",
+    "metadata": {
+      "format": "SHP",
+      "category": "Spasial",
+      "size": "32 MB",
+      "tags": ["Banjir", "Citarum", "Kerentanan", "Risiko"]
+    }
+  },
+  {
+    "id": 7,
+    "type": "raw",
+    "title": "Database Koordinat Danau Sulawesi Lengkap",
+    "year": 2023,
+    "image": "/images/01.jpg",
+    "author": "Direktorat PPEPD",
+    "metadata": {
+      "format": "JSON",
+      "category": "Tabular",
+      "size": "4 MB",
+      "tags": ["Danau", "Sulawesi", "Koordinat", "Database"]
+    }
+  },
+  {
+    "id": 8,
+    "type": "raw",
+    "title": "Data Debit Air Sungai Nasional 2024",
+    "year": 2024,
+    "image": "/images/02.jpg",
+    "author": "Kementerian PUPR",
+    "metadata": {
+      "format": "XLSX",
+      "category": "Tabular",
+      "size": "15 MB",
+      "tags": ["Debit", "Sungai", "Nasional", "Hidrologi"]
+    }
+  },
+  {
+    "id": 9,
+    "type": "raw",
+    "title": "Peta Konservasi Ekosistem Pesisir Sumatera",
+    "year": 2024,
+    "image": "/images/03.jpg",
+    "author": "Balai Konservasi Pesisir",
+    "metadata": {
+      "format": "SHP",
+      "category": "Spasial",
+      "size": "56 MB",
+      "tags": ["Pesisir", "Konservasi", "Sumatera", "Biodiversity"]
+    }
+  },
+  {
+    "id": 10,
+    "type": "raw",
+    "title": "Rekaman Curah Hujan DAS Nasional 2020-2024",
+    "year": 2024,
+    "image": "/event-1.png",
+    "author": "BMKG Pusat",
+    "metadata": {
+      "format": "CSV",
+      "category": "Tabular",
+      "size": "78 MB",
+      "tags": ["Curah Hujan", "DAS", "Iklim", "Meteorologi"]
+    }
+  },
+  {
+    "id": 11,
+    "type": "statistic",
+    "title": "Indeks Kualitas Air Sungai Nasional 2024",
+    "year": 2024,
+    "image": "/images/03.jpg",
+    "author": "Pusdatin KLH",
+    "metadata": {
+      "format": "XLSX",
+      "category": "Statistik",
+      "size": "12 MB",
+      "tags": ["Kualitas Air", "Sungai", "Indeks", "Analisis"]
+    }
+  },
+  {
+    "id": 12,
+    "type": "statistic",
+    "title": "Rekapitulasi Luas Ekosistem Perairan 2020-2024",
+    "year": 2024,
+    "image": "/images/003.jpeg",
+    "author": "Direktorat PPEPD",
+    "metadata": {
+      "format": "XLSX",
+      "category": "Laporan",
+      "size": "8 MB",
+      "tags": ["Rekapitulasi", "Luas", "Tahunan", "Trend"]
+    }
+  },
+  {
+    "id": 13,
+    "type": "statistic",
+    "title": "Tren Kerusakan Ekosistem Gambut 2024",
+    "year": 2024,
+    "image": "/event-2.png",
+    "author": "Badan Restorasi Gambut",
+    "metadata": {
+      "format": "JSON",
+      "category": "Statistik",
+      "size": "5 MB",
+      "tags": ["Gambut", "Restorasi", "Tren", "Monitoring"]
+    }
+  },
+  {
+    "id": 14,
+    "type": "statistic",
+    "title": "Statistik Deforestasi Kawasan Mangrove 2023",
+    "year": 2023,
+    "image": "/event-1.png",
+    "author": "Direktorat KKH",
+    "metadata": {
+      "format": "XLSX",
+      "category": "Statistik",
+      "size": "9 MB",
+      "tags": ["Deforestasi", "Mangrove", "Statistik", "Konservasi"]
+    }
+  },
+  {
+    "id": 15,
+    "type": "statistic",
+    "title": "Laporan Pemantauan Kualitas Air Danau Prioritas",
+    "year": 2024,
+    "image": "/event-3.png",
+    "author": "KLHK / BPLH",
+    "metadata": {
+      "format": "PDF",
+      "category": "Laporan",
+      "size": "22 MB",
+      "tags": ["Pemantauan", "Danau", "Prioritas", "Laporan"]
+    }
+  },
+  {
+    "id": 16,
+    "type": "statistic",
+    "title": "Analisis Perubahan Tutupan Lahan DAS Citanduy",
+    "year": 2023,
+    "image": "/images/01.jpg",
+    "author": "Tim Peneliti LIPI",
+    "metadata": {
+      "format": "PDF",
+      "category": "Laporan",
+      "size": "17 MB",
+      "tags": ["Citanduy", "Tutupan Lahan", "Analisis", "Riset"]
+    }
+  },
+  {
+    "id": 17,
+    "type": "statistic",
+    "title": "Evaluasi Efektivitas Penggunaan Lahan Sempadan Sungai",
+    "year": 2024,
+    "image": "/images/02.jpg",
+    "author": "Direktorat PPEPD & PUPR",
+    "metadata": {
+      "format": "PDF",
+      "category": "Laporan",
+      "size": "25 MB",
+      "tags": ["Sempadan", "Sungai", "Evaluasi", "Penggunaan Lahan"]
+    }
+  },
+  {
+    "id": 18,
+    "type": "statistic",
+    "title": "Proyeksi Peningkatan Level Air Danau 2025-2030",
+    "year": 2024,
+    "image": "/images/03.jpg",
+    "author": "BBWS Nasional",
+    "metadata": {
+      "format": "XLSX",
+      "category": "Statistik",
+      "size": "11 MB",
+      "tags": ["Proyeksi", "Level Air", "Danau", "Prediksi"]
+    }
+  }
+]

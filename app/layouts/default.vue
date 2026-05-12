@@ -118,7 +118,7 @@ onUnmounted(() => {
     <!-- Footer -->
     <footer class="bg-brand-cream/80 backdrop-blur-md border-t border-brand-green/10 pt-12 pb-10">
       <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           <!-- Column 1: Brand & Social -->
           <div class="space-y-6">
             <NuxtLink to="/" class="text-3xl font-black tracking-tighter gradient-text inline-block">
@@ -166,7 +166,10 @@ onUnmounted(() => {
             </ul>
           </div>
 
-          <!-- Column 4: Contact -->
+          <!-- Column 4: Sitemap -->
+          <SiteMap />
+
+          <!-- Column 5: Contact -->
           <div class="space-y-6">
             <h4 class="text-brand-green-dark font-black uppercase tracking-widest text-xs">Kantor Pusat</h4>
             <div class="space-y-4">

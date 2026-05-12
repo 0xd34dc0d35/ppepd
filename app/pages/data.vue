@@ -18,10 +18,10 @@ const currentPage = ref(1)
 onMounted(async () => {
   try {
     await new Promise(resolve => setTimeout(resolve, 1000))
-    const res = await fetch('/static/data-catalog.json')
+    const res = await fetch('/ppepd-data.json')
     allData.value = await res.json()
   } catch (e) {
-    console.error('Failed to load data:', e)
+    console.error('Failed to load data catalog:', e)
   } finally {
     isLoading.value = false
   }
