@@ -104,6 +104,11 @@ echo "===================================="
 npm ci
 
 echo "===================================="
+echo "CLEAN OLD BUILD ARTIFACTS"
+echo "===================================="
+rm -rf .output .nuxt
+
+echo "===================================="
 echo "BUILD NUXT PROJECT"
 echo "===================================="
 npm run build
@@ -128,8 +133,16 @@ done
 PORT_PIDS=$(sudo lsof -ti tcp:$NODE_PORT 2>/dev/null || true)
 if [ -n "$PORT_PIDS" ]; then
     echo "  ⚠ Port $NODE_PORT masih dipakai — terminate..."
-    echo "$PORT_PIDS" | xargs sudo kill -TERM 2>/dev/null || true
-    sleep 2
+    echo "$PORT_PIDS" | xargs sudo kill -9 2>/dev/null || true
+    # Tunggu port benar-benar bebas (max 10 detik)
+    for i in $(seq 1 10); do
+        sleep 1
+        STILL_OPEN=$(sudo lsof -ti tcp:$NODE_PORT 2>/dev/null || true)
+        if [ -z "$STILL_OPEN" ]; then
+            break
+        fi
+        echo "  ... menunggu port bebas ($i/10)"
+    done
 fi
 
 echo "  ✓ Port $NODE_PORT bebas"
