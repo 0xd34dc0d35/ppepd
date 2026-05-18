@@ -1,11 +1,11 @@
 <template>
   <section class="mx-auto">
     <div class="text-center mb-12">
-      <h2 class="text-4xl font-black text-brand-green-dark tracking-tight">Perlindungan Ekosistem</h2>
+      <h2 class="text-4xl font-black text-brand-green-dark tracking-tight">Perlindungan & Pengelolaan Ekosistem</h2>
     </div>
     
     <div class="grid md:grid-cols-3 gap-4  mx-auto">
-      <div v-for="feature in features" :key="feature.id" class="glass-card p-10 group bg-white/40 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden border-transparent hover:border-transparent">
+      <NuxtLink v-for="feature in features" :key="feature.id" :to="feature.to" class="glass-card p-10 group bg-white/40 transition-all duration-500 hover:-translate-y-2 relative overflow-hidden border-transparent hover:border-transparent block no-underline">
         <!-- Neon border animation background -->
         <div class="absolute top-1/2 left-1/2 w-[600px] h-[120px] bg-[linear-gradient(transparent,theme(colors.brand.green-dark),theme(colors.brand.green-dark),theme(colors.brand.green-dark),transparent)] animate-[spin_4s_linear_infinite] origin-top-left opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
         
@@ -26,12 +26,12 @@
             {{ feature.description }}
           </p>
           
-          <div class="mt-8 pt-8 border-t border-brand-green/5 flex items-center text-brand-green font-bold text-sm group-hover:gap-2 transition-all cursor-pointer">
+          <div class="mt-8 pt-8 border-100 border-brand-green/5 flex items-center text-brand-green font-bold text-sm group-hover:gap-2 transition-all cursor-pointer rounded-md">
             Selengkapnya
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="ml-1 opacity-0 group-hover:opacity-100 transition-all"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </div>
         </div>
-      </div>
+      </NuxtLink>
     </div>
   </section>
 </template>
@@ -40,18 +40,21 @@
 const features = [
   {
     id: 1,
-    title: 'Perairan Darat',
+    title: 'Danau',
     description: 'Penyajian data yang akurat dan real-time untuk mendukung pengambilan keputusan yang tepat dan cepat dalam ekosistem perairan darat.'
+    ,to:'/danau/profil-danau',
   },
   {
     id: 2,
     title: 'Mangrove',
     description: 'Penyajian data yang akurat dan real-time untuk mendukung pengambilan keputusan yang tepat dan cepat dalam ekosistem mangrove.'
+   ,to:'/mangrove',
   },
     {
     id: 2,
     title: 'Mata Air',
     description: 'Penyajian data yang akurat dan real-time untuk mendukung pengambilan keputusan yang tepat dan cepat dalam ekosistem mangrove.'
+   ,to:'/danau/profil-danau',
   }
 ]
 </script>

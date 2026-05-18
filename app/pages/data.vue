@@ -188,11 +188,11 @@ useSeoMeta({
           <!-- TABLE VIEW -->
           <div
             v-else-if="!isLoading && filteredData.length > 0 && viewMode === 'table'"
-            class="bg-white rounded-md border border-brand-green/10 overflow-hidden animate-fadeIn"
+            class="bg-white rounded-md border border-brand-green/10 [overflow:clip] animate-fadeIn"
           >
             <table class="w-full text-left">
-              <thead>
-                <tr class="bg-brand-cream/60 border-b border-brand-green/10">
+              <thead class="sticky top-0 z-10">
+                <tr class="bg-brand-cream/95 backdrop-blur-sm border-b border-brand-green/10">
                   <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40 w-10">#</th>
                   <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40 w-16">Img</th>
                   <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40">Judul</th>

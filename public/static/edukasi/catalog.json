@@ -1,0 +1,132 @@
+[
+  {
+    "id": "siklus-hidrologi-perairan-darat",
+    "type": "edukasi",
+    "title": "Siklus Hidrologi Perairan Darat",
+    "excerpt": "Memahami bagaimana air bergerak melalui ekosistem darat — dari presipitasi di pegunungan, infiltrasi tanah, aliran sungai, hingga evapotranspirasi kembali ke atmosfer.",
+    "category": "Dasar",
+    "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=600&auto=format&fit=crop",
+    "author": "Tim Edukasi PPEPD",
+    "tags": ["Hidrologi", "Dasar", "Siklus Air"]
+  },
+  {
+    "id": "keanekaragaman-hayati-sungai",
+    "type": "edukasi",
+    "title": "Keanekaragaman Hayati Ekosistem Sungai",
+    "excerpt": "Mengenal ratusan spesies endemik yang mendiami sungai-sungai Indonesia — dari ikan arwana, pesut Mahakam, hingga flora riparian yang menjadi penyangga kehidupan.",
+    "category": "Sungai",
+    "image": "https://images.unsplash.com/photo-1647097718174-295820a416e1?q=80&w=987&auto=format&fit=crop",
+    "author": "Direktorat PPEPD",
+    "tags": ["Biodiversitas", "Sungai", "Endemik"]
+  },
+  {
+    "id": "rancangan-perlindungan-ekosistem-danau",
+    "type": "edukasi",
+    "title": "Rancangan Perlindungan dan Pengelolaan Ekosistem Danau",
+    "excerpt": "Kerangka kebijakan dan pendekatan teknis dalam menyusun rencana perlindungan danau yang berbasis daya dukung ekosistem dan kebutuhan masyarakat sekitarnya.",
+    "category": "Danau",
+    "image": "https://images.unsplash.com/photo-1654156373886-80bc7b797807?q=80&w=1035&auto=format&fit=crop",
+    "author": "Tim Edukasi PPEPD",
+    "tags": ["Danau", "Kebijakan", "Pengelolaan"]
+  },
+  {
+    "id": "pemulihan-ekosistem-danau",
+    "type": "edukasi",
+    "title": "Teknik Pemulihan Ekosistem Danau Terdegradasi",
+    "excerpt": "Langkah-langkah teknis berbasis sains dalam memulihkan danau yang mengalami eutrofikasi, sedimentasi berlebih, atau pencemaran bahan berbahaya.",
+    "category": "Restorasi",
+    "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=600&auto=format&fit=crop",
+    "author": "BRIN & Direktorat PPEPD",
+    "tags": ["Restorasi", "Danau", "Eutrofikasi"]
+  },
+  {
+    "id": "hukum-lingkungan-perairan",
+    "type": "edukasi",
+    "title": "Kerangka Hukum Perlindungan Ekosistem Perairan",
+    "excerpt": "Panduan memahami regulasi nasional dan internasional yang mengatur perlindungan ekosistem perairan darat — dari UU Lingkungan Hidup hingga konvensi Ramsar.",
+    "category": "Regulasi",
+    "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=600&auto=format&fit=crop",
+    "author": "Biro Hukum KLH/BPLH",
+    "tags": ["Hukum", "Regulasi", "Kebijakan"]
+  },
+  {
+    "id": "ekosistem-gambut-dan-perannya",
+    "type": "edukasi",
+    "title": "Ekosistem Gambut dan Perannya dalam Iklim Global",
+    "excerpt": "Gambut menyimpan dua kali lebih banyak karbon daripada semua hutan di dunia. Pelajari cara kerjanya, ancaman yang dihadapi, dan mengapa pelestariannya krusial.",
+    "category": "Gambut",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop",
+    "author": "Tim Edukasi PPEPD",
+    "tags": ["Gambut", "Karbon", "Iklim"]
+  },
+  {
+    "id": "teknologi-pemantauan-kualitas-air",
+    "type": "edukasi",
+    "title": "Teknologi Pemantauan Kualitas Air Modern",
+    "excerpt": "Dari sensor IoT hingga citra satelit multispektral — bagaimana teknologi terkini digunakan untuk memantau kesehatan ekosistem perairan secara real-time dan akurat.",
+    "category": "Teknologi",
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop",
+    "author": "Tim SIPPEM PPEPD",
+    "tags": ["IoT", "Teknologi", "Pemantauan"]
+  },
+  {
+    "id": "rancangan-perlindungan-ekosistem-mangrove",
+    "type": "campaign",
+    "title": "Rancangan Perlindungan dan Pengelolaan Ekosistem Mangrove",
+    "excerpt": "Kampanye nasional untuk memperkuat perlindungan 3,36 juta hektare mangrove Indonesia — melibatkan komunitas pesisir, dunia usaha, dan generasi muda.",
+    "category": "Mangrove",
+    "image": "https://images.unsplash.com/photo-1544650030-3c6984747f9c?q=80&w=600&auto=format&fit=crop",
+    "author": "Direktorat PPEPD",
+    "tags": ["Mangrove", "Kampanye", "Pesisir"]
+  },
+  {
+    "id": "gerakan-satu-juta-pohon-riparian",
+    "type": "campaign",
+    "title": "Gerakan Satu Juta Pohon Riparian 2026",
+    "excerpt": "Bergabunglah dalam gerakan penanaman 1 juta pohon di sempadan sungai di 34 provinsi — melindungi tepi sungai dari erosi dan menjaga ketersediaan air bagi jutaan orang.",
+    "category": "Riparian",
+    "image": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=600&auto=format&fit=crop",
+    "author": "Komunitas Hijau Indonesia",
+    "tags": ["Pohon", "Riparian", "Sungai"]
+  },
+  {
+    "id": "stop-pencemaran-sungai",
+    "type": "campaign",
+    "title": "Stop Pencemaran Sungai: Aksi Bersama untuk Air Bersih",
+    "excerpt": "Kampanye edukasi dan advokasi untuk menghentikan pembuangan limbah rumah tangga dan industri ke badan sungai — demi air bersih bagi generasi mendatang.",
+    "category": "Advokasi",
+    "image": "https://images.unsplash.com/photo-1487621167305-5d248087c724?q=80&w=600&auto=format&fit=crop",
+    "author": "Koalisi Sungai Bersih",
+    "tags": ["Pencemaran", "Sungai", "Air Bersih"]
+  },
+  {
+    "id": "selamatkan-danau-indonesia",
+    "type": "campaign",
+    "title": "Selamatkan Danau Indonesia",
+    "excerpt": "Seruan bersama untuk menyelamatkan 15 danau prioritas yang menghadapi ancaman sedimentasi, eutrofikasi, dan penurunan debit — lewat aksi nyata setiap warga.",
+    "category": "Danau",
+    "image": "https://images.unsplash.com/photo-1654156373886-80bc7b797807?q=80&w=1035&auto=format&fit=crop",
+    "author": "Direktorat PPEPD",
+    "tags": ["Danau", "Konservasi", "Nasional"]
+  },
+  {
+    "id": "masyarakat-penjaga-pesisir",
+    "type": "campaign",
+    "title": "Masyarakat Penjaga Pesisir",
+    "excerpt": "Program pemberdayaan nelayan dan warga pesisir sebagai garda terdepan perlindungan ekosistem mangrove dan padang lamun — dengan dukungan teknologi dan insentif ekonomi.",
+    "category": "Sosial",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop",
+    "author": "PPEPD & Dinas Kelautan",
+    "tags": ["Masyarakat", "Pesisir", "Pemberdayaan"]
+  },
+  {
+    "id": "sobat-ekosistem-bersihkan-sungai",
+    "type": "campaign",
+    "title": "#SobatEkosistem: Bersihkan Sungaimu!",
+    "excerpt": "Tantangan viral di media sosial yang mengajak seluruh lapisan masyarakat mendokumentasikan dan berpartisipasi dalam kegiatan bersih sungai di seluruh Indonesia.",
+    "category": "Digital",
+    "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=600&auto=format&fit=crop",
+    "author": "Tim Komunikasi PPEPD",
+    "tags": ["Sosial Media", "Viral", "Sungai"]
+  }
+]

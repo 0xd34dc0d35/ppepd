@@ -98,6 +98,49 @@ npm -v
 
 cd $APP_DIR
 
+# ────────────────────────────────────────────
+# BERSIHKAN PROSES LAMA
+# Hapus sebelum build agar port bebas saat start nanti
+# ────────────────────────────────────────────
+echo "===================================="
+echo "CLEAN UP OLD PROCESSES"
+echo "===================================="
+
+for OLD_NAME in "${OLD_PM2_NAMES[@]}"; do
+    if pm2 describe $OLD_NAME > /dev/null 2>&1; then
+        pm2 delete $OLD_NAME
+        echo "  ✓ PM2 '$OLD_NAME' dihapus"
+    fi
+    # Cek juga di PM2 milik root
+    if sudo pm2 describe $OLD_NAME > /dev/null 2>&1; then
+        sudo pm2 delete $OLD_NAME
+        echo "  ✓ PM2 root '$OLD_NAME' dihapus"
+    fi
+done
+
+# Stop systemd PM2 service dulu agar tidak auto-restart saat daemon di-kill
+sudo systemctl stop pm2-$USER 2>/dev/null || true
+sudo systemctl stop pm2-root 2>/dev/null || true
+echo "  ✓ PM2 systemd service dihentikan"
+
+# Matikan PM2 daemon
+pm2 kill 2>/dev/null || true
+echo "  ✓ PM2 daemon dihentikan"
+
+# Kill semua proses (termasuk orphan) yang pakai port ini
+sudo fuser -k ${NODE_PORT}/tcp 2>/dev/null || true
+sudo pkill -f "$APP_DIR/.output" 2>/dev/null || true
+
+# Tunggu port benar-benar bebas (max 10 detik)
+for i in $(seq 1 10); do
+    sleep 1
+    STILL_OPEN=$(sudo lsof -ti tcp:$NODE_PORT 2>/dev/null || true)
+    if [ -z "$STILL_OPEN" ]; then
+        break
+    fi
+    echo "  ... menunggu port bebas ($i/10)"
+done
+
 echo "===================================="
 echo "INSTALL NODE MODULES"
 echo "===================================="
@@ -113,38 +156,6 @@ echo "BUILD NUXT PROJECT"
 echo "===================================="
 npm run build
 
-# ────────────────────────────────────────────
-# BERSIHKAN PROSES LAMA
-# Hapus semua PM2 proses lama (nama apapun) dan
-# pastikan tidak ada proses lain yang duduki port
-# ────────────────────────────────────────────
-echo "===================================="
-echo "CLEAN UP OLD PROCESSES"
-echo "===================================="
-
-for OLD_NAME in "${OLD_PM2_NAMES[@]}"; do
-    if pm2 describe $OLD_NAME > /dev/null 2>&1; then
-        pm2 delete $OLD_NAME
-        echo "  ✓ PM2 '$OLD_NAME' dihapus"
-    fi
-done
-
-# Terminasi proses lain yang mungkin masih duduki port
-PORT_PIDS=$(sudo lsof -ti tcp:$NODE_PORT 2>/dev/null || true)
-if [ -n "$PORT_PIDS" ]; then
-    echo "  ⚠ Port $NODE_PORT masih dipakai — terminate..."
-    echo "$PORT_PIDS" | xargs sudo kill -9 2>/dev/null || true
-    # Tunggu port benar-benar bebas (max 10 detik)
-    for i in $(seq 1 10); do
-        sleep 1
-        STILL_OPEN=$(sudo lsof -ti tcp:$NODE_PORT 2>/dev/null || true)
-        if [ -z "$STILL_OPEN" ]; then
-            break
-        fi
-        echo "  ... menunggu port bebas ($i/10)"
-    done
-fi
-
 echo "  ✓ Port $NODE_PORT bebas"
 
 # ────────────────────────────────────────────
@@ -156,6 +167,12 @@ echo "===================================="
 
 pm2 start $APP_DIR/.output/server/index.mjs --name $PM2_NAME
 pm2 save
+
+# Flush koneksi upstream nginx yang mungkin stale ke proses lama
+if sudo systemctl is-active --quiet nginx; then
+    sudo systemctl reload nginx
+    echo "  ✓ Nginx di-reload"
+fi
 
 if [ "$MODE" = "install" ]; then
     PM2_STARTUP=$(pm2 startup 2>&1 | grep "sudo env" | head -1)

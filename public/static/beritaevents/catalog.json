@@ -1,0 +1,134 @@
+[
+  {
+    "id": "kebijakan-baru-perlindungan-mangrove-2026",
+    "type": "berita",
+    "title": "Kebijakan Baru Perlindungan Mangrove 2026 Resmi Ditetapkan",
+    "excerpt": "Pemerintah melalui Kementerian Lingkungan Hidup resmi menetapkan regulasi baru yang memperkuat perlindungan kawasan mangrove nasional, mencakup 3,36 juta hektare area prioritas.",
+    "date": "12 Mei 2026",
+    "image": "/images/01.jpg",
+    "category": "Regulasi",
+    "author": "Redaksi PPEPD",
+    "tags": ["Mangrove", "Regulasi", "Kebijakan"]
+  },
+  {
+    "id": "laporan-kualitas-air-danau-prioritas-q1-2026",
+    "type": "berita",
+    "title": "Laporan Kualitas Air 15 Danau Prioritas Kuartal I 2026",
+    "excerpt": "Hasil pemantauan menunjukkan perbaikan signifikan pada indeks kualitas air di 9 dari 15 danau prioritas nasional, dengan Danau Toba mencatat peningkatan tertinggi.",
+    "date": "08 Mei 2026",
+    "image": "/images/02.jpg",
+    "category": "Laporan",
+    "author": "Tim Monitoring PPEPD",
+    "tags": ["Danau", "Kualitas Air", "Monitoring"]
+  },
+  {
+    "id": "ppepd-raih-penghargaan-lingkungan-nasional",
+    "type": "berita",
+    "title": "PPEPD Raih Penghargaan Inovasi Lingkungan Nasional 2026",
+    "excerpt": "Direktorat PPEPD meraih penghargaan kategori Inovasi Digital dalam pengelolaan ekosistem perairan darat atas pengembangan sistem SIPPEM yang telah diimplementasikan di 15 provinsi.",
+    "date": "03 Mei 2026",
+    "image": "/images/03.jpg",
+    "category": "Penghargaan",
+    "author": "Humas PPEPD",
+    "tags": ["Penghargaan", "SIPPEM", "Inovasi"]
+  },
+  {
+    "id": "regulasi-zonasi-ekosistem-perairan-diperbarui",
+    "type": "berita",
+    "title": "Regulasi Zonasi Ekosistem Perairan Darat Resmi Diperbarui",
+    "excerpt": "Peraturan Menteri Nomor 12 Tahun 2026 tentang Zonasi Ekosistem Perairan Darat menghadirkan pendekatan berbasis lanskap yang lebih komprehensif dalam pengelolaan kawasan.",
+    "date": "28 April 2026",
+    "image": "/images/003.jpeg",
+    "category": "Regulasi",
+    "author": "Biro Hukum KLH/BPLH",
+    "tags": ["Zonasi", "Regulasi", "Peraturan"]
+  },
+  {
+    "id": "kolaborasi-internasional-konservasi-gambut",
+    "type": "berita",
+    "title": "Indonesia dan 5 Negara ASEAN Perkuat Kolaborasi Konservasi Gambut",
+    "excerpt": "Penandatanganan Memorandum of Understanding antara Indonesia, Malaysia, Thailand, Vietnam, dan Kamboja menandai langkah konkret kerja sama regional dalam perlindungan ekosistem gambut.",
+    "date": "22 April 2026",
+    "image": "/event-1.png",
+    "category": "Kolaborasi",
+    "author": "Direktorat PPEPD",
+    "tags": ["Gambut", "ASEAN", "MOU"]
+  },
+  {
+    "id": "data-terbaru-deforestasi-mangrove-2025",
+    "type": "berita",
+    "title": "Data Terbaru: Laju Deforestasi Mangrove Turun 34% di 2025",
+    "excerpt": "Analisis citra satelit terkini menunjukkan penurunan laju deforestasi mangrove nasional sebesar 34% dibanding tahun sebelumnya, capaian tertinggi dalam satu dekade terakhir.",
+    "date": "15 April 2026",
+    "image": "/event-2.png",
+    "category": "Data",
+    "author": "Pusdatin KLH/BPLH",
+    "tags": ["Mangrove", "Deforestasi", "Data Satelit"]
+  },
+  {
+    "id": "restorasi-mangrove-teluk-jakarta",
+    "type": "events",
+    "title": "Restorasi Mangrove Teluk Jakarta: Fase III Dimulai",
+    "excerpt": "Fase ketiga program restorasi mangrove di kawasan Teluk Jakarta resmi dimulai, menargetkan penanaman 150.000 bibit mangrove di area seluas 120 hektare sepanjang Mei–Agustus 2026.",
+    "date": "15 Mei 2026",
+    "image": "/images/01.jpg",
+    "category": "Restorasi",
+    "author": "Direktorat PPEPD",
+    "tags": ["Mangrove", "Jakarta", "Restorasi"]
+  },
+  {
+    "id": "monitoring-air-danau-toba",
+    "type": "events",
+    "title": "Kegiatan Monitoring Kualitas Air Danau Toba 2026",
+    "excerpt": "Tim gabungan PPEPD, BRIN, dan pemerintah daerah melaksanakan monitoring komprehensif terhadap 24 titik pemantauan kualitas air di kawasan Danau Toba selama sebulan penuh.",
+    "date": "12 Mei 2026",
+    "image": "/images/02.jpg",
+    "category": "Monitoring",
+    "author": "Tim Lapangan PPEPD",
+    "tags": ["Danau Toba", "Monitoring", "Kualitas Air"]
+  },
+  {
+    "id": "workshop-konservasi-ppepd",
+    "type": "events",
+    "title": "Workshop Nasional Konservasi Ekosistem Perairan Darat 2026",
+    "excerpt": "Lebih dari 300 peserta dari 34 provinsi menghadiri workshop nasional yang membahas strategi terbaru konservasi ekosistem perairan darat di era perubahan iklim.",
+    "date": "08 Mei 2026",
+    "image": "/images/03.jpg",
+    "category": "Workshop",
+    "author": "Panitia PPEPD",
+    "tags": ["Workshop", "Konservasi", "Nasional"]
+  },
+  {
+    "id": "festival-sungai-bersih",
+    "type": "events",
+    "title": "Festival Sungai Bersih 2026: Aksi Nyata untuk Citarum",
+    "excerpt": "Festival tahunan Sungai Bersih digelar di sepanjang DAS Citarum, mengajak 5.000 relawan dari berbagai elemen masyarakat dalam aksi bersih-bersih dan edukasi lingkungan.",
+    "date": "02 Mei 2026",
+    "image": "/images/003.jpeg",
+    "category": "Festival",
+    "author": "Komunitas Sungai Bersih",
+    "tags": ["Sungai", "Citarum", "Relawan"]
+  },
+  {
+    "id": "pelatihan-ranger-perairan",
+    "type": "events",
+    "title": "Pelatihan Ranger Ekosistem Perairan Angkatan XII",
+    "excerpt": "Sebanyak 80 calon ranger ekosistem perairan mengikuti pelatihan intensif selama 14 hari yang mencakup identifikasi spesies, teknik patroli, dan penggunaan perangkat pemantauan digital.",
+    "date": "25 April 2026",
+    "image": "/event-1.png",
+    "category": "Pelatihan",
+    "author": "Pusat Diklat KLH/BPLH",
+    "tags": ["Ranger", "Pelatihan", "Ekosistem"]
+  },
+  {
+    "id": "seminar-ekosistem-darat-2026",
+    "type": "events",
+    "title": "Seminar Internasional Ekosistem Perairan Darat 2026",
+    "excerpt": "Para pakar dari 18 negara berkumpul dalam seminar internasional untuk membahas inovasi terkini dalam pemantauan, perlindungan, dan restorasi ekosistem perairan darat secara berkelanjutan.",
+    "date": "18 April 2026",
+    "image": "/event-2.png",
+    "category": "Seminar",
+    "author": "Direktorat PPEPD",
+    "tags": ["Seminar", "Internasional", "Inovasi"]
+  }
+]

@@ -53,30 +53,18 @@
         class="flex gap-6 overflow-x-auto snap-x snap-mandatory pt-4 pb-10 no-scrollbar scroll-smooth"
       >
         <div
-          v-for="item in items"
+          v-for="(item, idx) in items"
           :key="item.id"
           class="min-w-[calc(100%-48px)] md:min-w-[calc(50%-12px)] lg:min-w-[calc(25%-18px)] snap-start shrink-0"
         >
-          <!--
-            Card outer:
-            - rounded-xl (md)
-            - ring-1 tipis default (via ring utility)
-            - hover: glow + lift, ring digantikan border sweep
-          -->
           <div class="card-wrap group relative h-[45vh] rounded-xl overflow-hidden bg-brand-charcoal
                       shadow-lg transition-all duration-500 hover:-translate-y-2
                       hover:shadow-[0_8px_40px_-8px_rgba(30,92,75,0.7),0_0_0_1px_rgba(30,92,75,0.15)]">
 
-            <!-- Default thin border ring (hidden on hover, replaced by sweep) -->
             <div class="absolute inset-0 rounded-xl ring-1 ring-white/10 group-hover:ring-0 transition-all duration-300 pointer-events-none z-20" />
-
-            <!-- Conic-gradient sweep beam — mengitari perimeter saat hover -->
             <div class="card-sweep" />
 
-            <!-- Inner card body: inset-[1px] default → inset-[2px] on hover (border tebal) -->
             <div class="card-inner bg-brand-charcoal overflow-hidden">
-
-              <!-- Background image -->
               <img
                 :src="item.image"
                 :alt="item.title"
@@ -84,31 +72,36 @@
                 decoding="async"
                 class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700"
               />
-
-              <!-- Gradient overlay -->
               <div class="absolute inset-0 bg-gradient-to-t from-brand-green-dark via-brand-green-dark/20 to-transparent" />
 
-              <!-- Content -->
               <div class="absolute inset-0 p-8 flex flex-col justify-end z-10">
-                <div class="mb-4">
+                <div class="mb-4 flex gap-2">
                   <span class="px-3 py-1 rounded-lg bg-white/20 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest border border-white/10">
                     {{ item.category }}
+                  </span>
+                  <span :class="[
+                    'px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-white/10',
+                    item.type === 'edukasi' ? 'bg-brand-green/60 text-white' : 'bg-brand-orange/60 text-white'
+                  ]">
+                    {{ item.type === 'edukasi' ? 'Edukasi' : 'Campaign' }}
                   </span>
                 </div>
                 <h3 class="text-2xl font-black text-white leading-tight mb-4 group-hover:text-yellow-400 transition-colors duration-300">
                   {{ item.title }}
                 </h3>
                 <p class="text-white/70 text-sm font-medium line-clamp-3 mb-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
-                  {{ item.description }}
+                  {{ item.excerpt }}
                 </p>
-                <button class="w-full py-4 bg-white text-brand-green-dark font-black text-xs uppercase tracking-widest rounded-xl hover:bg-brand-green hover:text-white transition-all duration-300 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
-                  Detail
-                </button>
+                <NuxtLink
+                  :to="`/edukasi/${item.id}`"
+                  class="w-full py-4 bg-white text-brand-green-dark font-black text-xs uppercase tracking-widest rounded-xl hover:bg-brand-green hover:text-white transition-all duration-300 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 text-center block"
+                >
+                  Baca Selengkapnya
+                </NuxtLink>
               </div>
 
-              <!-- Decorative index number -->
               <div class="absolute top-8 right-8 text-white/10 text-6xl font-black italic tracking-tighter select-none z-10">
-                0{{ item.id }}
+                0{{ idx + 1 }}
               </div>
             </div>
           </div>
@@ -122,11 +115,14 @@
 import { ref, onMounted } from 'vue'
 
 interface EduItem {
-  id: number
+  id: string
+  type: 'edukasi' | 'campaign'
   title: string
+  excerpt: string
   category: string
   image: string
-  description: string
+  author: string
+  tags: string[]
 }
 
 const scrollContainer = ref<HTMLElement | null>(null)
@@ -136,7 +132,7 @@ const error = ref(false)
 
 onMounted(async () => {
   try {
-    const res = await fetch('/static/educampaign.json')
+    const res = await fetch('/static/edukasi/catalog.json')
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     items.value = await res.json()
   } catch {
