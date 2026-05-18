@@ -21,26 +21,26 @@ const services = [
   {
     key: 'mangrove',
     label: 'Ekosistem Mangrove',
-    subtitle: 'Pesisir & Kepulauan',
+    subtitle: '',
     description: 'Inventarisasi, pemantauan kondisi tutupan, dan dukungan rehabilitasi kawasan mangrove sebagai tameng pesisir dan habitat hayati.',
     image: '/images/layanan/item-mang-medium.jpg',
     featured: false,
     features: [
-      { text: 'Peta distribusi mangrove', yes: true },
-      { text: 'Analisis degradasi tutupan', yes: true },
-      { text: 'Laporan pemantauan berkala', yes: true },
-      { text: 'Pendampingan rehabilitasi', yes: true },
-      { text: 'Integrasi data multisumber', yes: false },
-      { text: 'Dashboard interaktif real-time', yes: false },
+      { text: 'Peta Mangrove Nasional', yes: true },
+      { text: 'Peta Kesatuan Lanskap Mangrove', yes: true },
+      { text: 'Inventarisasi Mangrove', yes: true },
+      { text: 'Rencana Perlindungan dan Pengelolaan Mangrove Nasional', yes: true },
+      { text: 'Desa Mandiri Peduli Mangrove', yes: true },
+      { text: 'Pengawasan, dan Pemulihan', yes: true },
     ],
   },
   {
     key: 'danau',
-    label: 'Danau Prioritas',
-    subtitle: 'Perairan Darat Strategis',
+    label: 'Ekosistem Danau',
+    subtitle: '',
     description: 'Pengelolaan komprehensif 15 danau prioritas nasional: pemantauan kualitas air, beban pencemaran, dan koordinasi pemangku kepentingan.',
     image: '/images/layanan/item-danau-medium.jpg',
-    featured: true,
+    featured: false,
     features: [
       { text: 'Profil ekologi setiap danau', yes: true },
       { text: 'Pemantauan kualitas air', yes: true },
@@ -52,8 +52,8 @@ const services = [
   },
   {
     key: 'mata-air',
-    label: 'Mata Air',
-    subtitle: 'Sumber Daya Air Vital',
+    label: 'Ekosistem Mata Air',
+    subtitle: '',
     description: 'Perlindungan dan pendampingan teknis mata air sebagai sumber air baku bagi masyarakat dan ekosistem sekitarnya.',
     image: '/images/layanan/item-ma-medium.jpg',
     featured: false,
@@ -107,7 +107,7 @@ const faqs = [
   <div class="relative -mx-6 -mt-12 overflow-hidden">
 
     <!-- ── Hero ── -->
-    <section class="relative px-6 pt-28 pb-20 text-center overflow-hidden">
+    <section class="relative px-6 pt-28 pb-10 text-center overflow-hidden">
       <div class="pointer-events-none absolute inset-0">
         <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-brand-green/8 blur-[150px]" />
         <div class="absolute bottom-0 right-[-5%] w-[50%] h-[50%] rounded-full bg-brand-blue/6 blur-[150px]" />
@@ -214,7 +214,7 @@ const faqs = [
                         : 'border-2 border-brand-green/20 text-brand-green hover:border-brand-green hover:bg-brand-green hover:text-white'
                     ]"
                   >
-                    Ajukan Kerja Sama
+                    Jelajahi
                   </NuxtLink>
                 </div>
               </div>
@@ -225,10 +225,10 @@ const faqs = [
     </section>
 
     <!-- ── Comparison Table ── -->
-    <section class="px-6 py-20">
-      <div class="mx-auto max-w-5xl">
+    <section class="px-6 py-20 pt-4">
+      <div class="mx-auto max-w-6xl">
         <div class="text-center mb-12">
-          <h2 class="text-4xl font-black text-brand-green-dark tracking-tight">Perbandingan Layanan</h2>
+          <h2 class="text-4xl font-black text-brand-green-dark tracking-tight">Layanan</h2>
           <p class="mt-3 text-sm font-medium text-brand-charcoal/50">Fitur lengkap yang tersedia di setiap ekosistem</p>
         </div>
 
@@ -275,7 +275,7 @@ const faqs = [
     </section>
 
     <!-- ── FAQ ── -->
-    <section class="px-6 py-20">
+    <section class="px-6 py-10 pt-6">
       <div class="mx-auto max-w-3xl">
         <div class="text-center mb-12">
           <h2 class="text-4xl font-black text-brand-green-dark tracking-tight">Pertanyaan Umum</h2>
@@ -306,7 +306,7 @@ const faqs = [
     </section>
 
     <!-- ── CTA ── -->
-    <section class="px-6 py-24 text-center relative overflow-hidden">
+    <section class="px-6 py-10 text-center relative overflow-hidden">
       <div class="pointer-events-none absolute inset-0">
         <div class="absolute top-[-30%] left-[20%] w-[60%] h-[160%] rounded-full bg-brand-green/5 blur-[100px]" />
       </div>
