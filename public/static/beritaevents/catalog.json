@@ -1,5 +1,17 @@
 [
   {
+    "id": "kelana-generasi-muda-mangrove-benteng-masa-depan",
+    "type": "berita",
+    "featured": true,
+    "title": "KELANA Jadi Panggung Aksi Generasi Muda, Mangrove Didorong Jadi Benteng Masa Depan",
+    "excerpt": "Kementerian LH/BPLH meluncurkan program KELANA (Kenali Lingkungan Bareng Anak Muda) bersamaan pemutaran dokumenter 'Menjaga Akar Negeri', mendorong generasi muda jadi duta digital pelindung ekosistem mangrove nasional.",
+    "date": "13 Mei 2026",
+    "image": "https://kemenlh.go.id/dashboard/public/storage/news-activities/mOC1WQiM9EodsUsHm7eRTT8PJkCyhOfftsoWsBY1.jpg",
+    "category": "Mangrove",
+    "author": "KLH/BPLH",
+    "tags": ["Mangrove", "Generasi Muda", "KELANA", "Edukasi"]
+  },
+  {
     "id": "permen-lh-26-inventarisasi-mangrove",
     "type": "berita",
     "featured": true,

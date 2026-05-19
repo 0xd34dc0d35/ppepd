@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 
 useHead({
   meta: [
@@ -11,15 +11,28 @@ useHead({
 })
 
 const isScrolledPast100vh = ref(false)
+const drawerOpen = ref(false)
+const route = useRoute()
 
 const handleScroll = () => {
-  // Check if scrolled past 100vh
   if (window.scrollY > window.innerHeight) {
     isScrolledPast100vh.value = true
   } else {
     isScrolledPast100vh.value = false
   }
 }
+
+const openDrawer = () => {
+  drawerOpen.value = true
+  document.body.style.overflow = 'hidden'
+}
+
+const closeDrawer = () => {
+  drawerOpen.value = false
+  document.body.style.overflow = ''
+}
+
+watch(() => route.path, closeDrawer)
 
 const showModal = ref(false)
 const modalTitle = ref('')
@@ -86,11 +99,11 @@ onUnmounted(() => {
     </div>
 
     <!-- Navigation -->
-    <nav 
+    <nav
       :class="[
         'z-50 h-[50px] w-full transition-colors duration-300',
-        isScrolledPast100vh 
-          ? 'fixed top-0 animate-slideDown backdrop-blur-xl bg-white/90 border-b border-brand-green/10 shadow-sm' 
+        isScrolledPast100vh
+          ? 'fixed top-0 animate-slideDown backdrop-blur-xl bg-white/90 border-b border-brand-green/10 shadow-sm'
           : 'absolute top-0 bg-transparent'
       ]"
     >
@@ -98,16 +111,75 @@ onUnmounted(() => {
         <NuxtLink to="/" class="text-2xl font-black tracking-tighter gradient-text leading-none">
           PPEPD
         </NuxtLink>
-        <div class="flex gap-10 text-sm font-bold tracking-wide uppercase text-brand-charcoal/60">
+
+        <!-- Desktop menu -->
+        <div class="hidden sm:flex gap-10 text-sm font-bold tracking-wide uppercase text-brand-charcoal/60">
           <NuxtLink to="/" class="hover:text-brand-green transition-all duration-300">Beranda</NuxtLink>
           <NuxtLink to="/data" class="hover:text-brand-green transition-all duration-300">Data</NuxtLink>
+          <NuxtLink to="/regulasi" class="hover:text-brand-green transition-all duration-300">Regulasi</NuxtLink>
           <NuxtLink to="/layanan" class="hover:text-brand-green transition-all duration-300">Layanan</NuxtLink>
           <NuxtLink to="/about" class="hover:text-brand-green transition-all duration-300">Tentang</NuxtLink>
           <NuxtLink to="/zona-integritas" class="hover:text-brand-green transition-all duration-300">Zona Integritas</NuxtLink>
           <NuxtLink to="/hubungi" class="hover:text-brand-green transition-all duration-300">Hubungi</NuxtLink>
         </div>
+
+        <!-- Hamburger (mobile only) -->
+        <button
+          @click="openDrawer"
+          class="sm:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px] rounded-lg hover:bg-brand-green/8 transition-colors"
+          aria-label="Buka menu"
+        >
+          <span class="w-5 h-[2px] bg-brand-green-dark rounded-full"></span>
+          <span class="w-5 h-[2px] bg-brand-green-dark rounded-full"></span>
+          <span class="w-3 h-[2px] bg-brand-green-dark rounded-full self-end"></span>
+        </button>
       </div>
     </nav>
+
+    <!-- Drawer backdrop -->
+    <Transition name="fade-backdrop">
+      <div
+        v-if="drawerOpen"
+        class="fixed inset-0 z-[60] bg-brand-charcoal/30 backdrop-blur-sm sm:hidden"
+        @click="closeDrawer"
+      />
+    </Transition>
+
+    <!-- Right sidebar drawer -->
+    <Transition name="slide-drawer">
+      <div
+        v-if="drawerOpen"
+        class="fixed inset-y-0 right-0 z-[70] w-64 bg-white shadow-2xl flex flex-col sm:hidden"
+      >
+        <!-- Drawer header -->
+        <div class="flex items-center justify-between px-6 h-[50px] border-b border-brand-green/10 flex-shrink-0">
+          <span class="text-xl font-black tracking-tighter gradient-text leading-none">PPEPD</span>
+          <button
+            @click="closeDrawer"
+            class="w-8 h-8 flex items-center justify-center rounded-lg text-brand-charcoal/40 hover:text-brand-green hover:bg-brand-green/8 transition-colors"
+            aria-label="Tutup menu"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Drawer nav links -->
+        <nav class="flex-grow overflow-y-auto py-4 px-3">
+          <NuxtLink to="/"                class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Beranda</NuxtLink>
+          <NuxtLink to="/data"            class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Data</NuxtLink>
+          <NuxtLink to="/regulasi"        class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Regulasi</NuxtLink>
+          <NuxtLink to="/layanan"         class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Layanan</NuxtLink>
+          <NuxtLink to="/about"           class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Tentang</NuxtLink>
+          <NuxtLink to="/zona-integritas" class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Zona Integritas</NuxtLink>
+          <NuxtLink to="/hubungi"         class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Hubungi</NuxtLink>
+        </nav>
+
+        <!-- Drawer footer -->
+        <div class="px-6 py-5 border-t border-brand-green/8 flex-shrink-0">
+          <p class="text-[10px] font-black uppercase tracking-widest text-brand-charcoal/30">KLH/BPLH · PPEPD</p>
+        </div>
+      </div>
+    </Transition>
 
     <!-- Main Content -->
     <main class="flex-grow container mx-auto px-6 py-12 relative">
@@ -232,6 +304,7 @@ onUnmounted(() => {
   @apply text-brand-green;
 }
 
+
 @keyframes slideDown {
   from {
     transform: translateY(-100%);
@@ -259,6 +332,25 @@ onUnmounted(() => {
 .zoom-enter-from, .zoom-leave-to {
   transform: scale(0.9) translateY(20px);
   opacity: 0;
+}
+
+/* Drawer transitions */
+.fade-backdrop-enter-active,
+.fade-backdrop-leave-active {
+  transition: opacity 0.25s ease;
+}
+.fade-backdrop-enter-from,
+.fade-backdrop-leave-to {
+  opacity: 0;
+}
+
+.slide-drawer-enter-active,
+.slide-drawer-leave-active {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slide-drawer-enter-from,
+.slide-drawer-leave-to {
+  transform: translateX(100%);
 }
 
 /* Custom Scrollbar for Modal */

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "pp-27-2025-perlindungan-mangrove",
+    "ekosistem": "mangrove",
+    "jenis": "PP",
+    "nomor": "27",
+    "tahun": 2025,
+    "title": "Perlindungan dan Pengelolaan Ekosistem Mangrove",
+    "excerpt": "Peraturan Pemerintah yang mengatur secara komprehensif perlindungan dan pengelolaan ekosistem mangrove di seluruh wilayah Indonesia, mencakup inventarisasi, rehabilitasi, dan pengawasan kawasan mangrove nasional.",
+    "date": "2025",
+    "tags": ["Mangrove", "Perlindungan", "Pengelolaan"]
+  },
+  {
+    "id": "permen-lh-26-2026-inventarisasi-mangrove",
+    "ekosistem": "mangrove",
+    "jenis": "Permen",
+    "nomor": "26",
+    "tahun": 2026,
+    "title": "Tata Cara Inventarisasi Mangrove",
+    "excerpt": "Peraturan Menteri yang menetapkan prosedur baku inventarisasi mangrove secara nasional, termasuk metode lapangan, penginderaan jauh, validasi data, dan mekanisme pelaporan berkala ke sistem Peta Mangrove Nasional.",
+    "date": "2026",
+    "tags": ["Mangrove", "Inventarisasi", "PMN"]
+  },
+  {
+    "id": "perpres-120-2020-rehabilitasi-mangrove",
+    "ekosistem": "mangrove",
+    "jenis": "Perpres",
+    "nomor": "120",
+    "tahun": 2020,
+    "title": "Penugasan Pemerintah dalam Rangka Pelaksanaan Rehabilitasi Mangrove",
+    "excerpt": "Peraturan Presiden yang menugaskan Badan Restorasi Gambut dan Mangrove (BRGM) untuk melaksanakan rehabilitasi mangrove di 9 provinsi prioritas dengan target 600.000 hektare hingga 2024.",
+    "date": "2020",
+    "tags": ["Mangrove", "Rehabilitasi", "BRGM"]
+  },
+  {
+    "id": "permen-lh-4-2021-pencegahan-kerusakan-mangrove",
+    "ekosistem": "mangrove",
+    "jenis": "Permen",
+    "nomor": "4",
+    "tahun": 2021,
+    "title": "Pencegahan dan Penanggulangan Kerusakan Ekosistem Mangrove",
+    "excerpt": "Peraturan Menteri yang mengatur mekanisme pencegahan, penanggulangan, dan pemulihan kerusakan ekosistem mangrove akibat alih fungsi lahan, pencemaran, dan dampak perubahan iklim.",
+    "date": "2021",
+    "tags": ["Mangrove", "Kerusakan", "Pemulihan"]
+  },
+  {
+    "id": "perpres-60-2021-danau-prioritas-nasional",
+    "ekosistem": "danau",
+    "jenis": "Perpres",
+    "nomor": "60",
+    "tahun": 2021,
+    "title": "Penyelamatan Danau Prioritas Nasional",
+    "excerpt": "Peraturan Presiden yang menetapkan 15 danau sebagai danau prioritas nasional dan mengamanatkan penyelamatan terpadu melalui pengendalian pencemaran, pemulihan ekosistem, dan koordinasi multipihak lintas sektor.",
+    "date": "2021",
+    "tags": ["Danau", "Prioritas Nasional", "Penyelamatan"]
+  },
+  {
+    "id": "permen-lh-12-2026-zonasi-perairan-darat",
+    "ekosistem": "danau",
+    "jenis": "Permen",
+    "nomor": "12",
+    "tahun": 2026,
+    "title": "Zonasi Ekosistem Perairan Darat",
+    "excerpt": "Peraturan Menteri yang menghadirkan pendekatan berbasis lanskap dalam penetapan zonasi ekosistem perairan darat, mencakup danau, waduk, dan situ sebagai kawasan lindung maupun kawasan pemanfaatan terbatas.",
+    "date": "2026",
+    "tags": ["Danau", "Zonasi", "Perairan Darat"]
+  },
+  {
+    "id": "permen-lh-1-2022-baku-mutu-air-danau",
+    "ekosistem": "danau",
+    "jenis": "Permen",
+    "nomor": "1",
+    "tahun": 2022,
+    "title": "Baku Mutu Air Danau",
+    "excerpt": "Peraturan Menteri yang menetapkan baku mutu air untuk danau dan waduk, meliputi parameter fisika, kimia, dan biologi sebagai acuan pemantauan kualitas air dan penegakan hukum lingkungan.",
+    "date": "2022",
+    "tags": ["Danau", "Kualitas Air", "Baku Mutu"]
+  },
+  {
+    "id": "permen-lh-5-2023-rppe-danau",
+    "ekosistem": "danau",
+    "jenis": "Permen",
+    "nomor": "5",
+    "tahun": 2023,
+    "title": "Rencana Perlindungan dan Pengelolaan Ekosistem Danau Prioritas Nasional",
+    "excerpt": "Peraturan Menteri yang mewajibkan penyusunan Dokumen RPPE bagi 15 danau prioritas nasional sebagai instrumen perencanaan jangka panjang pengelolaan kawasan danau secara terpadu.",
+    "date": "2023",
+    "tags": ["Danau", "RPPE", "Perencanaan"]
+  },
+  {
+    "id": "permen-lh-8-2022-perlindungan-mata-air",
+    "ekosistem": "mataair",
+    "jenis": "Permen",
+    "nomor": "8",
+    "tahun": 2022,
+    "title": "Perlindungan dan Pengelolaan Ekosistem Mata Air",
+    "excerpt": "Peraturan Menteri yang mengatur tata cara identifikasi, inventarisasi, dan perlindungan kawasan mata air sebagai sumber air baku strategis bagi masyarakat dan ekosistem sekitarnya.",
+    "date": "2022",
+    "tags": ["Mata Air", "Perlindungan", "Inventarisasi"]
+  },
+  {
+    "id": "permen-lh-15-2024-penilaian-kesehatan-mata-air",
+    "ekosistem": "mataair",
+    "jenis": "Permen",
+    "nomor": "15",
+    "tahun": 2024,
+    "title": "Tata Cara Penilaian Kesehatan Mata Air",
+    "excerpt": "Peraturan Menteri yang menetapkan metode baku penilaian kesehatan mata air mencakup aspek hidrologi, kualitas air, keanekaragaman hayati riparian, dan tekanan antropogenik di sekitar titik mata air.",
+    "date": "2024",
+    "tags": ["Mata Air", "Penilaian Kesehatan", "Hidrologi"]
+  },
+  {
+    "id": "permen-lh-3-2023-desa-peduli-sumber-air",
+    "ekosistem": "mataair",
+    "jenis": "Permen",
+    "nomor": "3",
+    "tahun": 2023,
+    "title": "Pedoman Program Desa Peduli Sumber Air",
+    "excerpt": "Peraturan Menteri yang mengatur mekanisme penetapan, pembinaan, dan evaluasi Desa Peduli Sumber Air (DPSA) sebagai ujung tombak perlindungan mata air berbasis masyarakat di tingkat tapak.",
+    "date": "2023",
+    "tags": ["Mata Air", "DPSA", "Desa"]
+  }
+]
