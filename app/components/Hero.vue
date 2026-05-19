@@ -32,7 +32,7 @@ const prevSlide = () => {
 </script>
 
 <template>
-  <section class="relative py-2 flex flex-col items-center text-center w-full overflow-hidden">
+  <section class="relative py-12 flex flex-col items-center text-center w-full overflow-hidden">
     <!-- Hero content is now transparent to show page-level background animation -->
     
     <!-- Side Navigation -->

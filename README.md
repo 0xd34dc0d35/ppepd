@@ -1,71 +1,53 @@
 # Sistem Informasi PPEPD
 
-Make sure to install dependencies:
+Aplikasi web resmi **Direktorat Perlindungan dan Pengelolaan Ekosistem Perairan Darat (PPEPD)**, Deputi Bidang Tata Lingkungan dan Sumber Daya Alam Berkelanjutan, **Kementerian Lingkungan Hidup/Badan Perlindungan Lingkungan Hidup**.
+
+## Tentang
+
+Portal informasi publik yang menyajikan data, berita, edukasi, dan layanan terkait perlindungan dan pengelolaan ekosistem perairan darat — mencakup danau, mata air, dan ekosistem perairan lainnya di Indonesia.
+
+**Fitur utama:**
+- Profil dan data danau nasional dengan visualisasi peta (MapLibre GL)
+- Data mata air
+- Berita dan agenda kegiatan
+- Konten edukasi
+- Informasi layanan dan zona integritas
+
+## Teknologi
+
+- **Framework:** [Nuxt 4](https://nuxt.com)
+- **Konten:** [@nuxt/content](https://content.nuxt.com)
+- **Styling:** Tailwind CSS
+- **Peta:** MapLibre GL
+- **Database:** better-sqlite3
+- **Versi:** 1.0.0
+
+## Pengembangan
+
+Install dependensi:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+Jalankan server development di `http://localhost:3000`:
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Build & Deployment
 
-Build the application for production:
+Build untuk production:
 
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
 
-Locally preview production build:
+Preview hasil build:
 
 ```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Untuk panduan deployment lengkap, lihat [dokumentasi deployment Nuxt](https://nuxt.com/docs/getting-started/deployment).

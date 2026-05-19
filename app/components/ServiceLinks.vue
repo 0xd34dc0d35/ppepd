@@ -1,11 +1,11 @@
 <template>
-  <section id="layanan" class="container mx-auto px-4 -mt-8 relative z-20 scroll-mt-24">
+  <section id="layanan" class="container mx-auto px-4 -mt-8 relative z-20 scroll-mt-24 pt-2">
     <div class="flex flex-col items-center">
       <!-- Carousel Display (No Animation) -->
       <div class="flex justify-center gap-6 md:gap-16 flex-wrap w-full">
         <template v-for="(service, index) in services" :key="service.id">
           <NuxtLink 
-            v-if="Math.floor(index / 4) === currentIndex"
+            v-if="Math.floor(index / 3) === currentIndex"
             :to="service.link" 
             class="group flex flex-col items-center gap-4 w-28 md:w-36"
           >
@@ -52,12 +52,12 @@ const currentIndex = ref(0)
 
 // 12 Layanan Utama (Replikasi dari 4 awal)
 const services = [
-  { id: 1, title: 'Inventarisasi Danau', 
+  { id: 1, title: 'Perlindungan Danau', 
   link: '/layanan/inventarisasi-danau', 
   image: 'https://images.unsplash.com/photo-1762808471755-325a4ac6e36f?q=80&w=320&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-  { id: 2, title: 'Inventarisasi Mata Air', link: '/layanan/rehabilitasi', 
+  { id: 2, title: 'Perlindungan Mata Air', link: '/layanan/rehabilitasi', 
   image: 'https://plus.unsplash.com/premium_photo-1710628263718-367b1cf5828f?q=80&w=320&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
-  { id: 3, title: 'Inventarisasi Mangrove', link: '/layanan/mangrove',
+  { id: 3, title: 'Perlindungan Mangrove', link: '/layanan/mangrove',
    image: 'event-1.png' },
   { id: 4, title: 'Basisdata Ekosistem', link: '/layanan/edukasi',
    image: 'https://plus.unsplash.com/premium_photo-1745182312745-cdb5d212803a?q=80&w=320&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
