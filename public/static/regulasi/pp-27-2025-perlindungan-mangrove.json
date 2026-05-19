@@ -1,0 +1,31 @@
+{
+  "id": "pp-27-2025-perlindungan-mangrove",
+  "ekosistem": "mangrove",
+  "jenis": "PP",
+  "nomor": "27",
+  "tahun": 2025,
+  "title": "Perlindungan dan Pengelolaan Ekosistem Mangrove",
+  "excerpt": "Peraturan Pemerintah yang mengatur secara komprehensif perlindungan dan pengelolaan ekosistem mangrove di seluruh wilayah Indonesia, mencakup inventarisasi, rehabilitasi, dan pengawasan kawasan mangrove nasional.",
+  "tags": ["Mangrove", "Perlindungan", "Pengelolaan"],
+  "sections": [
+    {
+      "heading": "Latar Belakang",
+      "body": "Ekosistem mangrove Indonesia mencakup sekitar 3,45 juta hektare atau 23 persen dari total mangrove dunia. Besarnya potensi ini menuntut adanya landasan hukum yang kuat dan komprehensif untuk memastikan perlindungan dan pengelolaannya berjalan secara terencana, terpadu, dan berkesinambungan."
+    },
+    {
+      "heading": "Pokok Pengaturan",
+      "items": [
+        "Definisi, ruang lingkup, dan batasan kawasan ekosistem mangrove",
+        "Kewajiban inventarisasi dan pemutakhiran data mangrove nasional",
+        "Mekanisme penetapan kawasan mangrove sebagai kawasan lindung",
+        "Tata cara rehabilitasi mangrove pada kawasan yang mengalami kerusakan",
+        "Pengawasan, pengendalian, dan penegakan hukum terhadap pelanggaran",
+        "Pembagian kewenangan antara pemerintah pusat dan pemerintah daerah"
+      ]
+    },
+    {
+      "heading": "Relevansi bagi PPEPD",
+      "body": "PP No. 27 Tahun 2025 menjadi payung hukum utama seluruh program kerja Direktorat PPEPD di bidang mangrove, termasuk pelaksanaan inventarisasi melalui Peta Mangrove Nasional (PMN), program Desa Mandiri Peduli Mangrove (DPMPM), dan koordinasi rehabilitasi bersama BRGM."
+    }
+  ]
+}

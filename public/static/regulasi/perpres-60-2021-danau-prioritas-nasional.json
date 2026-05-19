@@ -1,0 +1,46 @@
+{
+  "id": "perpres-60-2021-danau-prioritas-nasional",
+  "ekosistem": "danau",
+  "jenis": "Perpres",
+  "nomor": "60",
+  "tahun": 2021,
+  "title": "Penyelamatan Danau Prioritas Nasional",
+  "excerpt": "Peraturan Presiden yang menetapkan 15 danau sebagai danau prioritas nasional dan mengamanatkan penyelamatan terpadu melalui pengendalian pencemaran, pemulihan ekosistem, dan koordinasi multipihak lintas sektor.",
+  "tags": ["Danau", "Prioritas Nasional", "Penyelamatan"],
+  "sections": [
+    {
+      "heading": "Latar Belakang",
+      "body": "Kondisi 15 danau prioritas nasional mengalami tekanan berat akibat pencemaran, sedimentasi, dan alih fungsi lahan di daerah tangkapan air. Perpres No. 60 Tahun 2021 mengamanatkan penyelamatan terpadu yang melibatkan seluruh pemangku kepentingan lintas sektor dan lintas wilayah."
+    },
+    {
+      "heading": "15 Danau Prioritas Nasional",
+      "items": [
+        "Danau Toba (Sumatera Utara)",
+        "Danau Singkarak (Sumatera Barat)",
+        "Danau Maninjau (Sumatera Barat)",
+        "Danau Kerinci (Jambi)",
+        "Danau Rawa Pening (Jawa Tengah)",
+        "Danau Batur (Bali)",
+        "Danau Tempe (Sulawesi Selatan)",
+        "Danau Matano (Sulawesi Selatan)",
+        "Danau Towuti (Sulawesi Selatan)",
+        "Danau Poso (Sulawesi Tengah)",
+        "Danau Limboto (Gorontalo)",
+        "Danau Sentani (Papua)",
+        "Danau Cascade Mahakam (Kalimantan Timur)",
+        "Danau Semayang (Kalimantan Timur)",
+        "Danau Melintang (Kalimantan Timur)"
+      ]
+    },
+    {
+      "heading": "Pokok Pengaturan",
+      "items": [
+        "Pembentukan Tim Koordinasi Penyelamatan Danau Prioritas Nasional",
+        "Penyusunan Rencana Aksi Penyelamatan masing-masing danau",
+        "Pengendalian beban pencemaran dari berbagai sumber",
+        "Pemulihan daerah tangkapan air dan sempadan danau",
+        "Mekanisme pemantauan dan pelaporan kemajuan pelaksanaan"
+      ]
+    }
+  ]
+}

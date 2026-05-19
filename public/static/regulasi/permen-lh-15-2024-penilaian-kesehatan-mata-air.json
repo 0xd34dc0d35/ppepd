@@ -1,0 +1,30 @@
+{
+  "id": "permen-lh-15-2024-penilaian-kesehatan-mata-air",
+  "ekosistem": "mataair",
+  "jenis": "Permen",
+  "nomor": "15",
+  "tahun": 2024,
+  "title": "Tata Cara Penilaian Kesehatan Mata Air",
+  "excerpt": "Peraturan Menteri yang menetapkan metode baku penilaian kesehatan mata air mencakup aspek hidrologi, kualitas air, keanekaragaman hayati riparian, dan tekanan antropogenik di sekitar titik mata air.",
+  "tags": ["Mata Air", "Penilaian Kesehatan", "Hidrologi"],
+  "sections": [
+    {
+      "heading": "Latar Belakang",
+      "body": "Penilaian kesehatan mata air secara sistematis diperlukan untuk mendeteksi dini penurunan fungsi dan mengukur efektivitas upaya perlindungan. Peraturan ini menetapkan metode baku yang dapat diterapkan secara konsisten oleh berbagai pihak di seluruh Indonesia."
+    },
+    {
+      "heading": "Komponen Penilaian",
+      "items": [
+        "Aspek hidrologi: debit, fluktuasi musiman, dan tren perubahan jangka panjang",
+        "Aspek kualitas air: parameter fisika, kimia, dan mikrobiologi",
+        "Aspek ekologi: keanekaragaman hayati vegetasi riparian dan biota perairan",
+        "Aspek sosial: tekanan penggunaan, konflik kepentingan, dan kondisi tata kelola",
+        "Indeks Kesehatan Mata Air (IKMA) sebagai nilai komposit akhir"
+      ]
+    },
+    {
+      "heading": "Penggunaan Hasil Penilaian",
+      "body": "Hasil penilaian kesehatan menjadi dasar penentuan prioritas intervensi, alokasi anggaran perlindungan, serta pelaporan kondisi mata air nasional dalam Laporan Status Lingkungan Hidup Indonesia (SLHI)."
+    }
+  ]
+}

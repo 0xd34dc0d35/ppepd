@@ -1,0 +1,29 @@
+{
+  "id": "permen-lh-1-2022-baku-mutu-air-danau",
+  "ekosistem": "danau",
+  "jenis": "Permen",
+  "nomor": "1",
+  "tahun": 2022,
+  "title": "Baku Mutu Air Danau",
+  "excerpt": "Peraturan Menteri yang menetapkan baku mutu air untuk danau dan waduk, meliputi parameter fisika, kimia, dan biologi sebagai acuan pemantauan kualitas air dan penegakan hukum lingkungan.",
+  "tags": ["Danau", "Kualitas Air", "Baku Mutu"],
+  "sections": [
+    {
+      "heading": "Latar Belakang",
+      "body": "Penetapan baku mutu air danau yang terstandar diperlukan sebagai acuan bersama dalam pemantauan kualitas air, penegakan hukum lingkungan, dan evaluasi keberhasilan program penyelamatan danau prioritas nasional."
+    },
+    {
+      "heading": "Parameter Baku Mutu",
+      "items": [
+        "Parameter fisika: suhu, kekeruhan, warna, dan padatan tersuspensi",
+        "Parameter kimia: pH, oksigen terlarut (DO), BOD, COD, nitrat, fosfat, dan logam berat",
+        "Parameter biologi: total coliform, E. coli, dan indeks saprobitas plankton",
+        "Baku mutu khusus untuk danau yang digunakan sebagai sumber air baku"
+      ]
+    },
+    {
+      "heading": "Penerapan",
+      "body": "Standar baku mutu ini menjadi rujukan wajib bagi PPEPD dalam program pemantauan kualitas air 15 danau prioritas nasional, serta dasar penerbitan rekomendasi teknis terhadap kegiatan yang berpotensi menurunkan kualitas air danau."
+    }
+  ]
+}

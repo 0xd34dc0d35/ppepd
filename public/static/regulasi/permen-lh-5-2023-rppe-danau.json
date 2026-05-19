@@ -1,0 +1,31 @@
+{
+  "id": "permen-lh-5-2023-rppe-danau",
+  "ekosistem": "danau",
+  "jenis": "Permen",
+  "nomor": "5",
+  "tahun": 2023,
+  "title": "Rencana Perlindungan dan Pengelolaan Ekosistem Danau Prioritas Nasional",
+  "excerpt": "Peraturan Menteri yang mewajibkan penyusunan Dokumen RPPE bagi 15 danau prioritas nasional sebagai instrumen perencanaan jangka panjang pengelolaan kawasan danau secara terpadu.",
+  "tags": ["Danau", "RPPE", "Perencanaan"],
+  "sections": [
+    {
+      "heading": "Latar Belakang",
+      "body": "Dokumen Rencana Perlindungan dan Pengelolaan Ekosistem (RPPE) diperlukan sebagai instrumen perencanaan jangka panjang yang mengintegrasikan berbagai kepentingan pemangku kepentingan dalam pengelolaan kawasan danau secara terpadu dan berkelanjutan."
+    },
+    {
+      "heading": "Muatan Dokumen RPPE",
+      "items": [
+        "Kondisi ekosistem danau saat ini (baseline) dan proyeksi ke depan",
+        "Identifikasi tekanan dan ancaman terhadap ekosistem danau",
+        "Rencana aksi pengendalian pencemaran dan pemulihan ekosistem",
+        "Target capaian terukur beserta indikator keberhasilan",
+        "Rencana pemantauan dan evaluasi berkala",
+        "Mekanisme keterlibatan multipihak dalam implementasi"
+      ]
+    },
+    {
+      "heading": "Kewajiban Penyusunan",
+      "body": "Seluruh 15 danau prioritas nasional wajib memiliki Dokumen RPPE yang disusun bersama pemerintah daerah, lembaga penelitian, dan masyarakat. PPEPD berperan sebagai pembina teknis dan fasilitator penyusunan di tingkat nasional."
+    }
+  ]
+}

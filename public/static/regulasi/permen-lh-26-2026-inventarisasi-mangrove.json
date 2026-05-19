@@ -1,0 +1,31 @@
+{
+  "id": "permen-lh-26-2026-inventarisasi-mangrove",
+  "ekosistem": "mangrove",
+  "jenis": "Permen",
+  "nomor": "26",
+  "tahun": 2026,
+  "title": "Tata Cara Inventarisasi Mangrove",
+  "excerpt": "Peraturan Menteri yang menetapkan prosedur baku inventarisasi mangrove secara nasional, termasuk metode lapangan, penginderaan jauh, validasi data, dan mekanisme pelaporan berkala ke sistem Peta Mangrove Nasional.",
+  "tags": ["Mangrove", "Inventarisasi", "PMN"],
+  "sections": [
+    {
+      "heading": "Latar Belakang",
+      "body": "Sebelum terbitnya peraturan ini, pelaksanaan inventarisasi mangrove di berbagai daerah dilakukan dengan metode yang beragam sehingga menyulitkan integrasi dan komparasi data di tingkat nasional. Permen LH/BPLH No. 26 hadir untuk menyeragamkan prosedur dan memastikan kualitas data yang dapat dipertanggungjawabkan."
+    },
+    {
+      "heading": "Pokok Pengaturan",
+      "items": [
+        "Metode baku pengambilan data lapangan dan penginderaan jauh",
+        "Prosedur validasi dan quality control data inventarisasi",
+        "Periode inventarisasi menyeluruh (5 tahun) dan pemantauan berkala (tahunan)",
+        "Mekanisme pelaporan berjenjang dari tapak hingga nasional",
+        "Kewajiban integrasi hasil inventarisasi ke dalam Peta Mangrove Nasional (PMN)",
+        "Standar kompetensi pelaksana dan pengawas inventarisasi"
+      ]
+    },
+    {
+      "heading": "Implementasi",
+      "body": "Direktorat PPEPD ditunjuk sebagai koordinator teknis nasional. Petunjuk teknis pelaksanaan dan jadwal inventarisasi perdana sedang disusun untuk segera diimplementasikan di seluruh provinsi pesisir Indonesia."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "permen-lh-12-2026-zonasi-perairan-darat",
+  "ekosistem": "danau",
+  "jenis": "Permen",
+  "nomor": "12",
+  "tahun": 2026,
+  "title": "Zonasi Ekosistem Perairan Darat",
+  "excerpt": "Peraturan Menteri yang menghadirkan pendekatan berbasis lanskap dalam penetapan zonasi ekosistem perairan darat, mencakup danau, waduk, dan situ sebagai kawasan lindung maupun kawasan pemanfaatan terbatas.",
+  "tags": ["Danau", "Zonasi", "Perairan Darat"],
+  "sections": [
+    {
+      "heading": "Latar Belakang",
+      "body": "Pendekatan zonasi berbasis lanskap diperlukan untuk mengatur pemanfaatan kawasan perairan darat secara proporsional — memisahkan zona lindung, zona penyangga, dan zona pemanfaatan terbatas agar fungsi ekologis tetap terjaga di tengah tekanan pembangunan."
+    },
+    {
+      "heading": "Pokok Pengaturan",
+      "items": [
+        "Kriteria penetapan zona inti, zona penyangga, dan zona pemanfaatan terbatas",
+        "Prosedur penyusunan dan penetapan dokumen zonasi perairan darat",
+        "Kewajiban pemerintah daerah dalam mengintegrasikan zonasi ke dalam RTRW",
+        "Jenis kegiatan yang diizinkan dan dilarang di setiap zona",
+        "Mekanisme revisi dan pemutakhiran dokumen zonasi secara berkala"
+      ]
+    }
+  ]
+}

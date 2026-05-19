@@ -1,0 +1,27 @@
+{
+  "id": "permen-lh-4-2021-pencegahan-kerusakan-mangrove",
+  "ekosistem": "mangrove",
+  "jenis": "Permen",
+  "nomor": "4",
+  "tahun": 2021,
+  "title": "Pencegahan dan Penanggulangan Kerusakan Ekosistem Mangrove",
+  "excerpt": "Peraturan Menteri yang mengatur mekanisme pencegahan, penanggulangan, dan pemulihan kerusakan ekosistem mangrove akibat alih fungsi lahan, pencemaran, dan dampak perubahan iklim.",
+  "tags": ["Mangrove", "Kerusakan", "Pemulihan"],
+  "sections": [
+    {
+      "heading": "Latar Belakang",
+      "body": "Kerusakan ekosistem mangrove tidak hanya berdampak pada hilangnya tutupan vegetasi, tetapi juga mengancam fungsi ekologis pesisir, habitat satwa liar, dan penghidupan masyarakat. Peraturan ini mengatur mekanisme pencegahan sebelum kerusakan terjadi dan langkah penanggulangan ketika kerusakan telah berlangsung."
+    },
+    {
+      "heading": "Pokok Pengaturan",
+      "items": [
+        "Kriteria dan indikator kerusakan ekosistem mangrove",
+        "Prosedur identifikasi dini dan penilaian tingkat kerusakan",
+        "Larangan kegiatan yang berpotensi merusak ekosistem mangrove",
+        "Kewajiban pemulihan bagi pihak yang menyebabkan kerusakan",
+        "Mekanisme pengawasan dan pelaporan insiden kerusakan",
+        "Sanksi administratif bagi pelanggar ketentuan perlindungan"
+      ]
+    }
+  ]
+}

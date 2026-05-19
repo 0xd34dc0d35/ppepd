@@ -1,0 +1,27 @@
+{
+  "id": "permen-lh-8-2022-perlindungan-mata-air",
+  "ekosistem": "mataair",
+  "jenis": "Permen",
+  "nomor": "8",
+  "tahun": 2022,
+  "title": "Perlindungan dan Pengelolaan Ekosistem Mata Air",
+  "excerpt": "Peraturan Menteri yang mengatur tata cara identifikasi, inventarisasi, dan perlindungan kawasan mata air sebagai sumber air baku strategis bagi masyarakat dan ekosistem sekitarnya.",
+  "tags": ["Mata Air", "Perlindungan", "Inventarisasi"],
+  "sections": [
+    {
+      "heading": "Latar Belakang",
+      "body": "Mata air merupakan sumber air baku strategis bagi jutaan masyarakat, khususnya di perdesaan dan daerah pegunungan. Tekanan berupa alih fungsi lahan, pengambilan air berlebihan, dan pencemaran mengancam keberlanjutan sumber daya ini sehingga diperlukan kerangka perlindungan yang jelas."
+    },
+    {
+      "heading": "Pokok Pengaturan",
+      "items": [
+        "Tata cara identifikasi dan inventarisasi titik mata air secara nasional",
+        "Kriteria penetapan kawasan perlindungan mata air",
+        "Larangan kegiatan dalam radius tertentu di sekitar mata air",
+        "Kewajiban pemantauan debit dan kualitas air secara berkala",
+        "Mekanisme perlindungan berbasis masyarakat (Desa Peduli Sumber Air)",
+        "Prosedur penetapan mata air sebagai objek vital strategis"
+      ]
+    }
+  ]
+}

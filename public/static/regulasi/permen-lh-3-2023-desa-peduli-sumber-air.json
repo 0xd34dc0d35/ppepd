@@ -1,0 +1,34 @@
+{
+  "id": "permen-lh-3-2023-desa-peduli-sumber-air",
+  "ekosistem": "mataair",
+  "jenis": "Permen",
+  "nomor": "3",
+  "tahun": 2023,
+  "title": "Pedoman Program Desa Peduli Sumber Air",
+  "excerpt": "Peraturan Menteri yang mengatur mekanisme penetapan, pembinaan, dan evaluasi Desa Peduli Sumber Air (DPSA) sebagai ujung tombak perlindungan mata air berbasis masyarakat di tingkat tapak.",
+  "tags": ["Mata Air", "DPSA", "Desa"],
+  "sections": [
+    {
+      "heading": "Latar Belakang",
+      "body": "Perlindungan mata air paling efektif dilakukan oleh masyarakat yang tinggal dan bergantung langsung pada sumber air tersebut. Program Desa Peduli Sumber Air (DPSA) mengakui peran masyarakat sebagai penjaga utama mata air dan memberikan kerangka kelembagaan serta dukungan teknis yang dibutuhkan."
+    },
+    {
+      "heading": "Kriteria Penetapan DPSA",
+      "items": [
+        "Desa memiliki minimal satu titik mata air dalam atau di sekitar wilayahnya",
+        "Terdapat kelembagaan desa yang aktif mengelola sumber air",
+        "Komitmen pemerintah desa yang tertuang dalam Perdes atau RPJMD Desa",
+        "Keterlibatan aktif warga dalam kegiatan perlindungan sumber air"
+      ]
+    },
+    {
+      "heading": "Dukungan bagi DPSA",
+      "items": [
+        "Pendampingan teknis dari PPEPD dan dinas lingkungan hidup daerah",
+        "Pelatihan pengelolaan dan pemantauan kualitas air",
+        "Akses ke program hibah perlindungan sumber air",
+        "Pengakuan dan penghargaan tahunan bagi DPSA berprestasi"
+      ]
+    }
+  ]
+}

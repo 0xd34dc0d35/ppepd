@@ -1,5 +1,17 @@
 [
   {
+    "id": "youth-day-out-2026-mangrove-keanekaragaman-hayati",
+    "type": "events",
+    "featured": true,
+    "title": "Youth Day Out 2026: Aksi Generasi Muda Menjaga Mangrove dan Keanekaragaman Hayati",
+    "excerpt": "42 pelajar program KELANA turun langsung menanam mangrove di Taman Wisata Alam Angke Kapuk, Jakarta Utara, dalam rangka Hari Keanekaragaman Hayati Internasional 2026 bersama pimpinan KLH/BPLH.",
+    "date": "23 Mei 2026",
+    "image": "https://kemenlh.go.id/dashboard/public/storage/news-activities/kkMrYkfOOK7bV0lChUEYYRiRSUGob3KiltD4igCL.jpg",
+    "category": "Konservasi",
+    "author": "KLH/BPLH",
+    "tags": ["Mangrove", "Generasi Muda", "KELANA", "Keanekaragaman Hayati"]
+  },
+  {
     "id": "kelana-generasi-muda-mangrove-benteng-masa-depan",
     "type": "berita",
     "featured": true,

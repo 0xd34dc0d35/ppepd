@@ -15,7 +15,7 @@ const currentPage = ref(1)
 onMounted(async () => {
   try {
     await new Promise(resolve => setTimeout(resolve, 800))
-    const res = await fetch('/static/regulasi/catalog.json')
+    const res = await fetch('/static/regulasi/index.json')
     allData.value = await res.json()
   } catch (e) {
     console.error('Failed to load catalog:', e)

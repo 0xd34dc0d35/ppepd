@@ -7,6 +7,7 @@ const route = useRoute()
 const slug = route.params.slug as string
 
 const item = ref<any>(null)
+const content = ref<any>(null)
 const isLoading = ref(true)
 const notFound = ref(false)
 
@@ -26,11 +27,11 @@ const ekosistemLabel: Record<string, string> = {
 
 onMounted(async () => {
   try {
-    const res = await fetch('/static/regulasi/catalog.json')
+    const res = await fetch(`/static/regulasi/${slug}.json`)
     if (!res.ok) { notFound.value = true; return }
-    const catalog = await res.json()
-    item.value = catalog.find((c: any) => c.id === slug) ?? null
-    if (!item.value) notFound.value = true
+    const data = await res.json()
+    item.value = data
+    content.value = data
   } catch {
     notFound.value = true
   } finally {
@@ -98,11 +99,34 @@ useSeoMeta({
       <div class="max-w-4xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-12">
 
         <!-- Body -->
-        <div class="space-y-6">
+        <div class="space-y-4">
+          <!-- Ringkasan dari catalog -->
           <div class="bg-white rounded-2xl border border-brand-green/10 p-8">
             <h2 class="text-xs font-black text-brand-charcoal/40 uppercase tracking-widest mb-4">Ringkasan</h2>
             <p class="text-base text-brand-charcoal/70 leading-relaxed font-medium">{{ item.excerpt }}</p>
           </div>
+
+          <!-- Sections dari content JSON -->
+          <template v-if="content?.sections">
+            <div
+              v-for="section in content.sections"
+              :key="section.heading"
+              class="bg-white rounded-2xl border border-brand-green/10 p-8"
+            >
+              <h2 class="text-xs font-black text-brand-charcoal/40 uppercase tracking-widest mb-4">{{ section.heading }}</h2>
+              <p v-if="section.body" class="text-base text-brand-charcoal/70 leading-relaxed font-medium">{{ section.body }}</p>
+              <ul v-if="section.items" class="space-y-2.5 mt-1">
+                <li
+                  v-for="item in section.items"
+                  :key="item"
+                  class="flex items-start gap-3 text-sm text-brand-charcoal/70 font-medium"
+                >
+                  <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-green flex-shrink-0"></span>
+                  {{ item }}
+                </li>
+              </ul>
+            </div>
+          </template>
         </div>
 
         <!-- Sidebar -->

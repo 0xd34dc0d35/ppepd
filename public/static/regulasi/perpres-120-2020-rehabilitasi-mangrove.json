@@ -1,0 +1,34 @@
+{
+  "id": "perpres-120-2020-rehabilitasi-mangrove",
+  "ekosistem": "mangrove",
+  "jenis": "Perpres",
+  "nomor": "120",
+  "tahun": 2020,
+  "title": "Penugasan Pemerintah dalam Rangka Pelaksanaan Rehabilitasi Mangrove",
+  "excerpt": "Peraturan Presiden yang menugaskan BRGM untuk melaksanakan rehabilitasi mangrove di 9 provinsi prioritas dengan target 600.000 hektare hingga 2024.",
+  "tags": ["Mangrove", "Rehabilitasi", "BRGM"],
+  "sections": [
+    {
+      "heading": "Latar Belakang",
+      "body": "Indonesia kehilangan kawasan mangrove dalam jumlah signifikan akibat alih fungsi lahan, pencemaran, dan dampak perubahan iklim. Perpres No. 120 Tahun 2020 hadir sebagai respons strategis pemerintah untuk memulihkan ekosistem mangrove yang rusak melalui program rehabilitasi terpadu lintas kementerian."
+    },
+    {
+      "heading": "Pokok Pengaturan",
+      "items": [
+        "Penugasan BRGM sebagai pelaksana rehabilitasi mangrove di 9 provinsi prioritas",
+        "Target rehabilitasi 600.000 hektare kawasan mangrove hingga 2024",
+        "Mekanisme koordinasi dan pelaporan antar kementerian/lembaga",
+        "Sumber pendanaan dan mekanisme pembiayaan rehabilitasi",
+        "Keterlibatan masyarakat dan pemerintah daerah dalam pelaksanaan"
+      ]
+    },
+    {
+      "heading": "9 Provinsi Prioritas",
+      "items": [
+        "Sumatera Utara", "Riau", "Kepulauan Riau", "Bangka Belitung",
+        "Kalimantan Barat", "Kalimantan Timur", "Kalimantan Utara",
+        "Papua", "Papua Barat"
+      ]
+    }
+  ]
+}
