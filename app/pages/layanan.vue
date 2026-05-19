@@ -42,12 +42,11 @@ const services = [
     image: '/images/layanan/item-danau-medium.jpg',
     featured: false,
     features: [
-      { text: 'Profil ekologi setiap danau', yes: true },
-      { text: 'Pemantauan kualitas air', yes: true },
-      { text: 'Laporan beban pencemaran', yes: true },
-      { text: 'Koordinasi multipihak', yes: true },
-      { text: 'Integrasi data multisumber', yes: true },
-      { text: 'Dashboard interaktif real-time', yes: true },
+      { text: 'Peta Daerah Tangkapan Air (DTA)', yes: true },
+      { text: 'Profil 15 Danau Prioritas Nasional', yes: true },
+      { text: 'Dokumen RPPE 15 DPN', yes: true },
+      { text: 'Dokumen SK Sempadan 15 DPN', yes: true },
+      { text: 'Identifikasi Sebaran Danau', yes: true },
     ],
   },
   {
@@ -58,25 +57,23 @@ const services = [
     image: '/images/layanan/item-ma-medium.jpg',
     featured: false,
     features: [
-      { text: 'Registrasi dan pemetaan lokasi', yes: true },
-      { text: 'Analisis debit dan kualitas', yes: true },
-      { text: 'Laporan pemantauan berkala', yes: true },
-      { text: 'Pendampingan perlindungan', yes: false },
-      { text: 'Integrasi data multisumber', yes: false },
-      { text: 'Dashboard interaktif real-time', yes: false },
+      { text: 'Identifikasi Sebaran Titik Mata Air', yes: true },
+      { text: 'Hasil Penilaian Kesehatan Mata Air', yes: true },
+      { text: 'Profil Mata Air', yes: true },
+      { text: 'Desa Peduli Sumber Air (DPSA)', yes: true },
     ],
   },
 ]
 
 const comparisonFeatures = [
-  { label: 'Peta & Spasial',              mangrove: true,  danau: true,  mataAir: true  },
-  { label: 'Pemantauan Kualitas Air',      mangrove: false, danau: true,  mataAir: true  },
-  { label: 'Laporan Berkala',              mangrove: true,  danau: true,  mataAir: true  },
-  { label: 'Analisis Beban Pencemaran',    mangrove: false, danau: true,  mataAir: false },
-  { label: 'Koordinasi Multipihak',        mangrove: true,  danau: true,  mataAir: false },
-  { label: 'Pendampingan Teknis',          mangrove: true,  danau: true,  mataAir: false },
-  { label: 'Dashboard Real-time',          mangrove: false, danau: true,  mataAir: false },
-  { label: 'Integrasi Data Multisumber',   mangrove: false, danau: true,  mataAir: false },
+  { label: 'Peta & Spasial',                    mangrove: true,  danau: true,  mataAir: true  },
+  { label: 'Profil Kawasan / Ekosistem',         mangrove: true,  danau: true,  mataAir: true  },
+  { label: 'Identifikasi Sebaran',               mangrove: true,  danau: true,  mataAir: true  },
+  { label: 'Dokumen Perencanaan (RPPE/RPPN)',    mangrove: true,  danau: true,  mataAir: false },
+  { label: 'Dokumen SK Penetapan',               mangrove: false, danau: true,  mataAir: false },
+  { label: 'Penilaian Kesehatan Ekosistem',      mangrove: false, danau: false, mataAir: true  },
+  { label: 'Program Desa / Komunitas',           mangrove: true,  danau: false, mataAir: true  },
+  { label: 'Inventarisasi Nasional',             mangrove: true,  danau: false, mataAir: false },
 ]
 
 const faqs = [

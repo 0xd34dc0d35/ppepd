@@ -1,7 +1,20 @@
 [
   {
+    "id": "permen-lh-26-inventarisasi-mangrove",
+    "type": "berita",
+    "featured": true,
+    "title": "Terbit Peraturan Menteri LH/Kepala BPLH Nomor 26 tentang Tata Cara Inventarisasi Mangrove",
+    "excerpt": "Menteri Lingkungan Hidup/Kepala Badan Perlindungan Lingkungan Hidup resmi menerbitkan Peraturan Menteri Nomor 26 yang mengatur tata cara inventarisasi mangrove secara nasional, sebagai dasar hukum pelaksanaan pemantauan dan pelaporan kondisi ekosistem mangrove Indonesia.",
+    "date": "19 Mei 2026",
+    "image": "/images/003.jpeg",
+    "category": "Regulasi",
+    "author": "Redaksi PPEPD",
+    "tags": ["Mangrove", "Inventarisasi", "Peraturan Menteri", "Regulasi"]
+  },
+  {
     "id": "kebijakan-baru-perlindungan-mangrove-2026",
     "type": "berita",
+    "featured": true,
     "title": "Kebijakan Baru Perlindungan Mangrove 2026 Resmi Ditetapkan",
     "excerpt": "Pemerintah melalui Kementerian Lingkungan Hidup resmi menetapkan regulasi baru yang memperkuat perlindungan kawasan mangrove nasional, mencakup 3,36 juta hektare area prioritas.",
     "date": "12 Mei 2026",
@@ -25,12 +38,12 @@
     "id": "ppepd-raih-penghargaan-lingkungan-nasional",
     "type": "berita",
     "title": "PPEPD Raih Penghargaan Inovasi Lingkungan Nasional 2026",
-    "excerpt": "Direktorat PPEPD meraih penghargaan kategori Inovasi Digital dalam pengelolaan ekosistem perairan darat atas pengembangan sistem SIPPEM yang telah diimplementasikan di 15 provinsi.",
-    "date": "03 Mei 2026",
+    "excerpt": "Direktorat PPEPD meraih penghargaan kategori Inovasi Digital Lingkungan Terbaik dalam Anugerah Lingkungan Nasional 2026 atas pengembangan SIPPEM yang telah diimplementasikan di 15 provinsi.",
+    "date": "01 Mei 2026",
     "image": "/images/03.jpg",
     "category": "Penghargaan",
     "author": "Humas PPEPD",
-    "tags": ["Penghargaan", "SIPPEM", "Inovasi"]
+    "tags": ["SIPPEM", "Inovasi", "Penghargaan"]
   },
   {
     "id": "regulasi-zonasi-ekosistem-perairan-diperbarui",
@@ -46,6 +59,7 @@
   {
     "id": "kolaborasi-internasional-konservasi-gambut",
     "type": "berita",
+    "featured": true,
     "title": "Indonesia dan 5 Negara ASEAN Perkuat Kolaborasi Konservasi Gambut",
     "excerpt": "Penandatanganan Memorandum of Understanding antara Indonesia, Malaysia, Thailand, Vietnam, dan Kamboja menandai langkah konkret kerja sama regional dalam perlindungan ekosistem gambut.",
     "date": "22 April 2026",
@@ -68,6 +82,7 @@
   {
     "id": "restorasi-mangrove-teluk-jakarta",
     "type": "events",
+    "featured": true,
     "title": "Restorasi Mangrove Teluk Jakarta: Fase III Dimulai",
     "excerpt": "Fase ketiga program restorasi mangrove di kawasan Teluk Jakarta resmi dimulai, menargetkan penanaman 150.000 bibit mangrove di area seluas 120 hektare sepanjang Mei–Agustus 2026.",
     "date": "15 Mei 2026",
@@ -90,6 +105,7 @@
   {
     "id": "workshop-konservasi-ppepd",
     "type": "events",
+    "featured": true,
     "title": "Workshop Nasional Konservasi Ekosistem Perairan Darat 2026",
     "excerpt": "Lebih dari 300 peserta dari 34 provinsi menghadiri workshop nasional yang membahas strategi terbaru konservasi ekosistem perairan darat di era perubahan iklim.",
     "date": "08 Mei 2026",

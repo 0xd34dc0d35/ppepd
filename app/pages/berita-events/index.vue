@@ -3,7 +3,7 @@ import { ref, computed, onMounted, watch } from 'vue'
 
 definePageMeta({ layout: 'data' })
 
-const activeTab = ref<'berita' | 'events'>('berita')
+const activeTab = ref<'berita' | 'events' | 'featured'>('berita')
 const viewMode = ref<'card' | 'table'>('card')
 const searchQuery = ref('')
 const isLoading = ref(true)
@@ -27,7 +27,11 @@ onMounted(async () => {
 const filteredData = computed(() => {
   const q = searchQuery.value.toLowerCase()
   return allData.value.filter(item => {
-    if (item.type !== activeTab.value) return false
+    if (activeTab.value === 'featured') {
+      if (!item.featured) return false
+    } else {
+      if (item.type !== activeTab.value) return false
+    }
     if (!q) return true
     return (
       item.title.toLowerCase().includes(q) ||
@@ -47,7 +51,7 @@ const paginatedData = computed(() => {
 
 watch([activeTab, searchQuery], () => { currentPage.value = 1 })
 
-function setTab(tab: 'berita' | 'events') {
+function setTab(tab: 'berita' | 'events' | 'featured') {
   activeTab.value = tab
 }
 
@@ -101,10 +105,23 @@ useSeoMeta({
             >
               Events
             </button>
+            <button
+              @click="setTab('featured')"
+              :class="[
+                'h-7 px-3 flex items-center justify-center rounded-md text-xs font-medium transition-all duration-200',
+                activeTab === 'featured'
+                  ? 'bg-white shadow text-brand-orange'
+                  : 'text-brand-charcoal/30 hover:text-brand-orange'
+              ]"
+              :aria-selected="activeTab === 'featured'"
+              role="tab"
+            >
+              Featured
+            </button>
           </div>
 
           <!-- Search -->
-          <div class="flex-grow relative group">
+          <div class="flex-1 min-w-0 relative group">
             <div class="absolute inset-0 bg-brand-green/5 rounded-xl blur-xl group-focus-within:bg-brand-green/10 transition-all duration-500"></div>
             <div class="relative flex items-center">
               <div class="absolute left-4 text-brand-charcoal/30 pointer-events-none">
@@ -113,7 +130,7 @@ useSeoMeta({
               <input
                 v-model="searchQuery"
                 type="text"
-                :placeholder="activeTab === 'berita' ? 'Cari berita, penulis, atau tag...' : 'Cari kegiatan, penyelenggara, atau tag...'"
+                :placeholder="activeTab === 'berita' ? 'Cari berita, penulis, atau tag...' : activeTab === 'events' ? 'Cari kegiatan, penyelenggara, atau tag...' : 'Cari konten pilihan...'"
                 class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/90 border border-brand-green/10 focus:border-brand-green focus:outline-none focus:shadow-xl transition-all duration-300 text-brand-charcoal text-sm font-medium placeholder-brand-charcoal/30"
               />
             </div>
@@ -192,7 +209,7 @@ useSeoMeta({
             <h3 class="text-xl font-black text-brand-green-dark mb-2">Tidak Ditemukan</h3>
             <p class="text-sm text-brand-charcoal/50 mb-8 max-w-sm font-medium">
               Tidak ada hasil untuk "<span class="font-bold text-brand-charcoal/70">{{ searchQuery }}</span>" dalam kategori
-              <span class="font-bold text-brand-charcoal/70">{{ activeTab === 'berita' ? 'Berita' : 'Events' }}</span>.
+              <span class="font-bold text-brand-charcoal/70">{{ activeTab === 'berita' ? 'Berita' : activeTab === 'events' ? 'Events' : 'Featured' }}</span>.
             </p>
             <button
               @click="searchQuery = ''"
