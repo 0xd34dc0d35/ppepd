@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(npm run *)",
-      "Bash(cmd.exe /c \"dir d:\\\\KontenWeb /b /s\")"
+      "Bash(cmd.exe /c \"dir d:\\\\KontenWeb /b /s\")",
+      "PowerShell(Copy-Item \"d:\\\\ppepd\\\\app\\\\pages\\\\danau\\\\index.vue\" \"d:\\\\ppepd\\\\app\\\\pages\\\\danau\\\\dashboard.vue\")",
+      "PowerShell(Copy-Item \"d:\\\\ppepd\\\\app\\\\pages\\\\mataair\\\\index.vue\" \"d:\\\\ppepd\\\\app\\\\pages\\\\mataair\\\\dashboard.vue\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"d:\\\\ppepd\\\\app\\\\pages\\\\mangrove\")"
     ]
   }
 }

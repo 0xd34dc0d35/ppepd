@@ -41,20 +41,20 @@ const features = [
   {
     id: 1,
     title: 'Danau',
-    description: 'Penyajian data yang akurat dan real-time untuk mendukung pengambilan keputusan yang tepat dan cepat dalam ekosistem perairan darat.'
-    ,to:'/danau/profil-danau',
+    description: 'Data status ekosistem, kualitas air, tutupan lahan, dan profil 15 Danau Prioritas Nasional Indonesia.',
+    to: '/danau',
   },
   {
     id: 2,
     title: 'Mangrove',
-    description: 'Penyajian data yang akurat dan real-time untuk mendukung pengambilan keputusan yang tepat dan cepat dalam ekosistem mangrove.'
-   ,to:'/mangrove',
+    description: 'Pemantauan kerapatan, sebaran, tren luas, dan program Desa Mandiri Peduli Mangrove di seluruh Indonesia.',
+    to: '/mangrove',
   },
-    {
-    id: 2,
+  {
+    id: 3,
     title: 'Mata Air',
-    description: 'Penyajian data yang akurat dan real-time untuk mendukung pengambilan keputusan yang tepat dan cepat dalam ekosistem mangrove.'
-   ,to:'/danau/profil-danau',
-  }
+    description: 'Data sebaran titik mata air, penilaian kesehatan, dan program Desa Peduli Sumber Air berbasis komunitas.',
+    to: '/mataair',
+  },
 ]
 </script>
