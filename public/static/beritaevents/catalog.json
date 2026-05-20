@@ -1,5 +1,27 @@
 [
   {
+    "id": "survei-mata-air-bali-mei-2026",
+    "type": "berita",
+    "title": "PPEPD Gelar Survei dan Pengambilan Sampel Mataair di Provinsi Bali",
+    "excerpt": "Direktorat PPEPD melaksanakan survei dan pengambilan sampel pada 15 titik mataair di empat kabupaten Provinsi Bali (Gianyar, Bangli, Karangasem, Buleleng) untuk memperkuat data kualitas ekosistem mataair sebagai dasar strategi perlindungan sumber daya air.",
+    "date": "19 Mei 2026",
+    "image": "/images/survei-mata-air-bali.jpg",
+    "category": "Mata Air",
+    "author": "Direktorat PPEPD",
+    "tags": ["Mata Air", "Survei", "Bali", "Kualitas Air"]
+  },
+  {
+    "id": "asistensi-penyusunan-rppe-danau-batur",
+    "type": "berita",
+    "title": "PPEPD Gelar Asistensi Penyusunan RPPE Danau Batur",
+    "excerpt": "Direktorat PPEPD menyelenggarakan kegiatan asistensi penyusunan Rencana Perlindungan dan Pengelolaan Ekosistem (RPPE) Danau Batur bersama instansi daerah, Forum Pengelolaan Danau Batur, dan pemangku kepentingan terkait di Kabupaten Bangli, Bali.",
+    "date": "8 Mei 2026",
+    "image": "/images/02.jpg",
+    "category": "Danau",
+    "author": "Direktorat PPEPD",
+    "tags": ["Danau", "RPPE", "Danau Batur", "Bali"]
+  },
+  {
     "id": "youth-day-out-2026-mangrove-keanekaragaman-hayati",
     "type": "events",
     "featured": true,
