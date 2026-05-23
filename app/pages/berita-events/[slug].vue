@@ -1,15 +1,29 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { computed } from 'vue'
 
 definePageMeta({ layout: 'data' })
 
 const route = useRoute()
 const slug = route.params.slug as string
+const requestURL = useRequestURL()
 
-const item = ref<any>(null)
-const rawMarkdown = ref('')
-const isLoading = ref(true)
-const notFound = ref(false)
+const { data, status } = await useAsyncData(`berita-${slug}`, async () => {
+  try {
+    const [catalog, md] = await Promise.all([
+      $fetch<any[]>('/static/beritaevents/catalog.json'),
+      $fetch<string>(`/static/beritaevents/${slug}.md`)
+    ])
+    const found = catalog.find((c: any) => c.id === slug) ?? null
+    return { item: found, md: found ? md : '' }
+  } catch {
+    return { item: null, md: '' }
+  }
+})
+
+const item = computed(() => data.value?.item ?? null)
+const rawMarkdown = computed(() => data.value?.md ?? '')
+const isLoading = computed(() => status.value === 'pending')
+const notFound = computed(() => status.value !== 'pending' && !item.value)
 
 // Simple line-by-line markdown → HTML parser
 function renderMarkdown(md: string): string {
@@ -67,33 +81,25 @@ function renderMarkdown(md: string): string {
 
 const renderedContent = computed(() => renderMarkdown(rawMarkdown.value))
 
-onMounted(async () => {
-  try {
-    const [catalogRes, mdRes] = await Promise.all([
-      fetch('/static/beritaevents/catalog.json'),
-      fetch(`/static/beritaevents/${slug}.md`)
-    ])
-
-    if (!catalogRes.ok || !mdRes.ok) {
-      notFound.value = true
-      return
-    }
-
-    const catalog = await catalogRes.json()
-    item.value = catalog.find((c: any) => c.id === slug) ?? null
-    if (!item.value) notFound.value = true
-
-    rawMarkdown.value = await mdRes.text()
-  } catch (e) {
-    notFound.value = true
-  } finally {
-    isLoading.value = false
-  }
+const ogImage = computed(() => {
+  const img = item.value?.image
+  if (!img) return ''
+  return img.startsWith('http') ? img : `${requestURL.origin}${img}`
 })
 
 useSeoMeta({
   title: computed(() => item.value ? `${item.value.title} – PPEPD` : 'PPEPD'),
-  description: computed(() => item.value?.excerpt ?? '')
+  description: computed(() => item.value?.excerpt ?? ''),
+  ogTitle: computed(() => item.value?.title ?? ''),
+  ogDescription: computed(() => item.value?.excerpt ?? ''),
+  ogImage: ogImage,
+  ogUrl: computed(() => `${requestURL.origin}/berita-events/${slug}`),
+  ogType: 'article',
+  ogSiteName: 'PPEPD – Direktorat Perlindungan dan Pengelolaan Ekosistem Perairan Darat',
+  twitterCard: 'summary_large_image',
+  twitterTitle: computed(() => item.value?.title ?? ''),
+  twitterDescription: computed(() => item.value?.excerpt ?? ''),
+  twitterImage: ogImage,
 })
 </script>
 
