@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from 'vue'
+const { visibleNav } = useRole()
 
 useHead({
   meta: [
@@ -114,13 +115,12 @@ onUnmounted(() => {
 
         <!-- Desktop menu -->
         <div class="hidden sm:flex gap-10 text-sm font-bold tracking-wide uppercase text-brand-charcoal/60">
-          <NuxtLink to="/" class="hover:text-brand-green transition-all duration-300">Beranda</NuxtLink>
-          <NuxtLink to="/data" class="hover:text-brand-green transition-all duration-300">Data</NuxtLink>
-          <NuxtLink to="/regulasi" class="hover:text-brand-green transition-all duration-300">Regulasi</NuxtLink>
-          <NuxtLink to="/layanan" class="hover:text-brand-green transition-all duration-300">Layanan</NuxtLink>
-          <NuxtLink to="/about" class="hover:text-brand-green transition-all duration-300">Tentang</NuxtLink>
-          <NuxtLink to="/zona-integritas" class="hover:text-brand-green transition-all duration-300">Zona Integritas</NuxtLink>
-          <NuxtLink to="/hubungi" class="hover:text-brand-green transition-all duration-300">Hubungi</NuxtLink>
+          <NuxtLink
+            v-for="item in visibleNav"
+            :key="item.to"
+            :to="item.to"
+            class="hover:text-brand-green transition-all duration-300"
+          >{{ item.label }}</NuxtLink>
         </div>
 
         <!-- Hamburger (mobile only) -->
@@ -165,13 +165,12 @@ onUnmounted(() => {
 
         <!-- Drawer nav links -->
         <nav class="flex-grow overflow-y-auto py-4 px-3">
-          <NuxtLink to="/"                class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Beranda</NuxtLink>
-          <NuxtLink to="/data"            class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Data</NuxtLink>
-          <NuxtLink to="/regulasi"        class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Regulasi</NuxtLink>
-          <NuxtLink to="/layanan"         class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Layanan</NuxtLink>
-          <NuxtLink to="/about"           class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Tentang</NuxtLink>
-          <NuxtLink to="/zona-integritas" class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Zona Integritas</NuxtLink>
-          <NuxtLink to="/hubungi"         class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">Hubungi</NuxtLink>
+          <NuxtLink
+            v-for="item in visibleNav"
+            :key="item.to"
+            :to="item.to"
+            class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200"
+          >{{ item.label }}</NuxtLink>
         </nav>
 
         <!-- Drawer footer -->

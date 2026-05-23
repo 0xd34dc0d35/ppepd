@@ -80,8 +80,8 @@ useSeoMeta({
       <div class="h-[50px] flex-shrink-0"></div>
 
       <!-- Single control row -->
-      <div class="flex justify-center py-3 relative z-10">
-      <div class="flex items-center gap-3 w-[70vw]">
+      <div class="flex justify-center py-3 relative z-10 px-3 sm:px-0">
+      <div class="flex items-center gap-3 w-full sm:w-[70vw]">
 
         <!-- Tab Switcher -->
         <div class="flex-shrink-0 flex items-center gap-1 bg-brand-cream/80 border border-brand-green/10 rounded-lg p-0.5" role="tablist">
@@ -169,8 +169,8 @@ useSeoMeta({
     <div class="flex-grow flex flex-col overflow-hidden">
 
       <!-- Scrollable Content Area -->
-      <div class="flex-grow overflow-y-auto px-6 py-8 flex justify-center" id="data-scroll-area">
-        <div class="w-full max-w-[75vw]">
+      <div class="flex-grow overflow-y-auto px-2 sm:px-6 py-8 flex justify-center" id="data-scroll-area">
+        <div class="w-full sm:max-w-[75vw]">
 
           <!-- SKELETON -->
           <div v-if="isLoading" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

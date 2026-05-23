@@ -37,44 +37,60 @@ const stats = [
   <div class="min-h-screen bg-brand-cream/40">
 
     <!-- Hero -->
-    <div class="relative overflow-hidden bg-brand-green-dark">
-      <!-- Decorative blobs -->
-      <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-[-30%] left-[-8%] w-[50%] h-[250%] rounded-full bg-white/5 blur-[90px]"></div>
-        <div class="absolute bottom-[-20%] right-[-5%] w-[35%] h-[150%] rounded-full bg-brand-blue/10 blur-[80px]"></div>
+    <div class="relative overflow-hidden bg-brand-cream border-b border-brand-green/8">
+      <!-- Radial orbs -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute -top-32 -right-32 w-[520px] h-[520px] rounded-full"
+          style="background: radial-gradient(circle, rgba(30,92,75,0.12) 0%, transparent 65%)"></div>
+        <div class="absolute -bottom-24 -left-24 w-[400px] h-[400px] rounded-full"
+          style="background: radial-gradient(circle, rgba(91,172,214,0.10) 0%, transparent 65%)"></div>
       </div>
 
-      <div class="relative max-w-5xl mx-auto px-8 pt-16 pb-14">
-        <!-- Breadcrumb -->
-        <div class="flex items-center gap-2 mb-6 text-white/40 text-xs font-bold uppercase tracking-widest">
-          <NuxtLink to="/" class="hover:text-white/70 transition-colors">Beranda</NuxtLink>
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-          <span class="text-white/60">Ekosistem Danau</span>
+      <div class="relative w-full px-6 sm:px-10 lg:px-16 xl:px-20 pt-10 pb-12">
+        <!-- Eyebrow + breadcrumb -->
+        <div class="flex items-center gap-2 mb-8 text-brand-charcoal/35 text-xs font-bold uppercase tracking-widest">
+          <NuxtLink to="/" class="hover:text-brand-charcoal/60 transition-colors">Beranda</NuxtLink>
+          <span class="text-brand-charcoal/20">/</span>
+          <span>Ekosistem Danau</span>
         </div>
 
-        <!-- Title -->
-        <div class="flex items-start gap-5">
-          <div class="shrink-0 w-14 h-14 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12c1.5-3 3-5 4.5-5s3 3.5 4.5 3.5S15 8 16.5 8 19.5 9 21 12"/>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 18c1.5-3 3-5 4.5-5s3 3.5 4.5 3.5S15 14 16.5 14 19.5 15 21 18"/>
-            </svg>
-          </div>
-          <div>
-            <h1 class="text-3xl md:text-4xl font-black text-white leading-tight">Ekosistem Danau</h1>
-            <p class="text-white/50 text-sm mt-2 max-w-xl leading-relaxed">
-              Portal data, pemantauan, dan pengelolaan ekosistem danau Indonesia. Direktorat PPEPD, Kementerian Lingkungan Hidup/BPLH.
+        <!-- Two-column layout -->
+        <div class="flex flex-col lg:flex-row lg:items-end gap-10 lg:gap-20">
+          <!-- Left: title + CTA -->
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="h-px w-6 bg-brand-green"></span>
+              <span class="text-xs font-bold text-brand-green uppercase tracking-widest">Direktorat PPEPD · KLH/BPLH</span>
+            </div>
+            <h1 class="text-5xl md:text-6xl xl:text-7xl font-black text-brand-green-dark leading-[0.92] tracking-tight">
+              Ekosistem<br>Danau
+            </h1>
+            <p class="text-brand-charcoal/50 text-base mt-5 max-w-sm leading-relaxed">
+              Portal data, pemantauan, dan pengelolaan ekosistem danau Indonesia — 840+ danau, 15 Prioritas Nasional.
             </p>
+            <div class="flex items-center gap-3 mt-7">
+              <NuxtLink to="/danau/dashboard"
+                class="flex items-center gap-2 bg-brand-green-dark text-white text-sm font-bold px-5 py-2.5 rounded-full hover:bg-brand-green transition-colors">
+                Dashboard
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+              </NuxtLink>
+              <NuxtLink to="/danau/profil-danau"
+                class="flex items-center gap-2 border border-brand-green/25 text-brand-green text-sm font-bold px-5 py-2.5 rounded-full hover:bg-brand-green/5 transition-colors">
+                Profil Danau
+              </NuxtLink>
+            </div>
           </div>
-        </div>
 
-        <!-- Stats strip -->
-        <div class="grid grid-cols-4 gap-3 mt-10">
-          <div v-for="s in stats" :key="s.label"
-            class="bg-white/8 border border-white/10 rounded-xl px-4 py-3 backdrop-blur-sm">
-            <p class="text-white text-xl font-black leading-none tabular-nums">{{ s.value }}</p>
-            <p class="text-white/60 text-[11px] font-bold mt-1 leading-none">{{ s.label }}</p>
-            <p class="text-white/30 text-[10px] mt-0.5">{{ s.sub }}</p>
+          <!-- Right: stats -->
+          <div class="shrink-0 w-full lg:w-auto">
+            <div class="grid grid-cols-2 gap-3 lg:min-w-[300px]">
+              <div v-for="s in stats" :key="s.label"
+                class="bg-white border border-brand-green/10 rounded-2xl px-5 py-4 shadow-sm shadow-brand-green/5">
+                <p class="text-brand-green-dark text-2xl font-black leading-none tabular-nums">{{ s.value }}</p>
+                <p class="text-brand-charcoal/60 text-[11px] font-bold mt-2 leading-none">{{ s.label }}</p>
+                <p class="text-brand-charcoal/35 text-[10px] mt-1">{{ s.sub }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

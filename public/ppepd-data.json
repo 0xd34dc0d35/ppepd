@@ -6,6 +6,7 @@
     "year": 2024,
     "image": "/images/01.jpg",
     "author": "Direktorat PPEPD",
+    "views": 3241,
     "metadata": {
       "format": "SHP",
       "category": "Spasial",
@@ -20,6 +21,7 @@
     "year": 2023,
     "image": "/images/02.jpg",
     "author": "BPLH Pusat",
+    "views": 2187,
     "metadata": {
       "format": "GeoJSON",
       "category": "Spasial",
@@ -34,6 +36,7 @@
     "year": 2024,
     "image": "/event-1.png",
     "author": "Tim Monitoring Lapangan",
+    "views": 1854,
     "metadata": {
       "format": "CSV",
       "category": "Real-time",
@@ -48,6 +51,7 @@
     "year": 2024,
     "image": "/images/003.jpeg",
     "author": "Dinas LH Jawa Tengah",
+    "views": 976,
     "metadata": {
       "format": "CSV",
       "category": "Tabular",
@@ -62,6 +66,7 @@
     "year": 2023,
     "image": "/event-2.png",
     "author": "LAPAN / BRIN",
+    "views": 4512,
     "metadata": {
       "format": "TIFF",
       "category": "Spasial",
@@ -76,6 +81,7 @@
     "year": 2023,
     "image": "/event-3.png",
     "author": "BBWS Citarum",
+    "views": 2903,
     "metadata": {
       "format": "SHP",
       "category": "Spasial",
@@ -90,6 +96,7 @@
     "year": 2023,
     "image": "/images/01.jpg",
     "author": "Direktorat PPEPD",
+    "views": 1432,
     "metadata": {
       "format": "JSON",
       "category": "Tabular",
@@ -104,6 +111,7 @@
     "year": 2024,
     "image": "/images/02.jpg",
     "author": "Kementerian PUPR",
+    "views": 5678,
     "metadata": {
       "format": "XLSX",
       "category": "Tabular",
@@ -118,6 +126,7 @@
     "year": 2024,
     "image": "/images/03.jpg",
     "author": "Balai Konservasi Pesisir",
+    "views": 812,
     "metadata": {
       "format": "SHP",
       "category": "Spasial",
@@ -132,6 +141,7 @@
     "year": 2024,
     "image": "/event-1.png",
     "author": "BMKG Pusat",
+    "views": 3097,
     "metadata": {
       "format": "CSV",
       "category": "Tabular",
@@ -146,6 +156,7 @@
     "year": 2024,
     "image": "/images/03.jpg",
     "author": "Pusdatin KLH",
+    "views": 7234,
     "metadata": {
       "format": "XLSX",
       "category": "Statistik",
@@ -160,6 +171,7 @@
     "year": 2024,
     "image": "/images/003.jpeg",
     "author": "Direktorat PPEPD",
+    "views": 4891,
     "metadata": {
       "format": "XLSX",
       "category": "Laporan",
@@ -174,6 +186,7 @@
     "year": 2024,
     "image": "/event-2.png",
     "author": "Badan Restorasi Gambut",
+    "views": 2345,
     "metadata": {
       "format": "JSON",
       "category": "Statistik",
@@ -188,6 +201,7 @@
     "year": 2023,
     "image": "/event-1.png",
     "author": "Direktorat KKH",
+    "views": 3768,
     "metadata": {
       "format": "XLSX",
       "category": "Statistik",
@@ -202,6 +216,7 @@
     "year": 2024,
     "image": "/event-3.png",
     "author": "KLH/BPLH / BPLH",
+    "views": 6102,
     "metadata": {
       "format": "PDF",
       "category": "Laporan",
@@ -216,6 +231,7 @@
     "year": 2023,
     "image": "/images/01.jpg",
     "author": "Tim Peneliti LIPI",
+    "views": 1589,
     "metadata": {
       "format": "PDF",
       "category": "Laporan",
@@ -230,6 +246,7 @@
     "year": 2024,
     "image": "/images/02.jpg",
     "author": "Direktorat PPEPD & PUPR",
+    "views": 2214,
     "metadata": {
       "format": "PDF",
       "category": "Laporan",
@@ -244,6 +261,7 @@
     "year": 2024,
     "image": "/images/03.jpg",
     "author": "BBWS Nasional",
+    "views": 4430,
     "metadata": {
       "format": "XLSX",
       "category": "Statistik",

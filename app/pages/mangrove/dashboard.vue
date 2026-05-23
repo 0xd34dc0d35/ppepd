@@ -1,7 +1,15 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 
 definePageMeta({ layout: 'map' })
+
+const route = useRoute()
+const { visibleNav } = useRole()
+
+const drawerOpen = ref(false)
+const openDrawer = () => { drawerOpen.value = true }
+const closeDrawer = () => { drawerOpen.value = false }
+watch(() => route.path, closeDrawer)
 
 useSeoMeta({
   title: 'Dashboard Ekosistem Mangrove | PPEPD',
@@ -139,20 +147,51 @@ function trenPath(vals: number[], w = 280, h = 60) {
     </div>
 
     <!-- NAVBAR -->
-    <nav class="relative shrink-0 flex items-center justify-between px-6 backdrop-blur-xl bg-white/90 border-b border-brand-green/10 shadow-sm" style="z-index:10; height:50px">
+    <nav class="relative shrink-0 flex items-center justify-between px-4 sm:px-6 backdrop-blur-xl bg-white/90 border-b border-brand-green/10 shadow-sm" style="z-index:10; height:50px">
       <NuxtLink to="/" class="text-xl font-black tracking-tighter gradient-text leading-none">PPEPD</NuxtLink>
-      <div class="flex gap-8 text-xs font-bold tracking-wide uppercase text-brand-charcoal/50">
-        <NuxtLink to="/" class="hover:text-brand-green transition-colors">Beranda</NuxtLink>
-        <NuxtLink to="/data" class="hover:text-brand-green transition-colors">Data</NuxtLink>
-        <NuxtLink to="/layanan" class="hover:text-brand-green transition-colors">Layanan</NuxtLink>
-        <NuxtLink to="/about" class="hover:text-brand-green transition-colors">Tentang</NuxtLink>
-        <NuxtLink to="/hubungi" class="hover:text-brand-green transition-colors">Hubungi</NuxtLink>
+
+      <!-- Desktop menu -->
+      <div class="hidden sm:flex gap-8 text-xs font-bold tracking-wide uppercase text-brand-charcoal/50">
+        <NuxtLink v-for="item in visibleNav" :key="item.to" :to="item.to" class="hover:text-brand-green transition-colors">{{ item.label }}</NuxtLink>
       </div>
-      <NuxtLink to="/mangrove" class="flex items-center gap-1.5 px-3 h-7 rounded-lg text-xs font-bold bg-brand-green text-white hover:bg-brand-green-dark transition-colors shadow-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 18-6-6 6-6"/></svg>
-        Mangrove
-      </NuxtLink>
+
+      <div class="flex items-center gap-2">
+        <!-- CTA -->
+        <NuxtLink to="/mangrove" class="flex items-center gap-1.5 px-3 h-7 rounded-lg text-xs font-bold bg-brand-green text-white hover:bg-brand-green-dark transition-colors shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/></svg>
+          <span class="hidden sm:inline">Mangrove</span>
+        </NuxtLink>
+        <!-- Hamburger (mobile only) -->
+        <button @click="openDrawer" class="sm:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px] rounded-lg hover:bg-brand-green/8 transition-colors" aria-label="Buka menu">
+          <span class="w-4 h-[2px] bg-brand-green-dark rounded-full"></span>
+          <span class="w-4 h-[2px] bg-brand-green-dark rounded-full"></span>
+          <span class="w-2.5 h-[2px] bg-brand-green-dark rounded-full self-end"></span>
+        </button>
+      </div>
     </nav>
+
+    <!-- Drawer backdrop -->
+    <Transition name="fade-backdrop">
+      <div v-if="drawerOpen" class="fixed inset-0 z-[60] bg-brand-charcoal/30 backdrop-blur-sm sm:hidden" style="z-index:60" @click="closeDrawer" />
+    </Transition>
+
+    <!-- Right sidebar drawer -->
+    <Transition name="slide-drawer">
+      <div v-if="drawerOpen" class="fixed inset-y-0 right-0 z-[70] w-64 bg-white shadow-2xl flex flex-col sm:hidden" style="z-index:70">
+        <div class="flex items-center justify-between px-6 h-[50px] border-b border-brand-green/10 flex-shrink-0">
+          <span class="text-xl font-black tracking-tighter gradient-text leading-none">PPEPD</span>
+          <button @click="closeDrawer" class="w-8 h-8 flex items-center justify-center rounded-lg text-brand-charcoal/40 hover:text-brand-green hover:bg-brand-green/8 transition-colors" aria-label="Tutup menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+        </div>
+        <nav class="flex-grow overflow-y-auto py-4 px-3">
+          <NuxtLink v-for="item in visibleNav" :key="item.to" :to="item.to" class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">{{ item.label }}</NuxtLink>
+        </nav>
+        <div class="px-6 py-5 border-t border-brand-green/8 flex-shrink-0">
+          <p class="text-[10px] font-black uppercase tracking-widest text-brand-charcoal/30">KLH/BPLH · PPEPD</p>
+        </div>
+      </div>
+    </Transition>
 
     <!-- MAIN CONTENT: 3 rows -->
     <div class="flex-1 min-h-0 flex flex-col gap-2 px-6 py-3" style="z-index:1; position:relative">
@@ -417,6 +456,10 @@ function trenPath(vals: number[], w = 280, h = 60) {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-green to-brand-green-dark;
 }
 .router-link-active { @apply text-brand-green; }
+.fade-backdrop-enter-active, .fade-backdrop-leave-active { transition: opacity 0.25s ease; }
+.fade-backdrop-enter-from, .fade-backdrop-leave-to { opacity: 0; }
+.slide-drawer-enter-active, .slide-drawer-leave-active { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); }
+.slide-drawer-enter-from, .slide-drawer-leave-to { transform: translateX(100%); }
 .fade-enter-active, .fade-leave-active { transition: opacity 0.5s ease; }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
 .skel {

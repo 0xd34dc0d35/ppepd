@@ -1,11 +1,12 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   item: {
     id: number
     title: string
     year: number
     image: string
     author: string
+    views: number
     metadata: {
       format: string
       category: string
@@ -14,6 +15,11 @@ defineProps<{
     }
   }
 }>()
+
+function formatViews(n: number): string {
+  if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k'
+  return n.toString()
+}
 </script>
 
 <template>
@@ -27,9 +33,15 @@ defineProps<{
         loading="lazy"
       />
       <div class="absolute inset-0 bg-gradient-to-t from-brand-green-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-4">
-        <span class="text-white text-[10px] font-bold uppercase tracking-widest">
-          Tahun {{ item.year }}
-        </span>
+        <div class="flex items-center gap-2">
+          <span class="text-white text-[10px] font-bold uppercase tracking-widest">
+            Tahun {{ item.year }}
+          </span>
+          <span class="flex items-center gap-1 text-white/80 text-[10px] font-bold">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+            {{ formatViews(item.views) }}
+          </span>
+        </div>
         <span class="text-white text-[10px] font-bold uppercase tracking-widest bg-brand-orange px-3 py-1.5 rounded-lg shadow-lg">
           Lihat Detail
         </span>
