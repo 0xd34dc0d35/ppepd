@@ -1,5 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      siteUrl: 'https://ppepd.kemenlh.go.id'
+    }
+  },
   modules: ['@nuxt/content', '@nuxtjs/tailwindcss'],
   css: ['~/assets/css/main.css', 'maplibre-gl/dist/maplibre-gl.css'],
   tailwindcss: {

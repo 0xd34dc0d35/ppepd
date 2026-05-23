@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
 definePageMeta({ layout: 'data' })
 
 const route = useRoute()
 const slug = route.params.slug as string
-const requestURL = useRequestURL()
+const { public: { siteUrl } } = useRuntimeConfig()
 
 const { data, status } = await useAsyncData(`berita-${slug}`, async () => {
   try {
@@ -84,7 +82,7 @@ const renderedContent = computed(() => renderMarkdown(rawMarkdown.value))
 const ogImage = computed(() => {
   const img = item.value?.image
   if (!img) return ''
-  return img.startsWith('http') ? img : `${requestURL.origin}${img}`
+  return img.startsWith('http') ? img : `${siteUrl}${img}`
 })
 
 useSeoMeta({
@@ -93,7 +91,7 @@ useSeoMeta({
   ogTitle: computed(() => item.value?.title ?? ''),
   ogDescription: computed(() => item.value?.excerpt ?? ''),
   ogImage: ogImage,
-  ogUrl: computed(() => `${requestURL.origin}/berita-events/${slug}`),
+  ogUrl: computed(() => `${siteUrl}/berita-events/${slug}`),
   ogType: 'article',
   ogSiteName: 'PPEPD – Direktorat Perlindungan dan Pengelolaan Ekosistem Perairan Darat',
   twitterCard: 'summary_large_image',
