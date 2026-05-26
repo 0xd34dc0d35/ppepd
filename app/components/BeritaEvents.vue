@@ -3,6 +3,13 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 const { public: { apiBase } } = useRuntimeConfig()
 
+function formatDate(iso: string | null): string {
+  if (!iso) return ''
+  const d = new Date(iso)
+  const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']
+  return `${d.getUTCDate()} ${BULAN[d.getUTCMonth()]} ${d.getUTCFullYear()}`
+}
+
 const events = ref<any[]>([])
 const isLoading = ref(true)
 
@@ -108,7 +115,7 @@ onUnmounted(() => {
               </div>
             </div>
             <div class="p-6">
-              <div class="text-brand-green text-xs font-bold mb-2">{{ event.date }}</div>
+              <div class="text-brand-green text-xs font-bold mb-2">{{ formatDate(event.published_at) }}</div>
               <h3 class="text-xl font-black text-brand-green-dark leading-snug group-hover:text-brand-green transition-colors">{{ event.title }}</h3>
               <div class="mt-4 flex items-center text-brand-charcoal/40 text-sm font-bold group-hover:text-brand-green transition-colors">
                 Baca Selengkapnya
