@@ -3,38 +3,40 @@ definePageMeta({ layout: 'data' })
 
 const route = useRoute()
 const slug = route.params.slug as string
-const { public: { siteUrl } } = useRuntimeConfig()
+const { public: { siteUrl, apiBase } } = useRuntimeConfig()
 
-const { data, status } = await useAsyncData(`berita-${slug}`, async () => {
-  try {
-    const [catalog, md] = await Promise.all([
-      $fetch<any[]>('/static/beritaevents/catalog.json'),
-      $fetch<string>(`/static/beritaevents/${slug}.md`)
-    ])
-    const found = catalog.find((c: any) => c.id === slug) ?? null
-    return { item: found, md: found ? md : '' }
-  } catch {
-    return { item: null, md: '' }
-  }
-})
+const { data, status } = await useAsyncData(`berita-${slug}`, () =>
+  $fetch<{ data: any }>(`${apiBase}/berita-events/public/${slug}`).catch(() => null)
+)
 
-const item = computed(() => data.value?.item ?? null)
-const rawMarkdown = computed(() => data.value?.md ?? '')
+const item = computed(() => data.value?.data ?? null)
 const isLoading = computed(() => status.value === 'pending')
 const notFound = computed(() => status.value !== 'pending' && !item.value)
 
-// Simple line-by-line markdown → HTML parser
+function formatDate(iso: string | null): string {
+  if (!iso) return ''
+  const d = new Date(iso)
+  const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']
+  return `${d.getUTCDate()} ${BULAN[d.getUTCMonth()]} ${d.getUTCFullYear()}`
+}
+
+// Markdown → HTML (field body dari API)
 function renderMarkdown(md: string): string {
+  if (!md) return ''
   const lines = md.split('\n')
   const out: string[] = []
   let i = 0
 
+  const escapeHtml = (text: string) =>
+    text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
   const formatInline = (text: string) =>
-    text
+    escapeHtml(text)
       .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
       .replace(/`(.+?)`/g, '<code>$1</code>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
 
   while (i < lines.length) {
     const line = lines[i]
@@ -66,7 +68,7 @@ function renderMarkdown(md: string): string {
     } else if (line.trim() === '---') {
       out.push('<hr>')
     } else if (line.trim() === '') {
-      // skip blank lines between blocks
+      // skip blank lines
     } else {
       out.push(`<p>${formatInline(line)}</p>`)
     }
@@ -77,26 +79,26 @@ function renderMarkdown(md: string): string {
   return out.join('\n')
 }
 
-const renderedContent = computed(() => renderMarkdown(rawMarkdown.value))
+const renderedContent = computed(() => renderMarkdown(item.value?.body ?? ''))
 
 const ogImage = computed(() => {
-  const img = item.value?.image
+  const img = item.value?.hero_image
   if (!img) return ''
   return img.startsWith('http') ? img : `${siteUrl}${img}`
 })
 
 useSeoMeta({
   title: computed(() => item.value ? `${item.value.title} – PPEPD` : 'PPEPD'),
-  description: computed(() => item.value?.excerpt ?? ''),
+  description: computed(() => item.value?.summary ?? ''),
   ogTitle: computed(() => item.value?.title ?? ''),
-  ogDescription: computed(() => item.value?.excerpt ?? ''),
+  ogDescription: computed(() => item.value?.summary ?? ''),
   ogImage: ogImage,
   ogUrl: computed(() => `${siteUrl}/berita-events/${slug}`),
   ogType: 'article',
   ogSiteName: 'PPEPD – Direktorat Perlindungan dan Pengelolaan Ekosistem Perairan Darat',
   twitterCard: 'summary_large_image',
   twitterTitle: computed(() => item.value?.title ?? ''),
-  twitterDescription: computed(() => item.value?.excerpt ?? ''),
+  twitterDescription: computed(() => item.value?.summary ?? ''),
   twitterImage: ogImage,
 })
 </script>
@@ -129,7 +131,7 @@ useSeoMeta({
 
       <!-- Hero Image -->
       <div class="relative w-full h-[50vh] overflow-hidden bg-brand-charcoal/10">
-        <img :src="item.image" :alt="item.title" class="w-full h-full object-cover" />
+        <img :src="item.hero_image" :alt="item.title" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-t from-brand-green-dark/80 via-brand-green-dark/30 to-transparent"></div>
         <div class="absolute bottom-0 left-0 right-0 px-8 pb-10 max-w-4xl mx-auto">
           <div class="flex items-center gap-2 mb-4">
@@ -165,7 +167,7 @@ useSeoMeta({
 
             <div>
               <p class="text-[10px] font-bold text-brand-charcoal/30 uppercase tracking-widest mb-1">Tanggal</p>
-              <p class="text-sm font-bold text-brand-green-dark">{{ item.date }}</p>
+              <p class="text-sm font-bold text-brand-green-dark">{{ formatDate(item.published_at) }}</p>
             </div>
 
             <div>
@@ -180,7 +182,7 @@ useSeoMeta({
               </span>
             </div>
 
-            <div>
+            <div v-if="item.tags?.length">
               <p class="text-[10px] font-bold text-brand-charcoal/30 uppercase tracking-widest mb-2">Tags</p>
               <div class="flex flex-wrap gap-1.5">
                 <span

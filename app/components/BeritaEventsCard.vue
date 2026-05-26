@@ -1,12 +1,12 @@
 <script setup lang="ts">
 defineProps<{
   item: {
-    id: string
+    slug: string
     type: 'berita' | 'events'
     title: string
-    excerpt: string
+    summary: string
     date: string
-    image: string
+    hero_image: string
     category: string
     author: string
     tags: string[]
@@ -15,11 +15,11 @@ defineProps<{
 </script>
 
 <template>
-  <NuxtLink :to="`/berita-events/${item.id}`" class="group block bg-white rounded-md border border-brand-green/5 hover:border-brand-green/25 hover:shadow-xl hover:shadow-brand-green/8 transition-all duration-500 overflow-hidden flex flex-col h-full">
+  <NuxtLink :to="`/berita-events/${item.slug}`" class="group block bg-white rounded-md border border-brand-green/5 hover:border-brand-green/25 hover:shadow-xl hover:shadow-brand-green/8 transition-all duration-500 overflow-hidden flex flex-col h-full">
     <!-- Image -->
     <div class="relative aspect-[16/8] overflow-hidden bg-brand-cream/50">
       <img
-        :src="item.image"
+        :src="item.hero_image"
         :alt="item.title"
         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         loading="lazy"
@@ -27,7 +27,7 @@ defineProps<{
       <div class="absolute inset-0 bg-gradient-to-t from-brand-green-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4">
         <span class="text-white text-[10px] font-bold uppercase tracking-widest">Baca Selengkapnya →</span>
       </div>
-      <div class="absolute top-4 left-4 flex gap-2">
+      <div class="absolute top-4 left-4">
         <span :class="[
           'px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shadow-md',
           item.type === 'berita'
@@ -56,7 +56,7 @@ defineProps<{
       </h3>
 
       <p class="text-[11px] text-brand-charcoal/50 font-medium mb-3 line-clamp-2 flex-grow">
-        {{ item.excerpt }}
+        {{ item.summary }}
       </p>
 
       <div class="flex items-center justify-between mt-auto pt-3 border-t border-brand-green/5">

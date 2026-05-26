@@ -1,36 +1,46 @@
 <script setup lang="ts">
 defineProps<{
   item: {
-    id: string
+    slug: string
     type: 'berita' | 'events'
     title: string
-    excerpt: string
     date: string
-    image: string
+    hero_image: string
     category: string
     author: string
-    tags: string[]
   }
 }>()
 </script>
 
 <template>
   <NuxtLink
-    :to="`/berita-events/${item.id}`"
+    :to="`/berita-events/${item.slug}`"
     class="group flex items-center px-4 py-3 border-b border-brand-green/5 hover:bg-brand-green/5 transition-colors duration-200"
   >
     <!-- Image -->
     <div class="w-20 flex-shrink-0">
       <div class="w-16 h-11 rounded overflow-hidden border border-brand-green/10 bg-brand-cream/50">
-        <img :src="item.image" :alt="item.title" class="w-full h-full object-cover" loading="lazy" />
+        <img :src="item.hero_image" :alt="item.title" class="w-full h-full object-cover" loading="lazy" />
       </div>
     </div>
 
-    <!-- Title -->
+    <!-- Title + author -->
     <div class="flex-1 min-w-0 px-4">
-      <p class="text-sm font-bold text-brand-green-dark group-hover:text-brand-green transition-colors line-clamp-2 leading-snug">
+      <p class="text-sm font-bold text-brand-green-dark group-hover:text-brand-green transition-colors line-clamp-1 leading-snug">
         {{ item.title }}
       </p>
+      <p class="text-[10px] text-brand-charcoal/40 font-medium mt-0.5">
+        <span :class="[
+          'inline-block mr-2 px-1.5 py-0.5 rounded text-[9px] font-black uppercase tracking-wider text-white',
+          item.type === 'berita' ? 'bg-brand-blue/80' : 'bg-brand-orange/80'
+        ]">{{ item.type === 'berita' ? 'Berita' : 'Event' }}</span>
+        {{ item.category }} · {{ item.author }}
+      </p>
+    </div>
+
+    <!-- Date -->
+    <div class="w-32 flex-shrink-0 px-2 text-[10px] font-bold text-brand-charcoal/40 group-hover:text-brand-green transition-colors">
+      {{ item.date }}
     </div>
 
     <!-- Action -->

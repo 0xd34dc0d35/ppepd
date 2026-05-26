@@ -1,45 +1,58 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 definePageMeta({ layout: 'data' })
+
+const { public: { apiBase } } = useRuntimeConfig()
 
 const activeTab = ref<'berita' | 'events' | 'featured'>('berita')
 const viewMode = ref<'card' | 'table'>('card')
 const searchQuery = ref('')
-const isLoading = ref(true)
-const allData = ref<any[]>([])
 
 const PAGE_SIZE = 6
 const currentPage = ref(1)
 
-onMounted(async () => {
-  try {
-    await new Promise(resolve => setTimeout(resolve, 800))
-    const res = await fetch('/static/beritaevents/catalog.json')
-    allData.value = await res.json()
-  } catch (e) {
-    console.error('Failed to load catalog:', e)
-  } finally {
-    isLoading.value = false
+function formatDate(iso: string | null): string {
+  if (!iso) return ''
+  const d = new Date(iso)
+  const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']
+  return `${d.getUTCDate()} ${BULAN[d.getUTCMonth()]} ${d.getUTCFullYear()}`
+}
+
+const apiParams = computed(() => {
+  const p: Record<string, string> = { limit: '100' }
+  if (activeTab.value === 'featured') {
+    p.featured = 'true'
+  } else {
+    p.type = activeTab.value
   }
+  return p
 })
+
+const { data: rawData, status } = await useAsyncData(
+  () => `be-${activeTab.value}`,
+  () => $fetch<{ data: any[]; total: number }>(`${apiBase}/berita-events/public`, { params: apiParams.value }),
+  { watch: [activeTab] }
+)
+
+const isLoading = computed(() => status.value === 'pending')
+
+const allItems = computed(() =>
+  (rawData.value?.data ?? []).map(item => ({
+    ...item,
+    date: formatDate(item.published_at),
+  }))
+)
 
 const filteredData = computed(() => {
   const q = searchQuery.value.toLowerCase()
-  return allData.value.filter(item => {
-    if (activeTab.value === 'featured') {
-      if (!item.featured) return false
-    } else {
-      if (item.type !== activeTab.value) return false
-    }
-    if (!q) return true
-    return (
-      item.title.toLowerCase().includes(q) ||
-      item.author.toLowerCase().includes(q) ||
-      item.category.toLowerCase().includes(q) ||
-      item.tags.some((t: string) => t.toLowerCase().includes(q))
-    )
-  })
+  if (!q) return allItems.value
+  return allItems.value.filter(item =>
+    item.title?.toLowerCase().includes(q) ||
+    item.author?.toLowerCase().includes(q) ||
+    item.category?.toLowerCase().includes(q) ||
+    (item.tags ?? []).some((t: string) => t.toLowerCase().includes(q))
+  )
 })
 
 const totalPages = computed(() => Math.ceil(filteredData.value.length / PAGE_SIZE))
@@ -179,7 +192,7 @@ useSeoMeta({
             v-else-if="filteredData.length > 0 && viewMode === 'card'"
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-fadeIn"
           >
-            <BeritaEventsCard v-for="item in paginatedData" :key="item.id" :item="item" />
+            <BeritaEventsCard v-for="item in paginatedData" :key="item.slug" :item="item" />
           </div>
 
           <!-- Table View -->
@@ -187,16 +200,15 @@ useSeoMeta({
             v-else-if="filteredData.length > 0 && viewMode === 'table'"
             class="bg-white rounded-md border border-brand-green/20 [overflow:clip] animate-fadeIn"
           >
-            <!-- Sticky header -->
             <div class="sticky top-0 z-10 flex items-center px-4 py-3 bg-brand-cream/95 backdrop-blur-sm border-b border-brand-green/15">
               <div class="w-20 flex-shrink-0 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40">Img</div>
               <div class="flex-1 min-w-0 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40">Judul</div>
+              <div class="w-32 flex-shrink-0 px-2 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40">Tanggal</div>
               <div class="w-10 flex-shrink-0"></div>
             </div>
-            <!-- Rows -->
             <BeritaEventsTableRow
               v-for="item in paginatedData"
-              :key="item.id"
+              :key="item.slug"
               :item="item"
             />
           </div>
