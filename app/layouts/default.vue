@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from 'vue'
 const { visibleNav } = useRole()
+const { user, isLoggedIn, logout, fetchMe } = useAuth()
 
 useHead({
   meta: [
@@ -11,9 +12,36 @@ useHead({
   ]
 })
 
+onMounted(() => {
+  fetchMe()
+})
+
 const isScrolledPast100vh = ref(false)
 const drawerOpen = ref(false)
+const userMenuOpen = ref(false)
+const userMenuRef = ref<HTMLElement | null>(null)
+
+const handleClickOutside = (e: MouseEvent) => {
+  if (userMenuRef.value && !userMenuRef.value.contains(e.target as Node)) {
+    userMenuOpen.value = false
+  }
+}
 const route = useRoute()
+const router = useRouter()
+
+const handleLogout = async () => {
+  userMenuOpen.value = false
+  await logout()
+  router.push('/')
+}
+
+const displayName = computed(() =>
+  user.value?.display_name || user.value?.username || ''
+)
+
+const userInitial = computed(() =>
+  displayName.value.charAt(0).toUpperCase()
+)
 
 const handleScroll = () => {
   if (window.scrollY > window.innerHeight) {
@@ -33,7 +61,10 @@ const closeDrawer = () => {
   document.body.style.overflow = ''
 }
 
-watch(() => route.path, closeDrawer)
+watch(() => route.path, () => {
+  closeDrawer()
+  userMenuOpen.value = false
+})
 
 const showModal = ref(false)
 const modalTitle = ref('')
@@ -84,10 +115,12 @@ const closeModal = () => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
+  document.addEventListener('click', handleClickOutside)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  document.removeEventListener('click', handleClickOutside)
 })
 </script>
 
@@ -114,13 +147,60 @@ onUnmounted(() => {
         </NuxtLink>
 
         <!-- Desktop menu -->
-        <div class="hidden sm:flex gap-10 text-sm font-bold tracking-wide uppercase text-brand-charcoal/60">
+        <div class="hidden sm:flex items-center gap-8 text-sm font-bold tracking-wide uppercase text-brand-charcoal/60">
           <NuxtLink
             v-for="item in visibleNav"
             :key="item.to"
             :to="item.to"
             class="hover:text-brand-green transition-all duration-300"
           >{{ item.label }}</NuxtLink>
+
+          <!-- Tombol Masuk / Avatar User -->
+          <template v-if="!isLoggedIn">
+            <NuxtLink
+              to="/login"
+              class="flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-brand-green-dark text-white text-xs font-black uppercase tracking-widest hover:bg-brand-green transition-all shadow-sm shadow-brand-green/20"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
+              Masuk
+            </NuxtLink>
+          </template>
+          <template v-else>
+            <div class="relative" ref="userMenuRef">
+              <button
+                @click="userMenuOpen = !userMenuOpen"
+                class="flex items-center gap-2 px-3 py-1.5 rounded-xl hover:bg-brand-green/8 transition-all"
+              >
+                <div class="w-7 h-7 rounded-full bg-brand-green-dark text-white text-xs font-black flex items-center justify-center">
+                  {{ userInitial }}
+                </div>
+                <span class="text-xs font-black text-brand-charcoal/70 max-w-[100px] truncate normal-case tracking-normal">{{ displayName }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" :class="['transition-transform', userMenuOpen ? 'rotate-180' : '']"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+
+              <!-- Dropdown -->
+              <Transition name="dropdown">
+                <div
+                  v-if="userMenuOpen"
+                  class="absolute right-0 top-full mt-2 w-48 bg-white border border-brand-green/10 rounded-2xl shadow-xl shadow-brand-green/8 overflow-hidden z-50"
+                >
+                  <div class="px-4 py-3 border-b border-brand-green/8">
+                    <p class="text-xs font-black text-brand-charcoal/40 uppercase tracking-widest">Login sebagai</p>
+                    <p class="text-sm font-bold text-brand-charcoal mt-0.5 truncate">{{ displayName }}</p>
+                  </div>
+                  <div class="py-1">
+                    <button
+                      @click="handleLogout"
+                      class="w-full flex items-center gap-2 px-4 py-2.5 text-sm font-bold text-red-500 hover:bg-red-50 transition-colors text-left"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+                      Keluar
+                    </button>
+                  </div>
+                </div>
+              </Transition>
+            </div>
+          </template>
         </div>
 
         <!-- Hamburger (mobile only) -->
@@ -174,8 +254,29 @@ onUnmounted(() => {
         </nav>
 
         <!-- Drawer footer -->
-        <div class="px-6 py-5 border-t border-brand-green/8 flex-shrink-0">
-          <p class="text-[10px] font-black uppercase tracking-widest text-brand-charcoal/30">KLH/BPLH · PPEPD</p>
+        <div class="px-4 py-5 border-t border-brand-green/8 flex-shrink-0 space-y-2">
+          <template v-if="!isLoggedIn">
+            <NuxtLink
+              to="/login"
+              class="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-brand-green-dark text-white text-xs font-black uppercase tracking-widest hover:bg-brand-green transition-all"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/></svg>
+              Masuk
+            </NuxtLink>
+          </template>
+          <template v-else>
+            <div class="px-1 pb-1">
+              <p class="text-[10px] font-black uppercase tracking-widest text-brand-charcoal/30 mb-1">Login sebagai</p>
+              <p class="text-sm font-bold text-brand-charcoal truncate">{{ displayName }}</p>
+            </div>
+            <button
+              @click="handleLogout"
+              class="flex items-center gap-2 w-full py-2.5 px-4 rounded-xl text-red-500 hover:bg-red-50 text-xs font-black uppercase tracking-widest transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+              Keluar
+            </button>
+          </template>
         </div>
       </div>
     </Transition>
@@ -350,6 +451,15 @@ onUnmounted(() => {
 .slide-drawer-enter-from,
 .slide-drawer-leave-to {
   transform: translateX(100%);
+}
+
+/* Dropdown transition */
+.dropdown-enter-active, .dropdown-leave-active {
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.dropdown-enter-from, .dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.97);
 }
 
 /* Custom Scrollbar for Modal */
