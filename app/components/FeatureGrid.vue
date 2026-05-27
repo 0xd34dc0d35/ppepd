@@ -51,21 +51,21 @@
 const features = [
   {
     id: 1,
-    title: 'Perlindungan Danau',
+    title: 'Ekosistem Danau',
     image: '/images/ilu-danau.png',
     description: 'Data status ekosistem, kualitas air, tutupan lahan, dan profil 15 Danau Prioritas Nasional Indonesia.',
     to: '/danau',
   },
   {
     id: 2,
-    title: 'Perlindungan Mangrove',
+    title: 'Ekosistem Mangrove',
     image: '/images/ilu-mangrove.png',
     description: 'Pemantauan kerapatan, sebaran, tren luas, dan program Desa Mandiri Peduli Mangrove di seluruh Indonesia.',
     to: '/mangrove',
   },
   {
     id: 3,
-    title: 'Perlindungan Mata Air',
+    title: 'Ekosistem Mata Air',
     image: '/images/ilu-mataair.png',
     description: 'Data sebaran titik mata air, penilaian kesehatan, dan program Desa Peduli Sumber Air berbasis komunitas.',
     to: '/mataair',
