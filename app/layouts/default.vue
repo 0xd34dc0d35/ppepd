@@ -189,6 +189,13 @@ onUnmounted(() => {
                     <p class="text-sm font-bold text-brand-charcoal mt-0.5 truncate">{{ displayName }}</p>
                   </div>
                   <div class="py-1">
+                    <NuxtLink
+                      to="/my-profiles"
+                      class="flex items-center gap-2 px-4 py-2.5 text-sm font-bold text-brand-charcoal/70 hover:bg-brand-green/5 hover:text-brand-green transition-colors"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                      My Profiles
+                    </NuxtLink>
                     <button
                       @click="handleLogout"
                       class="w-full flex items-center gap-2 px-4 py-2.5 text-sm font-bold text-red-500 hover:bg-red-50 transition-colors text-left"
@@ -269,6 +276,13 @@ onUnmounted(() => {
               <p class="text-[10px] font-black uppercase tracking-widest text-brand-charcoal/30 mb-1">Login sebagai</p>
               <p class="text-sm font-bold text-brand-charcoal truncate">{{ displayName }}</p>
             </div>
+            <NuxtLink
+              to="/my-profiles"
+              class="flex items-center gap-2 w-full py-2.5 px-4 rounded-xl text-brand-charcoal/70 hover:bg-brand-green/8 hover:text-brand-green text-xs font-black uppercase tracking-widest transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              My Profiles
+            </NuxtLink>
             <button
               @click="handleLogout"
               class="flex items-center gap-2 w-full py-2.5 px-4 rounded-xl text-red-500 hover:bg-red-50 text-xs font-black uppercase tracking-widest transition-colors"
