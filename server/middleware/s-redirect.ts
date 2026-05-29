@@ -1,20 +1,23 @@
-import { readRedirects, writeRedirects } from '../utils/redirects'
-
 export default defineEventHandler(async (event) => {
   const path = getRequestURL(event).pathname
 
-  // Only intercept /s/{id} — skip /s/not-found, API calls, and non-/s/ paths
+  // Hanya intercept /s/{id} — lewati /s/not-found dan path lain
   const match = path.match(/^\/s\/([^/]+)$/)
   if (!match || match[1] === 'not-found') return
 
   const id = match[1]
-  const data = readRedirects()
-  const entry = data[id]
+  const { public: { apiBase } } = useRuntimeConfig()
 
-  if (!entry) return sendRedirect(event, '/s/not-found', 302)
+  let exists = false
+  try {
+    const res = await $fetch<{ ok: boolean; data: any }>(`${apiBase}/s/${id}`)
+    exists = res?.ok === true && res?.data?.is_active !== false
+  } catch {
+    exists = false
+  }
 
-  // Increment hit counter, then pass through to Vue page for countdown
-  data[id].hits = (entry.hits ?? 0) + 1
-  writeRedirects(data)
-  // Return nothing = pass through to Nuxt SSR → app/pages/s/[id].vue
+  if (!exists) return sendRedirect(event, '/s/not-found', 302)
+
+  // Catat hit secara async (fire-and-forget) agar tidak memblok response
+  $fetch(`${apiBase}/s/${id}/hit`, { method: 'POST' }).catch(() => {})
 })

@@ -1,5 +1,3 @@
-import { readRedirects, writeRedirects, generateId } from '../../utils/redirects'
-
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const { url, title = '', customId } = body ?? {}
@@ -8,28 +6,28 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: 'URL wajib diisi' })
   }
 
-  const data = readRedirects()
+  const { public: { apiBase } } = useRuntimeConfig()
+  const authHeader = getHeader(event, 'authorization')
 
-  if (customId) {
-    if (!/^[a-z0-9-_]{2,32}$/.test(customId)) {
-      throw createError({ statusCode: 400, statusMessage: 'ID kustom hanya boleh huruf kecil, angka, tanda hubung, dan garis bawah (2–32 karakter)' })
+  try {
+    const res = await $fetch<{ ok: boolean; data: any }>(`${apiBase}/s`, {
+      method: 'POST',
+      headers: authHeader ? { authorization: authHeader } : {},
+      body: { url: url.trim(), title: title?.trim() || undefined, customId: customId || undefined },
+    })
+    const d = res.data
+    return {
+      id:        d.id,
+      url:       d.url,
+      title:     d.title ?? '',
+      shortPath: d.shortPath ?? `/s/${d.id}`,
     }
-    if (data[customId]) {
-      throw createError({ statusCode: 409, statusMessage: 'ID sudah digunakan' })
-    }
+  } catch (err: any) {
+    const status = err?.response?.status ?? err?.status ?? 500
+    const message = err?.data?.message ?? err?.message ?? 'Gagal membuat link'
+    if (status === 400) throw createError({ statusCode: 400, statusMessage: message })
+    if (status === 401 || status === 403) throw createError({ statusCode: status, statusMessage: 'Tidak diizinkan' })
+    if (status === 409) throw createError({ statusCode: 409, statusMessage: message })
+    throw createError({ statusCode: 500, statusMessage: 'Gagal membuat link' })
   }
-
-  let id = customId || generateId()
-  while (!customId && data[id]) id = generateId()
-
-  data[id] = {
-    url,
-    title: title.trim(),
-    created: new Date().toISOString().split('T')[0],
-    hits: 0,
-  }
-
-  writeRedirects(data)
-
-  return { id, url, title, shortPath: `/s/${id}` }
 })

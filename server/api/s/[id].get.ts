@@ -1,12 +1,22 @@
-import { readRedirects } from '../../utils/redirects'
-
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')
   if (!id) throw createError({ statusCode: 400, statusMessage: 'ID diperlukan' })
 
-  const data = readRedirects()
-  const entry = data[id]
-  if (!entry) throw createError({ statusCode: 404, statusMessage: 'Link tidak ditemukan' })
+  const { public: { apiBase } } = useRuntimeConfig()
 
-  return { id, ...entry }
+  try {
+    const res = await $fetch<{ ok: boolean; data: any }>(`${apiBase}/s/${id}`)
+    const d = res.data
+    return {
+      id:      d.id,
+      url:     d.url,
+      title:   d.title ?? '',
+      hits:    d.hits ?? 0,
+      created: d.created_at?.split('T')[0] ?? '',
+    }
+  } catch (err: any) {
+    const status = err?.response?.status ?? err?.status ?? 500
+    if (status === 404) throw createError({ statusCode: 404, statusMessage: 'Link tidak ditemukan' })
+    throw createError({ statusCode: 500, statusMessage: 'Gagal mengambil data link' })
+  }
 })
