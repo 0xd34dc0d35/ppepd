@@ -31,6 +31,8 @@ useHead({
     <!-- Features Grid -->
     <FeatureGrid />
     <!-- manually di non aktifkan <PengelolaanGrid/> -->
+    <!-- Publikasi Section -->
+    <Publikasi />
     <EdukasiSection />
     </div>
   </div>

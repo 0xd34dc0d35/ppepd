@@ -20,6 +20,7 @@ export const NAV_ITEMS: NavItem[] = [
   // ── Publik (semua role) ──────────────────────────────────────────────────
   { label: 'Beranda',         to: '/',                roles: ['publik', 'pengelola', 'admin'] },
   { label: 'Data',            to: '/data',            roles: ['publik', 'pengelola', 'admin'] },
+  { label: 'Publikasi',       to: '/publikasi',       roles: ['publik', 'pengelola', 'admin'] },
   { label: 'Regulasi',        to: '/regulasi',        roles: ['publik', 'pengelola', 'admin'] },
   { label: 'Layanan',         to: '/layanan',         roles: ['publik', 'pengelola', 'admin'] },
   { label: 'Tentang',         to: '/about',           roles: ['publik', 'pengelola', 'admin'] },

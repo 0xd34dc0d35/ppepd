@@ -11,10 +11,16 @@
     "created": "2026-05-25",
     "hits": 9
   },
-    "klm-babel": {
+  "klm-babel": {
     "url": "https://drive.google.com/drive/folders/1nPUcpJCgRU0zNkDTVBsRCEWwZAWSVsSN?usp=drive_link",
     "title": "KLM Bangka Belitung",
     "created": "2026-05-25",
     "hits": 9
+  },
+  "klm-sumut": {
+    "url": "https://drive.google.com/drive/folders/1W4_ClN4fvuvMcKMeTDU2mgDlSv-yu-NK",
+    "title": "KLM Sumatera Utara",
+    "created": "2026-05-25",
+    "hits": 11
   }
 }
