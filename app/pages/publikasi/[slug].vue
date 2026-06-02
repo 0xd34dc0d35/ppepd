@@ -39,8 +39,15 @@ function formatFileSize(bytes: number | null): string {
 }
 
 const isDownloading = ref(false)
+const showAccessDialog = ref(false)
+const isRestricted = computed(() => pub.value?.download_access === 'terdaftar')
+
 async function handleDownload() {
   if (!pub.value?.file_url && !pub.value?.external_link) return
+  if (isRestricted.value && !isLoggedIn.value) {
+    showAccessDialog.value = true
+    return
+  }
   isDownloading.value = true
   try {
     await $fetch(`${apiBase}/publications/${pub.value.id}/download`, { method: 'POST' })
@@ -154,15 +161,21 @@ useSeoMeta({
           </div>
 
           <!-- Access Notice for file -->
-          <div v-if="pub.file_url || pub.external_link" class="mt-8 p-4 rounded-xl border border-brand-green/15 bg-brand-green/3 flex items-start gap-3">
+          <div v-if="isRestricted && !isLoggedIn && (pub.file_url || pub.external_link)" class="mt-8 p-4 rounded-xl border border-amber-200 bg-amber-50 flex items-start gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-500 flex-shrink-0 mt-0.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <div>
+              <p class="text-xs font-bold text-amber-800 mb-0.5">Akses Terbatas</p>
+              <p class="text-xs text-amber-700/80 font-medium">Dokumen ini hanya tersedia untuk pengguna terdaftar.
+                <NuxtLink to="/register" class="text-amber-700 font-bold hover:underline">Daftar sekarang</NuxtLink>
+                atau <NuxtLink to="/login" class="text-amber-700 font-bold hover:underline">masuk</NuxtLink> untuk mengunduh.
+              </p>
+            </div>
+          </div>
+          <div v-else-if="pub.file_url || pub.external_link" class="mt-8 p-4 rounded-xl border border-brand-green/15 bg-brand-green/3 flex items-start gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-green flex-shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <p v-if="isLoggedIn" class="text-xs text-brand-charcoal/60 font-medium">
-              Anda telah login. Tombol unduh tersedia di panel kanan.
-            </p>
-            <p v-else class="text-xs text-brand-charcoal/60 font-medium">
-              Dokumen ini tersedia untuk diunduh.
-              <NuxtLink to="/login" class="text-brand-green font-bold hover:underline">Masuk</NuxtLink>
-              untuk mengakses fitur tambahan seperti riwayat unduhan.
+            <p class="text-xs text-brand-charcoal/60 font-medium">
+              <span v-if="isLoggedIn">Anda telah login. Tombol unduh tersedia di panel kanan.</span>
+              <span v-else>Dokumen ini tersedia untuk diunduh secara bebas.</span>
             </p>
           </div>
         </div>
@@ -180,10 +193,16 @@ useSeoMeta({
             <button
               @click="handleDownload"
               :disabled="isDownloading"
-              class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-brand-green text-white text-sm font-black uppercase tracking-widest hover:bg-brand-green-dark active:scale-[0.98] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed shadow-lg shadow-brand-green/20"
+              :class="[
+                'w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed',
+                isRestricted && !isLoggedIn
+                  ? 'bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100'
+                  : 'bg-brand-green text-white hover:bg-brand-green-dark active:scale-[0.98] shadow-lg shadow-brand-green/20'
+              ]"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              <span v-if="!isDownloading">{{ pub.file_url ? 'Unduh Dokumen' : 'Buka Tautan' }}</span>
+              <svg v-if="isRestricted && !isLoggedIn" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span v-if="!isDownloading">{{ isRestricted && !isLoggedIn ? 'Akses Terbatas' : (pub.file_url ? 'Unduh Dokumen' : 'Buka Tautan') }}</span>
               <span v-else>Membuka...</span>
             </button>
             <p v-if="pub.file_size" class="text-center text-[10px] text-brand-charcoal/30 font-medium mt-1.5">
@@ -243,9 +262,81 @@ useSeoMeta({
     </div>
 
   </div>
+
+  <!-- Dialog: Akses Terbatas -->
+  <Teleport to="body">
+    <Transition name="dialog">
+      <div v-if="showAccessDialog" class="fixed inset-0 z-[200] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-brand-charcoal/60 backdrop-blur-sm" @click="showAccessDialog = false"></div>
+        <div class="dialog-card relative bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+          <div class="h-1 w-full bg-gradient-to-r from-amber-400 to-orange-400"></div>
+          <div class="p-8">
+            <div class="w-14 h-14 rounded-full bg-amber-50 border-2 border-amber-100 flex items-center justify-center mx-auto mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-500"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h2 class="text-center text-lg font-black text-brand-green-dark mb-1.5">Konten untuk Pengguna Terdaftar</h2>
+            <p class="text-center text-sm text-brand-charcoal/50 font-medium mb-6">Dokumen ini memerlukan akun terdaftar untuk dapat diunduh.</p>
+            <div class="bg-brand-cream/60 rounded-xl p-4 space-y-3 mb-6">
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-amber-600"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <p class="text-xs text-brand-charcoal/70 font-medium">Memastikan dokumen diakses oleh pihak yang memiliki kepentingan resmi terhadap pengelolaan ekosistem perairan darat.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-amber-600"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <p class="text-xs text-brand-charcoal/70 font-medium">Data unduhan direkam untuk keperluan pelaporan dan pemantauan distribusi dokumen kepada pemangku kepentingan.</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="text-amber-600"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <p class="text-xs text-brand-charcoal/70 font-medium">Pendaftaran gratis dan dapat diselesaikan dalam beberapa menit.</p>
+              </div>
+            </div>
+            <div class="flex flex-col gap-2">
+              <NuxtLink
+                to="/register"
+                class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-brand-green text-white text-sm font-black uppercase tracking-widest hover:bg-brand-green-dark transition-all duration-200 shadow-lg shadow-brand-green/20"
+                @click="showAccessDialog = false"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                Daftar Sekarang — Gratis
+              </NuxtLink>
+              <div class="flex items-center gap-2">
+                <NuxtLink
+                  to="/login"
+                  class="flex-1 flex items-center justify-center px-4 py-2.5 rounded-xl border border-brand-green/20 text-brand-green text-xs font-bold hover:border-brand-green hover:bg-brand-green/5 transition-all"
+                  @click="showAccessDialog = false"
+                >
+                  Sudah punya akun? Masuk
+                </NuxtLink>
+                <button
+                  @click="showAccessDialog = false"
+                  class="flex-1 flex items-center justify-center px-4 py-2.5 rounded-xl border border-brand-charcoal/10 text-brand-charcoal/40 text-xs font-bold hover:border-brand-charcoal/20 hover:text-brand-charcoal/60 transition-all"
+                >
+                  Tutup
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
+
 </template>
 
 <style scoped>
 @keyframes spin { to { transform: rotate(360deg); } }
 .animate-spin { animation: spin 0.8s linear infinite; }
+
+.dialog-enter-active { transition: opacity 0.2s ease; }
+.dialog-leave-active { transition: opacity 0.15s ease; }
+.dialog-enter-from, .dialog-leave-to { opacity: 0; }
+.dialog-enter-active .dialog-card { transition: transform 0.2s ease, opacity 0.2s ease; }
+.dialog-leave-active .dialog-card { transition: transform 0.15s ease, opacity 0.15s ease; }
+.dialog-enter-from .dialog-card, .dialog-leave-to .dialog-card { transform: scale(0.96) translateY(6px); opacity: 0; }
 </style>

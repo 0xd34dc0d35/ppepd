@@ -188,6 +188,9 @@ useSeoMeta({
                 <div v-if="pub.is_featured" class="absolute top-1 right-1 w-4 h-4 rounded-full bg-brand-orange flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="currentColor" class="text-white"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                 </div>
+                <div v-if="pub.download_access === 'terdaftar'" class="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-amber-500/90 flex items-center justify-center" title="Pengguna Terdaftar">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
               </div>
 
               <!-- Info -->
@@ -245,7 +248,12 @@ useSeoMeta({
                 </div>
               </div>
               <div class="flex-1 min-w-0 px-4">
-                <p class="text-sm font-bold text-brand-green-dark group-hover:text-brand-green transition-colors line-clamp-1">{{ pub.title }}</p>
+                <div class="flex items-center gap-2">
+                  <p class="text-sm font-bold text-brand-green-dark group-hover:text-brand-green transition-colors line-clamp-1">{{ pub.title }}</p>
+                  <span v-if="pub.download_access === 'terdaftar'" class="flex-shrink-0 w-4 h-4 rounded-full bg-amber-100 flex items-center justify-center" title="Pengguna Terdaftar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-amber-600"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  </span>
+                </div>
                 <p v-if="pub.author" class="text-[11px] text-brand-charcoal/40 font-medium mt-0.5">{{ pub.author }}</p>
               </div>
               <div class="w-28 flex-shrink-0 px-2">
