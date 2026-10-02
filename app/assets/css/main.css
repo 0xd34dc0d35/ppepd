@@ -1,95 +1,122 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/plus-jakarta-sans';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /* Design System KLH/BPLH v2.1 — token fondasi (lihat docs/STYLE_GUIDELINES.md).
+     Nilai dalam format kanal RGB agar modifier opasitas Tailwind (mis. bg-klh-green-600/10) berfungsi. */
+  :root {
+    --klh-g-50:241 248 248; --klh-g-100:222 242 241; --klh-g-200:184 234 230; --klh-g-300:124 222 214; --klh-g-400:37 208 194;
+    --klh-g-500:7 136 125; --klh-g-600:0 89 82; --klh-g-700:0 69 63; --klh-g-800:0 54 49; --klh-g-900:0 38 35;
+    --klh-b-50:239 245 250; --klh-b-100:218 232 246; --klh-b-200:177 208 241; --klh-b-300:119 177 238; --klh-b-400:69 150 237;
+    --klh-b-500:20 125 239; --klh-b-600:14 102 196; --klh-b-700:11 82 157; --klh-b-800:8 62 119; --klh-b-900:6 45 86;
+    --klh-o-50:252 244 238; --klh-o-100:249 228 210; --klh-o-200:248 200 160; --klh-o-300:247 166 100; --klh-o-400:250 143 56;
+    --klh-o-500:249 121 16; --klh-o-600:214 99 5; --klh-o-700:174 81 4; --klh-o-800:134 62 3; --klh-o-900:99 46 3;
+
+    --klh-ink-900:16 32 29; --klh-ink-700:40 56 53; --klh-ink-500:81 98 94; --klh-ink-400:117 132 127; --klh-ink-300:166 178 174;
+    --klh-line:225 232 230; --klh-line-strong:199 210 207;
+    --klh-surface:255 255 255; --klh-surface-2:245 249 248; --klh-surface-3:235 242 240; --klh-bg:242 246 245;
+
+    --klh-success:14 122 78;  --klh-success-bg:220 243 231; --klh-success-line:155 221 188;
+    --klh-warning:174 81 4;   --klh-warning-bg:249 228 210; --klh-warning-line:248 200 160;
+    --klh-danger:192 58 43;   --klh-danger-bg:251 227 224;  --klh-danger-line:239 175 166;
+    --klh-info:11 82 157;     --klh-info-bg:218 232 246;    --klh-info-line:177 208 241;
+
+    /* Tinggi header situs (utility bar 44 + navbar 64); diperbarui KlhSiteHeader saat runtime */
+    --klh-header-h:108px;
+  }
+
+  /* Kontras tinggi — dipicu toolbar aksesibilitas (html[data-contrast="high"]) */
+  :root[data-contrast="high"] {
+    --klh-ink-700:16 32 29; --klh-ink-500:16 32 29; --klh-ink-400:40 56 53; --klh-ink-300:81 98 94;
+    --klh-line:117 132 127; --klh-line-strong:40 56 53;
+    --klh-g-500:0 54 49; --klh-g-600:0 38 35; --klh-b-600:8 62 119;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
   body {
-    @apply bg-brand-cream text-brand-charcoal font-sans selection:bg-brand-green/10;
+    @apply bg-surface-bg text-ink-900 font-body text-base leading-[1.6] antialiased selection:bg-klh-green-100;
   }
-  body.index-gradient-body {
-    position: relative;
-    overflow-x: hidden;
-    background:
-      linear-gradient(180deg, rgba(245, 242, 236, 0.92) 0%, rgba(245, 242, 236, 0.86) 46%, #f5f2ec 78%),
-      #f5f2ec;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
   }
-  body.index-gradient-body::before,
-  body.index-gradient-body::after {
-    content: "";
-    position: absolute;
-    inset-inline: 0;
-    top: 0;
-    height: min(145vh, 1200px);
-    pointer-events: none;
-    z-index: 0;
-    contain: paint;
-    will-change: transform;
-    backface-visibility: hidden;
+  a {
+    text-underline-offset: 2px;
   }
-  body.index-gradient-body::before {
-    background:
-      radial-gradient(circle at 8% 12%, rgba(30, 92, 75, 0.18) 0 8rem, rgba(30, 92, 75, 0.08) 15rem, transparent 28rem),
-      radial-gradient(circle at 88% 18%, rgba(91, 172, 214, 0.2) 0 7rem, rgba(91, 172, 214, 0.08) 15rem, transparent 29rem),
-      radial-gradient(circle at 42% 54%, rgba(217, 123, 58, 0.12) 0 7rem, rgba(217, 123, 58, 0.05) 14rem, transparent 27rem),
-      radial-gradient(circle at 74% 68%, rgba(13, 61, 48, 0.14) 0 8rem, rgba(13, 61, 48, 0.06) 16rem, transparent 30rem);
-    opacity: 0.78;
-    transform: translate3d(0, 0, 0) scale(1.04);
-    animation: index-gradient-drift 22s ease-in-out infinite alternate;
+  /* Indikator fokus: outline biru 3px (WCAG 2.4.7) */
+  :focus-visible {
+    outline: 3px solid rgb(var(--klh-b-500));
+    outline-offset: 2px;
+    border-radius: 4px;
   }
-  body.index-gradient-body::after {
-    background:
-      radial-gradient(circle at 18% 26%, rgba(255, 255, 255, 0.32) 0 4rem, rgba(255, 255, 255, 0.12) 8rem, transparent 13rem),
-      radial-gradient(circle at 62% 16%, rgba(91, 172, 214, 0.13) 0 5rem, rgba(91, 172, 214, 0.05) 10rem, transparent 16rem),
-      radial-gradient(circle at 86% 48%, rgba(30, 92, 75, 0.12) 0 6rem, rgba(30, 92, 75, 0.05) 12rem, transparent 18rem),
-      radial-gradient(circle at 34% 68%, rgba(217, 123, 58, 0.1) 0 4.5rem, rgba(217, 123, 58, 0.04) 10rem, transparent 15rem);
-    opacity: 0.7;
-    animation: index-gradient-float 19s ease-in-out infinite alternate;
-  }
-  body.index-gradient-body #__nuxt {
-    position: relative;
-    z-index: 1;
-  }
-  h1 {
-    @apply font-h1;
-  }
-}
-
-@keyframes index-gradient-drift {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1.04);
-  }
-  50% {
-    transform: translate3d(1rem, -1rem, 0) scale(1.06);
-  }
-  100% {
-    transform: translate3d(-1rem, -2rem, 0) scale(1.08);
-  }
-}
-
-@keyframes index-gradient-float {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(-1rem, 1rem, 0) scale(1.02);
-  }
-  100% {
-    transform: translate3d(1.5rem, -1.75rem, 0) scale(1.03);
+  /* Komponen display:flex/grid mengalahkan aturan UA untuk [hidden] */
+  [hidden] {
+    display: none !important;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body.index-gradient-body::before,
-  body.index-gradient-body::after {
-    animation: none;
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-.glass-card {
-  @apply cursor-pointer bg-white/40 backdrop-blur-xl border border-brand-green/5 rounded-2xl shadow-sm hover:shadow-md transition-shadow;
-  contain: paint;
-}
+@layer components {
+  /* Tautan "Lewati ke konten utama" */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-lg focus:bg-klh-green-600 focus:px-4 focus:py-3 focus:text-sm focus:font-semibold focus:text-white focus:shadow-klh-3;
+  }
 
-.gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-green to-brand-green-dark;
+  /* Tombol — resep DS §03 */
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-transparent px-[18px] py-[11px] font-body text-[.92rem] font-semibold leading-tight transition-colors disabled:cursor-not-allowed disabled:opacity-45;
+  }
+  .btn-primary { @apply bg-klh-green-600 text-white hover:bg-klh-green-700 hover:shadow-klh-2; }
+  .btn-blue { @apply bg-klh-blue-600 text-white hover:bg-klh-blue-700; }
+  .btn-orange { @apply bg-klh-orange-500 text-on-orange hover:bg-klh-orange-400; }
+  .btn-secondary { @apply bg-klh-green-100 text-klh-green-700 hover:bg-klh-green-200; }
+  .btn-outline { @apply border-line-strong bg-surface text-ink-700 hover:border-klh-green-600 hover:text-klh-green-700; }
+  .btn-ghost { @apply bg-transparent text-klh-green-700 hover:bg-klh-green-100; }
+  .btn-danger { @apply bg-danger text-white hover:brightness-95; }
+  .btn-sm { @apply min-h-[36px] px-[13px] py-[7px] text-[.82rem]; }
+  .btn-lg { @apply px-6 py-3.5 text-base; }
+
+  /* Input formulir — status normal, fokus, error (aria-invalid) */
+  .klh-input {
+    @apply min-h-[44px] w-full rounded-lg border border-line-strong bg-surface px-3.5 py-2.5 text-[15px] text-ink-900 transition-colors placeholder:text-ink-400 hover:border-ink-400 focus:border-klh-green-600 focus:outline-none focus:ring-[3px] focus:ring-klh-green-600/15 disabled:cursor-not-allowed disabled:bg-surface-2 disabled:opacity-60;
+  }
+  .klh-input[aria-invalid='true'] {
+    @apply border-danger focus:ring-danger/15;
+  }
+
+  /* Kartu standar (pengganti glass-card lama) */
+  .glass-card,
+  .klh-card {
+    @apply rounded-2xl border border-line bg-surface shadow-klh-1 transition-shadow hover:shadow-klh-2;
+  }
+
+  /* Teks brand (pengganti gradient-text lama) */
+  .gradient-text {
+    @apply text-klh-green-700;
+  }
+
+  /* Placeholder media */
+  .ph {
+    @apply bg-klh-ph;
+    background-size: 14px 14px, auto;
+  }
+
+  .icon { @apply h-6 w-6 shrink-0; }
+  .icon--sm { @apply h-[18px] w-[18px] shrink-0; }
+  .icon--lg { @apply h-8 w-8 shrink-0; }
 }

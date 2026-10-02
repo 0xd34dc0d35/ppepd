@@ -21,9 +21,9 @@ Kampanye ini menargetkan tiga capaian utama:
 
 ## Cara Berpartisipasi
 
-- Daftar sebagai relawan penanaman di portal SIPPEM
+- Daftar sebagai relawan penanaman di portal PPEPD
 - Adopsi satu petak mangrove dan pantau pertumbuhannya secara digital
 - Sebarkan informasi tentang pentingnya mangrove di lingkungan Anda
-- Laporkan aktivitas perusakan mangrove melalui aplikasi SIPPEM Mobile
+- Laporkan aktivitas perusakan mangrove melalui aplikasi PPEPD Mobile
 
 Bersama kita jaga mangrove — untuk generasi yang akan datang.

@@ -46,18 +46,18 @@ function goNow() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-brand-green-dark flex flex-col items-center justify-center px-6 relative overflow-hidden">
+  <div class="min-h-screen bg-klh-green-800 flex flex-col items-center justify-center px-6 relative overflow-hidden">
 
     <!-- Ambient blobs -->
     <div class="absolute inset-0 pointer-events-none">
       <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[70%] rounded-full bg-white/3 blur-[120px]"></div>
-      <div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[60%] rounded-full bg-brand-blue/8 blur-[100px]"></div>
+      <div class="absolute bottom-[-20%] right-[-10%] w-[50%] h-[60%] rounded-full bg-klh-blue-500/8 blur-[100px]"></div>
     </div>
 
     <div class="relative w-full max-w-sm text-center">
 
       <!-- PPEPD wordmark -->
-      <p class="text-xs font-black text-white/30 uppercase tracking-widest mb-10">PPEPD · KLH/BPLH</p>
+      <p class="text-xs font-bold text-white/30 uppercase tracking-widest mb-10">PPEPD · KLH/BPLH</p>
 
       <!-- ── NOT FOUND state ── -->
       <template v-if="notFound">
@@ -66,14 +66,14 @@ function goNow() {
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
           </svg>
         </div>
-        <h1 class="text-xl font-black text-white mb-2">Link Tidak Ditemukan</h1>
+        <h1 class="text-xl font-bold text-white mb-2">Link Tidak Ditemukan</h1>
         <p class="text-sm text-white/45 leading-relaxed mb-2">
           Tautan <code class="bg-white/10 px-1.5 py-0.5 rounded font-mono text-white/70">/s/{{ id }}</code> tidak tersedia atau sudah kedaluwarsa.
         </p>
         <p class="text-xs text-white/25 mb-8">Tautan mungkin telah dihapus oleh pengelola.</p>
         <NuxtLink
           to="/"
-          class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/10 border border-white/15 text-white text-xs font-black uppercase tracking-widest hover:bg-white/15 transition-colors"
+          class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/10 border border-white/15 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/15 transition-colors"
         >
           Ke Beranda
         </NuxtLink>
@@ -101,7 +101,7 @@ function goNow() {
         </div>
 
         <p class="text-sm text-white/60 leading-relaxed mb-1">Mohon tunggu, Anda akan diarahkan ke</p>
-        <h1 v-if="entry.title" class="text-lg font-black text-white leading-tight mb-1">{{ entry.title }}</h1>
+        <h1 v-if="entry.title" class="text-lg font-bold text-white leading-tight mb-1">{{ entry.title }}</h1>
         <p class="text-xs text-white/35 font-mono mb-8 truncate max-w-xs mx-auto">{{ entry.url }}</p>
 
         <button

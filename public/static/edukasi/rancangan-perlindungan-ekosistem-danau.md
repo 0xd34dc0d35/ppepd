@@ -35,4 +35,4 @@ Pemantauan berkala minimal setiap tiga bulan mencakup kualitas air, sedimentasi,
 
 ## Implementasi di 15 Danau Prioritas
 
-Direktorat PPEPD telah menyusun dan mengimplementasikan rancangan perlindungan untuk 15 danau prioritas nasional sejak 2020, dengan evaluasi tahunan yang dipublikasikan melalui portal SIPPEM.
+Direktorat PPEPD telah menyusun dan mengimplementasikan rancangan perlindungan untuk 15 danau prioritas nasional sejak 2020, dengan evaluasi tahunan yang dipublikasikan melalui portal PPEPD.

@@ -1,7 +1,7 @@
 <template>
   <section class="mx-auto">
     <div class="text-center mb-12">
-      <h2 class="text-4xl font-black text-brand-green-dark tracking-tight">Perlindungan & Pengelolaan Ekosistem</h2>
+      <h2 class="text-4xl font-bold text-klh-green-800 tracking-tight">Perlindungan & Pengelolaan Ekosistem</h2>
     </div>
 
     <div class="grid md:grid-cols-3 gap-4 mx-auto">
@@ -12,7 +12,7 @@
         class="glass-card group relative overflow-hidden border-transparent hover:border-transparent block no-underline min-h-[380px] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.18),0_4px_16px_rgba(0,0,0,0.10)]"
       >
         <!-- Shining border animation -->
-        <div class="absolute top-1/2 left-1/2 w-[600px] h-[120px] bg-[linear-gradient(transparent,theme(colors.brand.green-dark),theme(colors.brand.green-dark),theme(colors.brand.green-dark),transparent)] animate-[spin_4s_linear_infinite] origin-top-left opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+        <div class="absolute top-1/2 left-1/2 w-[600px] h-[120px] bg-[linear-gradient(transparent,rgb(var(--klh-g-800)),rgb(var(--klh-g-800)),rgb(var(--klh-g-800)),transparent)] animate-[spin_4s_linear_infinite] origin-top-left opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
 
         <!-- Inner card: image + overlay -->
         <div class="absolute inset-[3px] rounded-[calc(1rem-3px)] overflow-hidden z-[1]">
@@ -28,7 +28,7 @@
         <!-- Content: anchor to bottom -->
         <div class="absolute inset-[3px] rounded-[calc(1rem-3px)] z-[2] flex flex-col justify-end p-8">
 
-          <h3 class="text-2xl font-black text-white leading-snug">{{ feature.title }}</h3>
+          <h3 class="text-2xl font-bold text-white leading-snug">{{ feature.title }}</h3>
 
           <!-- Detail: grid-rows reveal on hover -->
           <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 opacity-0 group-hover:opacity-100">

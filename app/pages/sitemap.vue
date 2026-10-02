@@ -3,7 +3,7 @@
     <h1 class="text-3xl font-bold mb-6">Sitemap</h1>
     <ul class="space-y-2">
       <li v-for="page in pages" :key="page.path">
-        <NuxtLink :to="page.path" class="text-blue-600 hover:underline">
+        <NuxtLink :to="page.path" class="text-klh-blue-600 hover:underline">
           {{ page.title || page.path }}
         </NuxtLink>
       </li>

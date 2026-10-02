@@ -31,104 +31,81 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col relative overflow-hidden bg-brand-cream">
-    <!-- Background gradients -->
-    <div class="fixed inset-0 -z-10">
-      <div class="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-brand-green/5 blur-[150px] animate-pulse"></div>
-      <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-brand-blue/5 blur-[150px] animate-pulse" style="animation-delay: 3s"></div>
-    </div>
+  <KlhAuthShell>
+    <div class="w-full max-w-sm">
+      <div class="rounded-2xl border border-line bg-surface p-8 shadow-klh-2">
+        <div class="mb-6">
+          <h1 class="text-[2rem] font-bold leading-tight text-ink-900">Masuk</h1>
+          <p class="mt-1 text-sm text-ink-500">Akses fitur khusus pengguna terdaftar</p>
+        </div>
 
-    <!-- Header -->
-    <header class="absolute top-0 left-0 right-0 z-10 h-[50px] flex items-center px-6">
-      <NuxtLink to="/" class="text-2xl font-black tracking-tighter gradient-text leading-none">
-        PPEPD
-      </NuxtLink>
-    </header>
+        <Transition name="fade">
+          <div
+            v-if="errorMsg"
+            role="alert"
+            class="mb-5 flex items-start gap-2 rounded-xl border border-danger-line bg-danger-bg px-4 py-3 text-sm text-danger"
+          >
+            <svg class="icon--sm mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            <span><b class="block font-semibold">Gagal masuk</b>{{ errorMsg }}</span>
+          </div>
+        </Transition>
 
-    <!-- Main -->
-    <main class="flex-grow flex items-center justify-center px-4 py-20">
-      <div class="w-full max-w-sm">
-        <!-- Card -->
-        <div class="bg-white/80 backdrop-blur-xl border border-brand-green/10 rounded-[28px] shadow-xl shadow-brand-green/5 p-8">
-          <!-- Title -->
-          <div class="mb-8">
-            <h1 class="text-2xl font-black text-brand-green-dark tracking-tight">Masuk</h1>
-            <p class="text-sm text-brand-charcoal/50 font-medium mt-1">Akses fitur khusus pengguna terdaftar</p>
+        <form class="space-y-4" @submit.prevent="handleLogin">
+          <div class="space-y-1.5">
+            <label for="login-username" class="text-sm font-semibold text-ink-700">Username</label>
+            <input
+              id="login-username"
+              v-model="username"
+              type="text"
+              autocomplete="username"
+              placeholder="Masukkan username"
+              :disabled="loading"
+              class="klh-input"
+            />
           </div>
 
-          <!-- Error alert -->
-          <Transition name="fade">
-            <div
-              v-if="errorMsg"
-              class="mb-5 px-4 py-3 rounded-xl bg-red-50 border border-red-100 text-red-600 text-sm font-medium flex items-start gap-2"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
-              {{ errorMsg }}
-            </div>
-          </Transition>
-
-          <!-- Form -->
-          <form @submit.prevent="handleLogin" class="space-y-4">
-            <!-- Username -->
-            <div class="space-y-1.5">
-              <label class="text-xs font-black uppercase tracking-widest text-brand-charcoal/50">Username</label>
+          <div class="space-y-1.5">
+            <label for="login-password" class="text-sm font-semibold text-ink-700">Password</label>
+            <div class="relative">
               <input
-                v-model="username"
-                type="text"
-                autocomplete="username"
-                placeholder="Masukkan username"
+                id="login-password"
+                v-model="password"
+                :type="showPassword ? 'text' : 'password'"
+                autocomplete="current-password"
+                placeholder="Masukkan password"
                 :disabled="loading"
-                class="w-full px-4 py-3 rounded-xl border border-brand-green/15 bg-white text-brand-charcoal text-sm font-medium placeholder:text-brand-charcoal/30 focus:outline-none focus:ring-2 focus:ring-brand-green/20 focus:border-brand-green/40 transition-all disabled:opacity-50"
+                class="klh-input pr-12"
               />
+              <button
+                type="button"
+                class="absolute right-1 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-lg text-ink-500 hover:text-klh-green-700"
+                :aria-label="showPassword ? 'Sembunyikan password' : 'Tampilkan password'"
+                :aria-pressed="showPassword"
+                @click="showPassword = !showPassword"
+              >
+                <svg v-if="!showPassword" class="icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg v-else class="icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><path d="M2 2l20 20"/></svg>
+              </button>
             </div>
+          </div>
 
-            <!-- Password -->
-            <div class="space-y-1.5">
-              <label class="text-xs font-black uppercase tracking-widest text-brand-charcoal/50">Password</label>
-              <div class="relative">
-                <input
-                  v-model="password"
-                  :type="showPassword ? 'text' : 'password'"
-                  autocomplete="current-password"
-                  placeholder="Masukkan password"
-                  :disabled="loading"
-                  class="w-full px-4 py-3 pr-11 rounded-xl border border-brand-green/15 bg-white text-brand-charcoal text-sm font-medium placeholder:text-brand-charcoal/30 focus:outline-none focus:ring-2 focus:ring-brand-green/20 focus:border-brand-green/40 transition-all disabled:opacity-50"
-                />
-                <button
-                  type="button"
-                  tabindex="-1"
-                  @click="showPassword = !showPassword"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 text-brand-charcoal/30 hover:text-brand-green transition-colors"
-                >
-                  <svg v-if="!showPassword" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                  <svg v-else xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
-                </button>
-              </div>
-            </div>
-
-            <!-- Submit -->
-            <button
-              type="submit"
-              :disabled="loading || !username || !password"
-              class="w-full mt-2 py-3 px-6 rounded-xl bg-brand-green-dark text-white text-sm font-black uppercase tracking-widest hover:bg-brand-green transition-all shadow-lg shadow-brand-green/15 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            >
-              <svg v-if="loading" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="animate-spin"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
-              {{ loading ? 'Memproses...' : 'Masuk' }}
-            </button>
-          </form>
-        </div>
-
-        <!-- Links -->
-        <div class="flex items-center justify-between mt-6 text-sm font-medium">
-          <NuxtLink to="/" class="text-brand-charcoal/40 hover:text-brand-green transition-colors">← Beranda</NuxtLink>
-          <p class="text-brand-charcoal/40 space-x-1">
-            <span>Belum punya akun?</span>
-            <NuxtLink to="/register" class="text-brand-green-dark font-bold hover:text-brand-green transition-colors">Daftar</NuxtLink>
-          </p>
-        </div>
+          <button
+            type="submit"
+            :disabled="loading || !username || !password"
+            class="btn btn-primary mt-2 w-full"
+          >
+            <svg v-if="loading" class="icon--sm animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+            {{ loading ? 'Memproses…' : 'Masuk' }}
+          </button>
+        </form>
       </div>
-    </main>
-  </div>
+
+      <p class="mt-6 text-center text-sm text-ink-500">
+        Belum punya akun?
+        <NuxtLink to="/register" class="font-semibold text-klh-blue-600 hover:underline">Daftar</NuxtLink>
+      </p>
+    </div>
+  </KlhAuthShell>
 </template>
 
 <style scoped>

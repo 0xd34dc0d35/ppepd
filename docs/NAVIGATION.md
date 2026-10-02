@@ -7,7 +7,7 @@ Spesifikasi item topbar yang ditampilkan sesuai role pengguna yang mengakses.
 ## Implementasi
 
 **Sumber tunggal:** `app/composables/useRole.ts`  
-**Dipakai oleh:** `app/layouts/default.vue` dan `app/layouts/data.vue`
+**Dipakai oleh:** `app/components/klh/SiteHeader.vue` (header bersama layout `default`, `data`, dan dashboard peta)
 
 ```ts
 const { visibleNav } = useRole()
@@ -15,7 +15,7 @@ const { visibleNav } = useRole()
 ```
 
 Untuk menambah atau mengubah item nav, cukup edit array `NAV_ITEMS` di `useRole.ts`.  
-Kedua layout akan otomatis mengikuti — tidak perlu ubah template.
+Semua halaman yang memakai header akan otomatis mengikuti — tidak perlu ubah template.
 
 ---
 
@@ -78,7 +78,7 @@ Edit `NAV_ITEMS` di `app/composables/useRole.ts`:
 { label: 'Label Baru', to: '/route-baru', roles: ['pengelola', 'admin'] }
 ```
 
-Kedua layout (desktop nav + mobile drawer) akan langsung menampilkan item baru sesuai role.
+Header (tautan desktop ≥1280px + drawer mobile) akan langsung menampilkan item baru sesuai role.
 
 ---
 

@@ -63,36 +63,38 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="flex flex-col h-screen overflow-hidden bg-brand-cream/30">
+  <div class="flex flex-col h-[calc(100dvh-var(--klh-header-h))] overflow-hidden bg-surface-bg/30">
+    <h1 class="sr-only">Katalog Data</h1>
+    <h2 class="sr-only">Daftar dataset</h2>
 
     <!-- ══════════════════════════════
          TOOLBAR  ·  single row
          ══════════════════════════════ -->
-    <header class="relative flex-shrink-0 flex flex-col overflow-hidden bg-white/60 border-b border-brand-green/10" role="region" aria-label="Filter and search area">
+    <header class="relative flex-shrink-0 flex flex-col overflow-hidden bg-white/60 border-b border-line" role="region" aria-label="Filter and search area">
 
       <!-- Ambient background blobs -->
       <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute top-[-40%] left-[-5%] w-[50%] h-[160%] rounded-full bg-brand-green/8 blur-[80px]"></div>
-        <div class="absolute top-[-20%] right-[-5%] w-[40%] h-[140%] rounded-full bg-brand-blue/8 blur-[80px]"></div>
+        <div class="absolute top-[-40%] left-[-5%] w-[50%] h-[160%] rounded-full bg-klh-green-600/8 blur-[80px]"></div>
+        <div class="absolute top-[-20%] right-[-5%] w-[40%] h-[140%] rounded-full bg-klh-blue-500/8 blur-[80px]"></div>
       </div>
 
       <!-- Navbar spacer -->
-      <div class="h-[50px] flex-shrink-0"></div>
+      
 
       <!-- Single control row -->
       <div class="flex justify-center py-3 relative z-10 px-3 sm:px-0">
       <div class="flex items-center gap-3 w-full sm:w-[70vw]">
 
         <!-- Tab Switcher -->
-        <div class="flex-shrink-0 flex items-center gap-1 bg-brand-cream/80 border border-brand-green/10 rounded-lg p-0.5" role="tablist">
+        <div class="flex-shrink-0 flex items-center gap-1 bg-surface-bg/80 border border-line rounded-lg p-0.5" role="tablist">
           <button
             id="tab-raw"
             @click="setTab('raw')"
             :class="[
               'h-7 px-3 flex items-center justify-center rounded-md text-xs font-medium transition-all duration-200',
               activeTab === 'raw'
-                ? 'bg-white shadow text-brand-green'
-                : 'text-brand-charcoal/30 hover:text-brand-green'
+                ? 'bg-white shadow-klh-1 text-klh-green-600'
+                : 'text-ink-400 hover:text-klh-green-600'
             ]"
             :aria-selected="activeTab === 'raw'"
             role="tab"
@@ -105,8 +107,8 @@ useSeoMeta({
             :class="[
               'h-7 px-3 flex items-center justify-center rounded-md text-xs font-medium transition-all duration-200',
               activeTab === 'statistic'
-                ? 'bg-white shadow text-brand-green'
-                : 'text-brand-charcoal/30 hover:text-brand-green'
+                ? 'bg-white shadow-klh-1 text-klh-green-600'
+                : 'text-ink-400 hover:text-klh-green-600'
             ]"
             :aria-selected="activeTab === 'statistic'"
             role="tab"
@@ -117,29 +119,29 @@ useSeoMeta({
 
         <!-- Search Input -->
         <div class="flex-grow relative group">
-          <div class="absolute inset-0 bg-brand-green/5 rounded-xl blur-xl group-focus-within:bg-brand-green/10 transition-all duration-500"></div>
+          <div class="absolute inset-0 bg-klh-green-600/5 rounded-xl blur-xl group-focus-within:bg-klh-green-600/10 transition-all duration-500"></div>
           <div class="relative flex items-center">
-            <div class="absolute left-4 text-brand-charcoal/30 pointer-events-none">
+            <div class="absolute left-4 text-ink-400 pointer-events-none">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             </div>
             <input
               v-model="searchQuery"
               type="text"
               placeholder="Cari dataset, penulis, atau tag..."
-              class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/90 border border-brand-green/10 focus:border-brand-green focus:outline-none focus:shadow-xl transition-all duration-300 text-brand-charcoal text-sm font-medium placeholder-brand-charcoal/30"
+              class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/90 border border-line focus:border-klh-green-600 focus:outline-none focus:shadow-klh-3 transition-all duration-300 text-ink-900 text-sm font-medium placeholder-ink-400"
               aria-label="Search datasets"
             />
           </div>
         </div>
 
         <!-- Card / Table Toggle -->
-        <div class="flex-shrink-0 flex items-center gap-1 bg-brand-cream/80 border border-brand-green/10 rounded-lg p-0.5" role="group" aria-label="View mode toggle">
+        <div class="flex-shrink-0 flex items-center gap-1 bg-surface-bg/80 border border-line rounded-lg p-0.5" role="group" aria-label="View mode toggle">
           <button
             id="view-card"
             @click="viewMode = 'card'"
             :class="[
               'w-8 h-7 flex items-center justify-center rounded-md transition-all duration-200',
-              viewMode === 'card' ? 'bg-white shadow text-brand-green' : 'text-brand-charcoal/30 hover:text-brand-green'
+              viewMode === 'card' ? 'bg-white shadow-klh-1 text-klh-green-600' : 'text-ink-400 hover:text-klh-green-600'
             ]"
             title="Card View"
             :aria-pressed="viewMode === 'card'"
@@ -151,7 +153,7 @@ useSeoMeta({
             @click="viewMode = 'table'"
             :class="[
               'w-8 h-7 flex items-center justify-center rounded-md transition-all duration-200',
-              viewMode === 'table' ? 'bg-white shadow text-brand-green' : 'text-brand-charcoal/30 hover:text-brand-green'
+              viewMode === 'table' ? 'bg-white shadow-klh-1 text-klh-green-600' : 'text-ink-400 hover:text-klh-green-600'
             ]"
             title="Table View"
             :aria-pressed="viewMode === 'table'"
@@ -188,20 +190,20 @@ useSeoMeta({
           <!-- TABLE VIEW -->
           <div
             v-else-if="!isLoading && filteredData.length > 0 && viewMode === 'table'"
-            class="bg-white rounded-md border border-brand-green/10 [overflow:clip] animate-fadeIn"
+            class="bg-white rounded-md border border-line [overflow:clip] animate-fadeIn"
           >
             <table class="w-full text-left">
               <thead class="sticky top-0 z-10">
-                <tr class="bg-brand-cream/95 backdrop-blur-sm border-b border-brand-green/10">
-                  <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40 w-10">#</th>
-                  <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40 w-16">Img</th>
-                  <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40">Judul</th>
-                  <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40">Tahun</th>
-                  <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40">Author</th>
-                  <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40">Kategori</th>
-                  <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40">Format</th>
-                  <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40">Ukuran</th>
-                  <th class="py-3 px-4 text-[10px] font-black uppercase tracking-widest text-brand-charcoal/40"></th>
+                <tr class="bg-surface-bg/95 backdrop-blur-sm border-b border-line">
+                  <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-widest text-ink-500 w-10">#</th>
+                  <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-widest text-ink-500 w-16">Img</th>
+                  <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-widest text-ink-500">Judul</th>
+                  <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-widest text-ink-500">Tahun</th>
+                  <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-widest text-ink-500">Author</th>
+                  <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-widest text-ink-500">Kategori</th>
+                  <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-widest text-ink-500">Format</th>
+                  <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-widest text-ink-500">Ukuran</th>
+                  <th class="py-3 px-4 text-[11px] font-bold uppercase tracking-widest text-ink-500"></th>
                 </tr>
               </thead>
               <tbody>
@@ -217,14 +219,14 @@ useSeoMeta({
 
           <!-- EMPTY STATE -->
           <div v-else-if="!isLoading && filteredData.length === 0" class="flex flex-col items-center justify-center min-h-[400px] py-24 text-center">
-            <div class="w-24 h-24 bg-brand-green/5 rounded-full flex items-center justify-center mb-6 border-2 border-brand-green/10">
-              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-brand-green/25"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <div class="w-24 h-24 bg-klh-green-600/5 rounded-full flex items-center justify-center mb-6 border-2 border-line">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-klh-green-600/25"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             </div>
-            <h3 class="text-xl font-black text-brand-green-dark mb-2">Data Tidak Ditemukan</h3>
-            <p class="text-sm text-brand-charcoal/50 mb-8 max-w-sm font-medium">Tidak ada hasil untuk kata kunci "<span class="font-bold text-brand-charcoal/70">{{ searchQuery }}</span>" dalam kategori <span class="font-bold text-brand-charcoal/70">{{ activeTab === 'raw' ? 'RAW Data' : 'Statistic' }}</span>.</p>
+            <h3 class="text-xl font-bold text-klh-green-800 mb-2">Data Tidak Ditemukan</h3>
+            <p class="text-sm text-ink-500 mb-8 max-w-sm font-medium">Tidak ada hasil untuk kata kunci "<span class="font-bold text-ink-700">{{ searchQuery }}</span>" dalam kategori <span class="font-bold text-ink-700">{{ activeTab === 'raw' ? 'RAW Data' : 'Statistic' }}</span>.</p>
             <button 
               @click="searchQuery = ''"
-              class="px-6 py-2.5 rounded-full border-2 border-brand-green text-brand-green text-[11px] font-black uppercase tracking-widest hover:bg-brand-green hover:text-white transition-all duration-300"
+              class="px-6 py-2.5 rounded-full border-2 border-klh-green-600 text-klh-green-600 text-[11px] font-bold uppercase tracking-widest hover:bg-klh-green-600 hover:text-white transition-all duration-300"
             >
               Reset Pencarian
             </button>
@@ -238,17 +240,17 @@ useSeoMeta({
            ══════════════════════════════ -->
       <div
         v-if="!isLoading && totalPages > 1"
-        class="flex-shrink-0 flex items-center justify-center px-6 h-14 bg-white/80 backdrop-blur-md border-t border-brand-green/5"
+        class="flex-shrink-0 flex items-center justify-center px-6 h-14 bg-surface border-t border-line"
       >
         <div class="flex items-center gap-3">
-          <p class="text-[10px] font-bold text-brand-charcoal/40 uppercase tracking-widest">
-            Hal <span class="text-brand-green font-black">{{ currentPage }}</span> / <span class="text-brand-charcoal/60">{{ totalPages }}</span>
+          <p class="text-[11px] font-bold text-ink-500 uppercase tracking-widest">
+            Hal <span class="text-klh-green-600 font-bold">{{ currentPage }}</span> / <span class="text-ink-500">{{ totalPages }}</span>
           </p>
           <div class="flex items-center gap-1" role="navigation" aria-label="Pagination">
             <button
               @click="currentPage--"
               :disabled="currentPage === 1"
-              class="w-8 h-8 rounded-lg flex items-center justify-center border border-brand-green/10 text-brand-charcoal/40 hover:border-brand-green hover:text-brand-green disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              class="w-8 h-8 rounded-lg flex items-center justify-center border border-line text-ink-500 hover:border-klh-green-600 hover:text-klh-green-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
               aria-label="Previous page"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -258,10 +260,10 @@ useSeoMeta({
               :key="p"
               @click="currentPage = p"
               :class="[
-                'w-8 h-8 rounded-lg text-xs font-black transition-all duration-200',
+                'w-8 h-8 rounded-lg text-xs font-bold transition-all duration-200',
                 currentPage === p
-                  ? 'bg-brand-green text-white shadow-md'
-                  : 'border border-brand-green/10 text-brand-charcoal/40 hover:border-brand-green hover:text-brand-green'
+                  ? 'bg-klh-green-600 text-white shadow-klh-2'
+                  : 'border border-line text-ink-500 hover:border-klh-green-600 hover:text-klh-green-600'
               ]"
               :aria-label="`Page ${p}`"
               :aria-current="currentPage === p ? 'page' : undefined"
@@ -271,7 +273,7 @@ useSeoMeta({
             <button
               @click="currentPage++"
               :disabled="currentPage === totalPages"
-              class="w-8 h-8 rounded-lg flex items-center justify-center border border-brand-green/10 text-brand-charcoal/40 hover:border-brand-green hover:text-brand-green disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              class="w-8 h-8 rounded-lg flex items-center justify-center border border-line text-ink-500 hover:border-klh-green-600 hover:text-klh-green-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
               aria-label="Next page"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
@@ -292,11 +294,11 @@ useSeoMeta({
   background: transparent;
 }
 #data-scroll-area::-webkit-scrollbar-thumb {
-  background: #1E5C4B30;
+  background: rgb(var(--klh-g-600) / .19);
   border-radius: 99px;
 }
 #data-scroll-area::-webkit-scrollbar-thumb:hover {
-  background: #1E5C4B60;
+  background: rgb(var(--klh-g-600) / .38);
 }
 
 /* Fade in animation for view transitions */

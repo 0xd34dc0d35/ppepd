@@ -21,7 +21,7 @@ Sejak diluncurkan pada Januari 2026, gerakan ini telah menghasilkan:
 
 ## Leaderboard Provinsi
 
-Pantau peringkat provinsi dengan kontribusi terbesar di portal SIPPEM. Provinsi dengan partisipasi tertinggi mendapatkan penghargaan dan alokasi program tambahan dari PPEPD.
+Pantau peringkat provinsi dengan kontribusi terbesar di portal PPEPD. Provinsi dengan partisipasi tertinggi mendapatkan penghargaan dan alokasi program tambahan dari PPEPD.
 
 ## Lebih dari Sekadar Viral
 

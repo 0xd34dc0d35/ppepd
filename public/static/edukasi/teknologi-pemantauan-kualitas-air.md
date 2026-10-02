@@ -12,7 +12,7 @@ Sensor IoT (Internet of Things) yang dipasang di badan air memungkinkan pengukur
 - **Konduktivitas**: Mendeteksi perubahan komposisi mineral dan potensi pencemaran
 - **Suhu**: Memantau anomali termal akibat limbah industri
 
-Data dari semua sensor dikirim secara nirkabel ke server dan dapat diakses real-time melalui dashboard SIPPEM.
+Data dari semua sensor dikirim secara nirkabel ke server dan dapat diakses real-time melalui dashboard PPEPD.
 
 ## Penginderaan Jauh (Remote Sensing)
 
@@ -33,6 +33,6 @@ Drone dilengkapi kamera multispektral dan sensor lidar digunakan untuk:
 - Inventarisasi tutupan mangrove resolusi tinggi
 - Pemantauan kawasan sulit dijangkau di daerah terpencil
 
-## Integrasi dalam SIPPEM
+## Integrasi dalam PPEPD
 
-Semua data dari berbagai sumber — sensor IoT, satelit, drone, dan laporan lapangan — terintegrasi dalam platform SIPPEM dan dapat diakses publik dalam format terbuka untuk mendukung riset dan pengambilan keputusan berbasis data.
+Semua data dari berbagai sumber — sensor IoT, satelit, drone, dan laporan lapangan — terintegrasi dalam portal PPEPD dan dapat diakses publik dalam format terbuka untuk mendukung riset dan pengambilan keputusan berbasis data.

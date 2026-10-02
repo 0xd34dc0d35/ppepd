@@ -10,12 +10,12 @@
             class="group flex flex-col items-center gap-4 w-28 md:w-36"
           >
             <!-- Avatar Wrapper with Neon Sweeping Border -->
-            <div class="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden group-hover:scale-110 transition-all duration-500 shadow-xl group-hover:shadow-2xl bg-brand-charcoal/5">
+            <div class="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden group-hover:scale-110 transition-all duration-500 shadow-klh-3 group-hover:shadow-klh-3 bg-ink-900/5">
               <!-- Static border when not hovered -->
-              <div class="absolute inset-0 bg-gradient-to-tr from-brand-green to-brand-blue opacity-100 group-hover:opacity-0 transition-opacity duration-500"></div>
+              <div class="absolute inset-0 bg-gradient-to-tr from-klh-green-600 to-klh-blue-500 opacity-100 group-hover:opacity-0 transition-opacity duration-500"></div>
 
               <!-- Neon border animation background -->
-              <div class="absolute top-1/2 left-1/2 w-[200px] h-[60px] bg-[linear-gradient(transparent,theme(colors.brand.green),theme(colors.brand.green),theme(colors.brand.green),transparent)] animate-[spin_2s_linear_infinite] origin-top-left opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+              <div class="absolute top-1/2 left-1/2 w-[200px] h-[60px] bg-[linear-gradient(transparent,rgb(var(--klh-g-600)),rgb(var(--klh-g-600)),rgb(var(--klh-g-600)),transparent)] animate-[spin_2s_linear_infinite] origin-top-left opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
               
               <!-- Inner Solid Background holding the image -->
               <div class="absolute inset-[3px] bg-white rounded-full z-10 flex items-center justify-center">
@@ -23,7 +23,7 @@
               </div>
             </div>
             <!-- Title -->
-            <span class="text-sm md:text-base font-black text-brand-charcoal text-center group-hover:text-brand-green-dark transition-colors leading-tight">
+            <span class="text-sm md:text-base font-bold text-ink-900 text-center group-hover:text-klh-green-800 transition-colors leading-tight">
               {{ service.title }}
             </span>
           </NuxtLink>
@@ -37,7 +37,7 @@
           :key="'dot-' + pageIndex"
           @click="currentIndex = pageIndex - 1"
           class="w-3 h-3 rounded-full transition-colors cursor-pointer"
-          :class="currentIndex === pageIndex - 1 ? 'bg-brand-green-dark' : 'bg-brand-charcoal/20 hover:bg-brand-green/60'"
+          :class="currentIndex === pageIndex - 1 ? 'bg-klh-green-800' : 'bg-ink-900/20 hover:bg-klh-green-600/60'"
           aria-label="Ganti Halaman Layanan"
         ></button>
       </div>

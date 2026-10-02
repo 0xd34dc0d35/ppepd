@@ -27,7 +27,7 @@ Pupuk dan pestisida yang larut ke aliran permukaan membawa nitrat dan fosfat ber
 
 - Jangan buang sampah atau limbah cair ke saluran drainase
 - Gunakan deterjen ramah lingkungan (biodegradable)
-- Laporkan pembuangan limbah ilegal melalui aplikasi SIPPEM Mobile
+- Laporkan pembuangan limbah ilegal melalui aplikasi PPEPD Mobile
 - Edukasi keluarga dan tetangga tentang bahaya pencemaran sungai
 - Dukung program pengolahan sampah dan air limbah komunal di lingkungan Anda
 

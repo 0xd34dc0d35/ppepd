@@ -7,7 +7,7 @@ Komunitas yang tinggal di pesisir adalah garda terdepan perlindungan ekosistem m
 Program ini menggabungkan pendekatan konservasi berbasis masyarakat (community-based conservation) dengan pemberdayaan ekonomi:
 
 - Nelayan dan warga pesisir dilatih sebagai **ranger ekosistem** yang berpatroli dan memantau kondisi mangrove
-- Mereka dilengkapi dengan **aplikasi SIPPEM Mobile** untuk pelaporan kondisi ekosistem secara real-time
+- Mereka dilengkapi dengan **aplikasi PPEPD Mobile** untuk pelaporan kondisi ekosistem secara real-time
 - Partisipasi aktif dihargai melalui **skema pembayaran jasa ekosistem** dan akses prioritas program CSR
 
 ## Capaian Program 2025
@@ -19,4 +19,4 @@ Program ini menggabungkan pendekatan konservasi berbasis masyarakat (community-b
 
 ## Bergabung dalam Program
 
-Program ini terbuka bagi individu dan kelompok dari komunitas pesisir. Daftarkan diri melalui Dinas Kelautan dan Perikanan kabupaten/kota setempat atau langsung melalui portal SIPPEM.
+Program ini terbuka bagi individu dan kelompok dari komunitas pesisir. Daftarkan diri melalui Dinas Kelautan dan Perikanan kabupaten/kota setempat atau langsung melalui portal PPEPD.

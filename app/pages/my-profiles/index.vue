@@ -158,14 +158,14 @@ onUnmounted(() => {
       <!-- Info bar — same width as search -->
       <div class="info-bar w-full">
         <div class="flex items-center gap-1.5">
-          <div class="w-5 h-5 rounded-full bg-white/15 text-white text-[9px] font-black flex items-center justify-center shrink-0">
+          <div class="w-5 h-5 rounded-full bg-white/15 text-white text-[11px] font-bold flex items-center justify-center shrink-0">
             {{ userInitial }}
           </div>
           <span class="text-white/60 text-xs font-semibold truncate max-w-[120px]">{{ displayName }}</span>
         </div>
         <div class="flex items-center gap-2">
           <span class="text-white/40 text-[11px] font-medium">{{ dateStr }}</span>
-          <span class="text-white font-black text-sm tabular-nums">{{ timeStr }}</span>
+          <span class="text-white font-bold text-sm tabular-nums">{{ timeStr }}</span>
         </div>
       </div>
 
@@ -203,7 +203,7 @@ onUnmounted(() => {
 
         <!-- Error -->
         <div v-else-if="error" class="glass-card p-6 flex flex-col items-center gap-2 text-center">
-          <div class="w-9 h-9 rounded-xl bg-red-500/20 flex items-center justify-center text-red-400">
+          <div class="w-9 h-9 rounded-xl bg-danger/20 flex items-center justify-center text-danger">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
           </div>
           <p class="text-white/50 text-sm">{{ error }}</p>

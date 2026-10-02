@@ -98,7 +98,7 @@ const onMapReady = (map: any) => {
       </button>
       <button
         class="flex items-center gap-1.5 px-2 py-0.5 text-sm font-bold rounded-md transition-all duration-200 whitespace-nowrap select-none"
-        :class="showSidebar ? 'bg-brand-green text-white shadow-sm' : 'text-black hover:bg-black/10'"
+        :class="showSidebar ? 'bg-klh-green-600 text-white shadow-klh-1' : 'text-black hover:bg-black/10'"
         @click="showSidebar = !showSidebar"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 transition-transform duration-200" :class="showSidebar ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -135,7 +135,7 @@ const onMapReady = (map: any) => {
       <!-- Layer icon button -->
       <button
         class="flex items-center justify-center w-7 h-7 rounded-lg transition-colors"
-        :class="activePanel === 'layer' ? 'bg-brand-green text-white shadow-sm' : 'text-black hover:bg-black/10'"
+        :class="activePanel === 'layer' ? 'bg-klh-green-600 text-white shadow-klh-1' : 'text-black hover:bg-black/10'"
         title="Layer Peta"
         aria-label="Layer Peta"
         @click="togglePanel('layer')"
@@ -148,7 +148,7 @@ const onMapReady = (map: any) => {
       </button>
       <button
         class="flex items-center gap-1.5 px-3 h-7 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap"
-        :class="activePanel === 'basisdata' ? 'bg-brand-green text-white shadow-sm' : 'text-black hover:bg-black/10'"
+        :class="activePanel === 'basisdata' ? 'bg-klh-green-600 text-white shadow-klh-1' : 'text-black hover:bg-black/10'"
         @click="togglePanel('basisdata')"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -158,7 +158,7 @@ const onMapReady = (map: any) => {
       </button>
       <button
         class="flex items-center gap-1.5 px-3 h-7 text-xs font-semibold rounded-lg transition-colors whitespace-nowrap"
-        :class="activePanel === 'pelaporan' ? 'bg-brand-green text-white shadow-sm' : 'text-black hover:bg-black/10'"
+        :class="activePanel === 'pelaporan' ? 'bg-klh-green-600 text-white shadow-klh-1' : 'text-black hover:bg-black/10'"
         @click="togglePanel('pelaporan')"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -173,21 +173,21 @@ const onMapReady = (map: any) => {
   <Transition name="slide-left">
     <div
       v-if="showSidebar"
-      class="absolute left-0 bottom-0 bg-white shadow-2xl flex flex-col overflow-hidden"
+      class="absolute left-0 bottom-0 bg-white shadow-klh-3 flex flex-col overflow-hidden"
       style="z-index: 1; top: 42px; width: clamp(260px, 35vw, 520px)"
     >
       <!-- Sidebar header -->
-      <div class="flex items-center justify-between px-4 py-3 bg-brand-green shrink-0">
+      <div class="flex items-center justify-between px-4 py-3 bg-klh-green-600 shrink-0">
         <h3 class="text-sm font-bold text-white">Daftar Profil Danau</h3>
         <span class="text-xs text-white/70">{{ daftarDanau.length }} danau</span>
       </div>
 
       <!-- Search inside sidebar -->
-      <div class="px-3 py-2.5 border-b border-gray-100 shrink-0">
+      <div class="px-3 py-2.5 border-b border-surface-3 shrink-0">
         <div class="relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400 pointer-events-none"
+            class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-ink-400 pointer-events-none"
             fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
           >
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
@@ -196,14 +196,14 @@ const onMapReady = (map: any) => {
             v-model="searchQuery"
             type="text"
             placeholder="Cari danau..."
-            class="w-full h-8 pl-8 pr-3 text-xs text-gray-700 placeholder-gray-400 bg-gray-50 border border-gray-200 rounded-lg outline-none focus:bg-white focus:border-brand-green transition-all"
+            class="w-full h-8 pl-8 pr-3 text-xs text-ink-700 placeholder-ink-400 bg-surface-2 border border-line rounded-lg outline-none focus:bg-white focus:border-klh-green-600 transition-all"
           />
         </div>
       </div>
 
       <!-- Lake list -->
       <div class="flex-1 overflow-y-auto">
-        <ul class="divide-y divide-gray-100">
+        <ul class="divide-y divide-surface-3">
           <li
             v-for="danau in daftarDanau.filter(d => d.nama.toLowerCase().includes(searchQuery.toLowerCase()) || d.provinsi.toLowerCase().includes(searchQuery.toLowerCase()))"
             :key="danau.id"
@@ -211,7 +211,7 @@ const onMapReady = (map: any) => {
             <!-- Row trigger -->
             <button
               class="w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors group"
-              :class="activeDanau === danau.id ? 'bg-brand-green/10' : 'hover:bg-gray-50'"
+              :class="activeDanau === danau.id ? 'bg-klh-green-600/10' : 'hover:bg-surface-2'"
               @click="activeDanau = activeDanau === danau.id ? null : danau.id"
             >
               <!-- Thumbnail -->
@@ -227,17 +227,17 @@ const onMapReady = (map: any) => {
 
               <!-- Text -->
               <div class="flex-1 min-w-0">
-                <p class="text-xs font-semibold truncate" :class="activeDanau === danau.id ? 'text-brand-green' : 'text-gray-800'">
+                <p class="text-xs font-semibold truncate" :class="activeDanau === danau.id ? 'text-klh-green-600' : 'text-ink-900'">
                   {{ danau.nama }}
                 </p>
-                <p class="text-xs text-gray-400 truncate mt-0.5">{{ danau.provinsi }}</p>
+                <p class="text-xs text-ink-400 truncate mt-0.5">{{ danau.provinsi }}</p>
               </div>
 
               <!-- Chevron -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-3.5 h-3.5 flex-shrink-0 transition-transform duration-200"
-                :class="activeDanau === danau.id ? 'rotate-90 text-brand-green' : 'text-gray-300 group-hover:text-gray-400'"
+                :class="activeDanau === danau.id ? 'rotate-90 text-klh-green-600' : 'text-line-strong group-hover:text-ink-400'"
                 fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
               >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -264,16 +264,16 @@ const onMapReady = (map: any) => {
                 </div>
 
                 <!-- Stats + action buttons -->
-                <div class="px-4 py-3 bg-brand-green/5">
+                <div class="px-4 py-3 bg-klh-green-600/5">
                   <!-- Stats grid -->
                   <div class="grid grid-cols-2 gap-2">
-                    <div class="bg-white rounded-lg p-2.5 border border-brand-green/10">
-                      <p class="text-xs text-gray-400 mb-0.5">Luas</p>
-                      <p class="text-xs font-semibold text-brand-charcoal">{{ danau.luas }}</p>
+                    <div class="bg-white rounded-lg p-2.5 border border-line">
+                      <p class="text-xs text-ink-400 mb-0.5">Luas</p>
+                      <p class="text-xs font-semibold text-ink-900">{{ danau.luas }}</p>
                     </div>
-                    <div class="bg-white rounded-lg p-2.5 border border-brand-green/10">
-                      <p class="text-xs text-gray-400 mb-0.5">Elevasi</p>
-                      <p class="text-xs font-semibold text-brand-charcoal">{{ danau.elevasi }}</p>
+                    <div class="bg-white rounded-lg p-2.5 border border-line">
+                      <p class="text-xs text-ink-400 mb-0.5">Elevasi</p>
+                      <p class="text-xs font-semibold text-ink-900">{{ danau.elevasi }}</p>
                     </div>
                   </div>
 
@@ -282,7 +282,7 @@ const onMapReady = (map: any) => {
                     <!-- Zoom / Fokus Peta -->
                     <button
                       title="Fokus pada Peta"
-                      class="flex-1 flex flex-col items-center gap-1 py-2 rounded-lg bg-white border border-gray-100 hover:border-brand-green/40 hover:bg-brand-green/5 transition-colors text-gray-500 hover:text-brand-green"
+                      class="flex-1 flex flex-col items-center gap-1 py-2 rounded-lg bg-white border border-surface-3 hover:border-klh-green-200 hover:bg-klh-green-600/5 transition-colors text-ink-500 hover:text-klh-green-600"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
@@ -294,7 +294,7 @@ const onMapReady = (map: any) => {
                     <!-- Catatan / Notes -->
                     <button
                       title="Catatan"
-                      class="flex-1 flex flex-col items-center gap-1 py-2 rounded-lg bg-white border border-gray-100 hover:border-brand-green/40 hover:bg-brand-green/5 transition-colors text-gray-500 hover:text-brand-green"
+                      class="flex-1 flex flex-col items-center gap-1 py-2 rounded-lg bg-white border border-surface-3 hover:border-klh-green-200 hover:bg-klh-green-600/5 transition-colors text-ink-500 hover:text-klh-green-600"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
@@ -305,7 +305,7 @@ const onMapReady = (map: any) => {
                     <!-- Dokumen -->
                     <button
                       title="Dokumen"
-                      class="flex-1 flex flex-col items-center gap-1 py-2 rounded-lg bg-white border border-gray-100 hover:border-brand-green/40 hover:bg-brand-green/5 transition-colors text-gray-500 hover:text-brand-green"
+                      class="flex-1 flex flex-col items-center gap-1 py-2 rounded-lg bg-white border border-surface-3 hover:border-klh-green-200 hover:bg-klh-green-600/5 transition-colors text-ink-500 hover:text-klh-green-600"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -316,7 +316,7 @@ const onMapReady = (map: any) => {
                     <!-- Referensi / Buku -->
                     <button
                       title="Referensi & Literatur"
-                      class="flex-1 flex flex-col items-center gap-1 py-2 rounded-lg bg-white border border-gray-100 hover:border-brand-green/40 hover:bg-brand-green/5 transition-colors text-gray-500 hover:text-brand-green"
+                      class="flex-1 flex flex-col items-center gap-1 py-2 rounded-lg bg-white border border-surface-3 hover:border-klh-green-200 hover:bg-klh-green-600/5 transition-colors text-ink-500 hover:text-klh-green-600"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -333,9 +333,9 @@ const onMapReady = (map: any) => {
         <!-- Empty state -->
         <div
           v-if="daftarDanau.filter(d => d.nama.toLowerCase().includes(searchQuery.toLowerCase()) || d.provinsi.toLowerCase().includes(searchQuery.toLowerCase())).length === 0"
-          class="flex flex-col items-center justify-center py-12 text-gray-400"
+          class="flex flex-col items-center justify-center py-12 text-ink-400"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-2 text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-2 text-line" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
           </svg>
           <p class="text-xs">Danau tidak ditemukan</p>
@@ -343,8 +343,8 @@ const onMapReady = (map: any) => {
       </div>
 
       <!-- Sidebar footer -->
-      <div class="px-4 py-2.5 border-t border-gray-100 bg-gray-50 shrink-0">
-        <p class="text-xs text-gray-400 text-center">Sumber: Direktorat PPEPD KLH/BPLH</p>
+      <div class="px-4 py-2.5 border-t border-surface-3 bg-surface-2 shrink-0">
+        <p class="text-xs text-ink-400 text-center">Sumber: Direktorat PPEPD KLH/BPLH</p>
       </div>
     </div>
   </Transition>
@@ -357,10 +357,10 @@ const onMapReady = (map: any) => {
       style="z-index: 2"
     >
       <Transition name="zoom">
-        <div v-if="showTOU" class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
-          <h2 class="text-base font-bold text-brand-charcoal mb-1">Ketentuan Penggunaan</h2>
-          <p class="text-xs text-gray-400 mb-4">Harap baca sebelum menggunakan halaman ini</p>
-          <div class="text-sm text-gray-600 space-y-2 max-h-56 overflow-y-auto pr-1 leading-relaxed">
+        <div v-if="showTOU" class="bg-white rounded-2xl shadow-klh-3 w-full max-w-md p-6">
+          <h2 class="text-base font-bold text-ink-900 mb-1">Ketentuan Penggunaan</h2>
+          <p class="text-xs text-ink-400 mb-4">Harap baca sebelum menggunakan halaman ini</p>
+          <div class="text-sm text-ink-500 space-y-2 max-h-56 overflow-y-auto pr-1 leading-relaxed">
             <p>Dengan mengakses halaman <strong>Profil Danau</strong>, Anda menyetujui ketentuan berikut:</p>
             <ol class="list-decimal pl-4 space-y-2">
               <li>Data dan peta yang ditampilkan bersifat informatif dan hanya untuk keperluan referensi.</li>
@@ -371,10 +371,10 @@ const onMapReady = (map: any) => {
             </ol>
           </div>
           <div class="mt-5 flex gap-3 justify-end">
-            <button class="px-4 py-2 text-sm text-gray-400 hover:text-gray-600 transition-colors" @click="showTOU = false">
+            <button class="px-4 py-2 text-sm text-ink-400 hover:text-ink-500 transition-colors" @click="showTOU = false">
               Lewati
             </button>
-            <button class="px-5 py-2 bg-brand-green text-white text-sm font-semibold rounded-xl hover:bg-brand-green-dark transition-colors" @click="acceptTOU">
+            <button class="px-5 py-2 bg-klh-green-600 text-white text-sm font-semibold rounded-xl hover:bg-klh-green-800 transition-colors" @click="acceptTOU">
               Saya Setuju
             </button>
           </div>
@@ -387,11 +387,11 @@ const onMapReady = (map: any) => {
   <Transition name="slide-right">
     <div
       v-if="activePanel !== null"
-      class="absolute right-0 bottom-0 bg-white shadow-2xl flex flex-col overflow-hidden"
+      class="absolute right-0 bottom-0 bg-white shadow-klh-3 flex flex-col overflow-hidden"
       style="z-index: 1; top: 42px; width: clamp(240px, 28vw, 320px)"
     >
       <!-- Header: Layer -->
-      <div v-if="activePanel === 'layer'" class="flex items-center justify-between px-4 py-3 bg-brand-green shrink-0">
+      <div v-if="activePanel === 'layer'" class="flex items-center justify-between px-4 py-3 bg-klh-green-600 shrink-0">
         <div class="flex items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -408,7 +408,7 @@ const onMapReady = (map: any) => {
       </div>
 
       <!-- Header: Basisdata -->
-      <div v-else-if="activePanel === 'basisdata'" class="flex items-center justify-between px-4 py-3 bg-brand-green shrink-0">
+      <div v-else-if="activePanel === 'basisdata'" class="flex items-center justify-between px-4 py-3 bg-klh-green-600 shrink-0">
         <div class="flex items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
@@ -423,7 +423,7 @@ const onMapReady = (map: any) => {
       </div>
 
       <!-- Header: Pelaporan -->
-      <div v-else class="flex items-center justify-between px-4 py-3 bg-brand-green shrink-0">
+      <div v-else class="flex items-center justify-between px-4 py-3 bg-klh-green-600 shrink-0">
         <div class="flex items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6M5 21h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2z" />
@@ -441,18 +441,18 @@ const onMapReady = (map: any) => {
       <div v-if="activePanel === 'layer'" class="flex-1 overflow-y-auto">
         <!-- Group: Basemap -->
         <div class="px-4 pt-4 pb-2">
-          <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Basemap</p>
+          <p class="text-xs font-bold text-ink-400 uppercase tracking-widest mb-3">Basemap</p>
           <div class="grid grid-cols-2 gap-2">
             <button
               v-for="bm in basemaps"
               :key="bm.id"
               class="relative flex flex-col items-center gap-1.5 p-2.5 rounded-xl border-2 transition-all"
-              :class="activeBasemap === bm.id ? 'border-brand-green bg-brand-green/5' : 'border-gray-100 hover:border-gray-200 bg-white'"
+              :class="activeBasemap === bm.id ? 'border-klh-green-600 bg-klh-green-600/5' : 'border-surface-3 hover:border-line bg-white'"
               @click="activeBasemap = bm.id"
             >
               <span class="w-full h-12 rounded-lg block" :style="{ background: bm.color }"></span>
-              <span class="text-xs font-medium truncate w-full text-center" :class="activeBasemap === bm.id ? 'text-brand-green' : 'text-gray-600'">{{ bm.label }}</span>
-              <span v-if="activeBasemap === bm.id" class="absolute top-1.5 right-1.5 w-4 h-4 bg-brand-green rounded-full flex items-center justify-center">
+              <span class="text-xs font-medium truncate w-full text-center" :class="activeBasemap === bm.id ? 'text-klh-green-600' : 'text-ink-500'">{{ bm.label }}</span>
+              <span v-if="activeBasemap === bm.id" class="absolute top-1.5 right-1.5 w-4 h-4 bg-klh-green-600 rounded-full flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -460,16 +460,16 @@ const onMapReady = (map: any) => {
             </button>
           </div>
         </div>
-        <div class="mx-4 my-3 border-t border-gray-100"></div>
+        <div class="mx-4 my-3 border-t border-surface-3"></div>
         <!-- Group: Layer -->
         <div class="px-4 pb-4">
-          <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Layer</p>
+          <p class="text-xs font-bold text-ink-400 uppercase tracking-widest mb-3">Layer</p>
           <ul class="space-y-1">
             <li v-for="layer in layers" :key="layer.id">
-              <label class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-gray-50 cursor-pointer transition-colors">
-                <input v-model="layer.active" type="checkbox" class="w-4 h-4 accent-brand-green flex-shrink-0 rounded" />
+              <label class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-surface-2 cursor-pointer transition-colors">
+                <input v-model="layer.active" type="checkbox" class="w-4 h-4 accent-klh-green-600 flex-shrink-0 rounded" />
                 <span class="w-3 h-3 rounded-sm flex-shrink-0" :style="{ background: layer.color }"></span>
-                <span class="text-xs font-medium text-gray-700 flex-1 min-w-0 truncate">{{ layer.label }}</span>
+                <span class="text-xs font-medium text-ink-700 flex-1 min-w-0 truncate">{{ layer.label }}</span>
               </label>
             </li>
           </ul>
@@ -478,12 +478,12 @@ const onMapReady = (map: any) => {
 
       <!-- Body: Basisdata -->
       <div v-else-if="activePanel === 'basisdata'" class="flex-1 overflow-y-auto p-5">
-        <p class="text-sm text-gray-500 leading-relaxed">Informasi basisdata profil danau akan tersedia di sini.</p>
+        <p class="text-sm text-ink-500 leading-relaxed">Informasi basisdata profil danau akan tersedia di sini.</p>
       </div>
 
       <!-- Body: Pelaporan -->
       <div v-else class="flex-1 overflow-y-auto p-5">
-        <p class="text-sm text-gray-500 leading-relaxed">Formulir pelaporan dan data laporan akan tersedia di sini.</p>
+        <p class="text-sm text-ink-500 leading-relaxed">Formulir pelaporan dan data laporan akan tersedia di sini.</p>
       </div>
     </div>
   </Transition>

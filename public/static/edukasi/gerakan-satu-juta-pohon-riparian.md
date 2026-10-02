@@ -29,4 +29,4 @@ Program ini memprioritaskan spesies asli setempat yang telah terbukti efektif:
 
 ## Cara Bergabung
 
-Daftarkan diri dan kelompok Anda melalui portal SIPPEM. Bibit disediakan gratis, dan setiap peserta mendapatkan sertifikat digital partisipasi. Pantau pertumbuhan pohon yang Anda tanam secara digital selama 3 tahun ke depan.
+Daftarkan diri dan kelompok Anda melalui portal PPEPD. Bibit disediakan gratis, dan setiap peserta mendapatkan sertifikat digital partisipasi. Pantau pertumbuhan pohon yang Anda tanam secara digital selama 3 tahun ke depan.

@@ -6,7 +6,7 @@ Dokumen ini adalah referensi utama AI untuk memahami arsitektur, konvensi, dan a
 
 ## Ringkasan Proyek
 
-**SIPPEM** — Sistem Informasi Perlindungan dan Pengelolaan Ekosistem Perairan Darat  
+**PPEPD** — Direktorat Perlindungan dan Pengelolaan Ekosistem Perairan Darat  
 Dikelola oleh **Direktorat PPEPD**, Kementerian Lingkungan Hidup / Badan Perlindungan Lingkungan Hidup (KLH/BPLH).
 
 Stack: **Nuxt 3** · **Vue 3 Composition API** · **Tailwind CSS** · **TypeScript**
@@ -45,9 +45,9 @@ server/
 | `map` | `app/layouts/map.vue` | `/danau/profil-danau`, dashboard peta — fullscreen |
 
 **Perbedaan kritis layout:**
-- `default`: scroll normal, footer lengkap, container `px-6 py-12`
-- `data`: `h-screen overflow-hidden`, konten mengisi viewport, pagination internal
-- `map`: wrapper kosong `w-screen h-screen overflow-hidden` — tidak ada navbar, tidak ada footer
+- `default`: header sticky (`KlhSiteHeader`), scroll normal, footer instansi lengkap, kontainer `max-w-container` (1200px) `px-6 py-12`
+- `data`: header sticky + footer ringkas; halaman katalog mengisi sisa viewport dengan `h-[calc(100dvh-var(--klh-header-h))]`, pagination internal
+- `map`: wrapper kosong `w-screen h-screen overflow-hidden` — tanpa footer; dashboard peta memasang `<KlhSiteHeader>` sendiri (slot `#actions` untuk CTA)
 
 ---
 
@@ -105,7 +105,7 @@ Lihat `docs/NAVIGATION.md` untuk spesifikasi lengkap dan `app/composables/useRol
 **Roles:** `publik` · `pengelola` · `admin`
 
 Semua item nav didefinisikan satu tempat di `useRole.ts` — **jangan** hardcode link di layout.  
-Kedua layout (`default.vue` dan `data.vue`) mengambil nav dari `visibleNav` composable.
+Header bersama `KlhSiteHeader` (`app/components/klh/SiteHeader.vue`) mengambil nav dari `visibleNav` composable.
 
 ---
 
@@ -158,7 +158,7 @@ Kedua layout (`default.vue` dan `data.vue`) mengambil nav dari `visibleNav` comp
 ## Konvensi Penting
 
 ### Styling
-- Selalu pakai **color tokens** (`brand-green`, `brand-cream`, dst.) — jangan pakai hex langsung di template
+- Selalu pakai **token Design System KLH/BPLH v2.1** (`klh-green-600`, `ink-900`, `surface`, dst.) — jangan pakai hex langsung di template. Kelas `brand-*` adalah legacy (lihat `design/DESIGN-MIGRATION.md`)
 - Referensi lengkap: `docs/STYLE_GUIDELINES.md`
 
 ### Terminologi

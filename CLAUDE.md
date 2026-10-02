@@ -6,13 +6,15 @@ Semua guidelines ada di folder `docs/`:
 |---|---|
 | `docs/AI_GUIDELINES.md` | Arsitektur proyek, halaman, komponen, konvensi |
 | `docs/NAVIGATION.md` | Role-based nav — item topbar per role, cara tambah item/role |
-| `docs/STYLE_GUIDELINES.md` | Color palette, gradient, komponen Tailwind |
+| `docs/STYLE_GUIDELINES.md` | **Design System KLH/BPLH v2.1** — token warna, tipografi, layout, komponen, checklist a11y |
 | `docs/DEFINISI.md` | Terminologi dan singkatan resmi |
 
 Folder `design/` berisi detail desain dan user story:
 
 | File | Isi |
 |---|---|
+| `design/DESIGN-MIGRATION.md` | Rencana & status migrasi ke DS KLH/BPLH v2.1, pemetaan token lama→baru, keputusan terbuka |
+| `design/klh-design-system/` | Snapshot offline dokumen DS v2.1 (Fondasi, Komponen, Layout) + ikon `cil-*` |
 | `design/ROUTES.md` | **Peta semua route aktif** — layout, role akses, visibilitas topbar |
 | `design/PAGE-DATA.md` | Spesifikasi halaman Katalog Data |
 | `design/PAGE-S.md` | Spesifikasi sistem URL pendek |

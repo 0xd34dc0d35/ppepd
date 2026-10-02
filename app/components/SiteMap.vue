@@ -29,10 +29,10 @@ const components = [
   <div class="space-y-6">
     <!-- Sitemap Header -->
     <div class="flex items-center justify-between">
-      <h4 class="text-brand-green-dark font-black uppercase tracking-widest text-xs">Peta Situs</h4>
+      <h4 class="text-klh-green-800 font-bold uppercase tracking-widest text-xs">Peta Situs</h4>
       <button 
         @click="isExpanded = !isExpanded"
-        class="text-brand-charcoal/40 hover:text-brand-green text-xs font-bold transition-colors"
+        class="text-ink-500 hover:text-klh-green-600 text-xs font-bold transition-colors"
         :aria-expanded="isExpanded"
       >
         {{ isExpanded ? '−' : '+' }}
@@ -51,12 +51,12 @@ const components = [
       <div v-if="isExpanded" class="space-y-4 text-sm overflow-hidden">
         <!-- Pages Section -->
         <div>
-          <p class="text-[10px] font-bold text-brand-green uppercase tracking-wider mb-2">Halaman</p>
-          <ul class="space-y-1.5 pl-3 border-l border-brand-green/20">
+          <p class="text-[11px] font-bold text-klh-green-600 uppercase tracking-wider mb-2">Halaman</p>
+          <ul class="space-y-1.5 pl-3 border-l border-line">
             <li v-for="page in pages" :key="page.path">
               <NuxtLink 
                 :to="page.path"
-                class="text-brand-charcoal/60 hover:text-brand-green text-[11px] font-medium transition-colors"
+                class="text-ink-500 hover:text-klh-green-600 text-[11px] font-medium transition-colors"
               >
                 {{ page.name }}
               </NuxtLink>
@@ -66,11 +66,11 @@ const components = [
 
         <!-- Components Section -->
         <div>
-          <p class="text-[10px] font-bold text-brand-green uppercase tracking-wider mb-2">Komponen ({{ components.length }})</p>
-          <ul class="space-y-1 pl-3 border-l border-brand-green/20">
-            <li v-for="comp in components" :key="comp.name" class="text-[10px] text-brand-charcoal/50">
-              <span class="font-medium text-brand-charcoal/70">{{ comp.name }}</span>
-              <span class="text-brand-charcoal/40 ml-1">— {{ comp.type }}</span>
+          <p class="text-[11px] font-bold text-klh-green-600 uppercase tracking-wider mb-2">Komponen ({{ components.length }})</p>
+          <ul class="space-y-1 pl-3 border-l border-line">
+            <li v-for="comp in components" :key="comp.name" class="text-[11px] text-ink-500">
+              <span class="font-medium text-ink-700">{{ comp.name }}</span>
+              <span class="text-ink-500 ml-1">— {{ comp.type }}</span>
             </li>
           </ul>
         </div>

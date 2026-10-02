@@ -37,4 +37,4 @@ Menggunakan organisme hidup untuk memulihkan kondisi ekologis:
 
 Danau Rawapening di Jawa Tengah pernah mengalami eutrofikasi parah dengan tutupan eceng gondok mencapai 60% luas danau. Program restorasi terpadu 2022–2025 berhasil menurunkan tutupan eceng gondok menjadi 15% melalui kombinasi panen mekanis, biokonversi, dan revegetasi sempadan.
 
-Kunjungi portal SIPPEM untuk laporan lengkap pemulihan Danau Rawapening dan danau lainnya.
+Kunjungi portal PPEPD untuk laporan lengkap pemulihan Danau Rawapening dan danau lainnya.

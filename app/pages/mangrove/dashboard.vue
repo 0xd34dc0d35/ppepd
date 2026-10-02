@@ -18,7 +18,7 @@ useSeoMeta({
 
 // ── Row 1: KPI ──────────────────────────────────────────────
 const kpis = [
-  { label: 'Luas Mangrove',      value: '3,36 jt', unit: 'hektare',    trend: '+42rb', up: true,  num: 3360000, dec: 0, sfx: '', display: '3,36 jt' },
+  { label: 'Luas Mangrove',      value: '3,45 jt', unit: 'hektare',    trend: '+42rb', up: true,  num: 3450000, dec: 0, sfx: '', display: '3,45 jt' },
   { label: 'Kawasan Prioritas',  value: '37',       unit: 'unit',       trend: null,   up: null,  num: 37,      dec: 0, sfx: '', display: '37'      },
   { label: 'Laju Pemulihan',     value: '34%',      unit: 'turun 2025', trend: '+34%', up: true,  num: 34,      dec: 0, sfx: '%', display: '34%'   },
   { label: 'Kerapatan Baik',     value: '58%',      unit: 'dari total', trend: '+2%',  up: true,  num: 58,      dec: 0, sfx: '%', display: '58%'   },
@@ -49,9 +49,9 @@ function startCountUp() {
 
 // ── Row 2, Col 1: Status ─────────────────────────────────────
 const statusData = [
-  { label: 'Kerapatan Baik',    count: 1948, color: '#1E5C4B', pct: 58 },
-  { label: 'Kerapatan Sedang',  count: 1075, color: '#D97B3A', pct: 32 },
-  { label: 'Kerapatan Jarang',  count: 337,  color: '#C0392B', pct: 10 },
+  { label: 'Kerapatan Baik',    count: 2001, color: '#005952', pct: 58 },
+  { label: 'Kerapatan Sedang',  count: 1104, color: '#F97910', pct: 32 },
+  { label: 'Kerapatan Jarang',  count: 345,  color: '#C03A2B', pct: 10 },
 ]
 
 const ancaman = [
@@ -96,14 +96,14 @@ const daftarKawasan = [
 function thumbStyle(hue: number) {
   return { background: `linear-gradient(135deg, hsl(${hue},50%,24%) 0%, hsl(${hue + 15},55%,16%) 100%)` }
 }
-function ikiColor(v: number) { return v >= 65 ? '#1E5C4B' : v >= 45 ? '#D97B3A' : '#C0392B' }
+function ikiColor(v: number) { return v >= 65 ? '#005952' : v >= 45 ? '#AE5104' : '#C03A2B' }
 
 // ── Row 3, Col 1: Sebaran Luas per Pulau ─────────────────────
 const sebaranData = [
-  { label: 'Kalimantan', pct: 32, color: '#1E5C4B' },
+  { label: 'Kalimantan', pct: 32, color: '#005952' },
   { label: 'Papua',      pct: 28, color: '#2E7D5F' },
-  { label: 'Sumatera',   pct: 21, color: '#5BACD6' },
-  { label: 'Sulawesi',   pct: 11, color: '#D97B3A' },
+  { label: 'Sumatera',   pct: 21, color: '#147DEF' },
+  { label: 'Sulawesi',   pct: 11, color: '#F97910' },
   { label: 'Jawa+Bali',  pct:  5, color: '#8B7D6B' },
   { label: 'Lainnya',    pct:  3, color: '#B0A898' },
 ]
@@ -120,9 +120,9 @@ const sebaranSegments = computed(() => {
 // ── Row 3, Col 2: Tren Luas Mangrove ─────────────────────────
 const trenYears  = ['2019', '2020', '2021', '2022', '2023', '2024', '2025']
 const trenSeries = [
-  { nama: 'Kalimantan', vals: [1080, 1095, 1102, 1110, 1118, 1124, 1132], color: '#1E5C4B' },
-  { nama: 'Papua',      vals: [920,  928,  935,  940,  944,  948,  952],  color: '#5BACD6' },
-  { nama: 'Sumatera',   vals: [710,  705,  700,  698,  702,  706,  708],  color: '#D97B3A' },
+  { nama: 'Kalimantan', vals: [1080, 1095, 1102, 1110, 1118, 1124, 1132], color: '#005952' },
+  { nama: 'Papua',      vals: [920,  928,  935,  940,  944,  948,  952],  color: '#147DEF' },
+  { nama: 'Sumatera',   vals: [710,  705,  700,  698,  702,  706,  708],  color: '#F97910' },
 ]
 
 const trenMin = computed(() => Math.min(...trenSeries.flatMap(s => s.vals)) - 20)
@@ -138,68 +138,25 @@ function trenPath(vals: number[], w = 280, h = 60) {
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col bg-brand-cream overflow-hidden">
+  <div class="w-full h-full flex flex-col bg-surface-bg overflow-hidden">
 
-    <!-- Ambient blobs -->
-    <div class="fixed inset-0 pointer-events-none" style="z-index:0">
-      <div class="absolute top-[-10%] left-[-5%] w-[45%] h-[60%] rounded-full bg-brand-green/5 blur-[100px]"></div>
-      <div class="absolute bottom-[-10%] right-[-5%] w-[40%] h-[55%] rounded-full bg-emerald-400/5 blur-[100px]"></div>
-    </div>
-
-    <!-- NAVBAR -->
-    <nav class="relative shrink-0 flex items-center justify-between px-4 sm:px-6 backdrop-blur-xl bg-white/90 border-b border-brand-green/10 shadow-sm" style="z-index:10; height:50px">
-      <NuxtLink to="/" class="text-xl font-black tracking-tighter gradient-text leading-none">PPEPD</NuxtLink>
-
-      <!-- Desktop menu -->
-      <div class="hidden sm:flex gap-8 text-xs font-bold tracking-wide uppercase text-brand-charcoal/50">
-        <NuxtLink v-for="item in visibleNav" :key="item.to" :to="item.to" class="hover:text-brand-green transition-colors">{{ item.label }}</NuxtLink>
-      </div>
-
-      <div class="flex items-center gap-2">
-        <!-- CTA -->
-        <NuxtLink to="/mangrove" class="flex items-center gap-1.5 px-3 h-7 rounded-lg text-xs font-bold bg-brand-green text-white hover:bg-brand-green-dark transition-colors shadow-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/></svg>
+    <KlhSiteHeader class="shrink-0">
+      <template #actions>
+        <NuxtLink to="/mangrove" class="btn btn-outline btn-sm" aria-label="Kembali ke Mangrove">
+          <svg class="icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
           <span class="hidden sm:inline">Mangrove</span>
         </NuxtLink>
-        <!-- Hamburger (mobile only) -->
-        <button @click="openDrawer" class="sm:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px] rounded-lg hover:bg-brand-green/8 transition-colors" aria-label="Buka menu">
-          <span class="w-4 h-[2px] bg-brand-green-dark rounded-full"></span>
-          <span class="w-4 h-[2px] bg-brand-green-dark rounded-full"></span>
-          <span class="w-2.5 h-[2px] bg-brand-green-dark rounded-full self-end"></span>
-        </button>
-      </div>
-    </nav>
-
-    <!-- Drawer backdrop -->
-    <Transition name="fade-backdrop">
-      <div v-if="drawerOpen" class="fixed inset-0 z-[60] bg-brand-charcoal/30 backdrop-blur-sm sm:hidden" style="z-index:60" @click="closeDrawer" />
-    </Transition>
-
-    <!-- Right sidebar drawer -->
-    <Transition name="slide-drawer">
-      <div v-if="drawerOpen" class="fixed inset-y-0 right-0 z-[70] w-64 bg-white shadow-2xl flex flex-col sm:hidden" style="z-index:70">
-        <div class="flex items-center justify-between px-6 h-[50px] border-b border-brand-green/10 flex-shrink-0">
-          <span class="text-xl font-black tracking-tighter gradient-text leading-none">PPEPD</span>
-          <button @click="closeDrawer" class="w-8 h-8 flex items-center justify-center rounded-lg text-brand-charcoal/40 hover:text-brand-green hover:bg-brand-green/8 transition-colors" aria-label="Tutup menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-          </button>
-        </div>
-        <nav class="flex-grow overflow-y-auto py-4 px-3">
-          <NuxtLink v-for="item in visibleNav" :key="item.to" :to="item.to" class="flex items-center px-3 py-3 rounded-xl text-sm font-bold uppercase tracking-wide text-brand-charcoal/60 hover:text-brand-green transition-all duration-200">{{ item.label }}</NuxtLink>
-        </nav>
-        <div class="px-6 py-5 border-t border-brand-green/8 flex-shrink-0">
-          <p class="text-[10px] font-black uppercase tracking-widest text-brand-charcoal/30">KLH/BPLH · PPEPD</p>
-        </div>
-      </div>
-    </Transition>
+      </template>
+    </KlhSiteHeader>
 
     <!-- MAIN CONTENT: 3 rows -->
-    <div class="flex-1 min-h-0 flex flex-col gap-2 px-6 py-3" style="z-index:1; position:relative">
+    <div id="konten-utama" class="flex-1 min-h-0 flex flex-col gap-2 px-6 py-3" style="z-index:1; position:relative">
+    <h1 class="sr-only">Dashboard Ekosistem Mangrove</h1>
 
       <!-- ═══ ROW 1: KPI STRIP ══════════════════════════════════════ -->
       <div class="grid grid-cols-4 gap-2 shrink-0">
         <div v-for="(kpi, index) in kpis" :key="kpi.label"
-          class="bg-white/80 backdrop-blur-sm border border-brand-green/10 rounded-xl px-4 py-2.5 flex flex-col gap-0.5 shadow-sm">
+          class="bg-surface border border-line rounded-xl px-4 py-2.5 flex flex-col gap-0.5 shadow-klh-1">
           <template v-if="isLoading">
             <div class="h-2.5 w-20 rounded skel"></div>
             <div class="flex items-end gap-2 mt-1">
@@ -209,12 +166,12 @@ function trenPath(vals: number[], w = 280, h = 60) {
             </div>
           </template>
           <template v-else>
-            <span class="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/40">{{ kpi.label }}</span>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-ink-500">{{ kpi.label }}</span>
             <div class="flex items-end gap-1.5">
-              <span class="text-brand-charcoal text-xl font-black leading-none tracking-tight tabular-nums">{{ kpiDisplay[index] }}</span>
-              <span class="text-brand-charcoal/30 text-[11px] mb-0.5">{{ kpi.unit }}</span>
+              <span class="text-ink-900 text-xl font-bold leading-none tracking-tight tabular-nums">{{ kpiDisplay[index] }}</span>
+              <span class="text-ink-400 text-[11px] mb-0.5">{{ kpi.unit }}</span>
               <span v-if="kpi.trend" class="ml-auto text-[11px] font-bold mb-0.5"
-                :class="kpi.up === true ? 'text-brand-green' : kpi.up === false ? 'text-red-600' : 'text-brand-charcoal/30'"
+                :class="kpi.up === true ? 'text-klh-green-600' : kpi.up === false ? 'text-danger' : 'text-ink-400'"
               >{{ kpi.trend }}</span>
             </div>
           </template>
@@ -226,10 +183,10 @@ function trenPath(vals: number[], w = 280, h = 60) {
 
         <!-- Col 1: Status + Ancaman -->
         <div class="flex flex-col gap-2 min-h-0">
-          <div class="flex-1 min-h-0 bg-white/80 backdrop-blur-sm border border-brand-green/10 rounded-xl p-3 shadow-sm flex flex-col">
+          <div class="flex-1 min-h-0 bg-surface border border-line rounded-xl p-3 shadow-klh-1 flex flex-col">
             <div class="flex items-center justify-between shrink-0 mb-2">
-              <p class="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/40">Kerapatan Mangrove</p>
-              <span class="text-[10px] text-brand-charcoal/30">3,36 jt ha</span>
+              <p class="text-[11px] font-bold uppercase tracking-widest text-ink-500">Kerapatan Mangrove</p>
+              <span class="text-[11px] text-ink-400">3,45 jt ha</span>
             </div>
             <template v-if="isLoading">
               <div class="flex-1 min-h-0 flex gap-3">
@@ -249,36 +206,36 @@ function trenPath(vals: number[], w = 280, h = 60) {
             <template v-else>
               <div class="flex-1 min-h-0 flex gap-3">
                 <div class="flex flex-col items-center justify-center shrink-0 w-20">
-                  <span class="text-4xl font-black text-brand-green leading-none">58%</span>
-                  <span class="text-[9px] text-brand-charcoal/40 text-center leading-tight mt-1">kerapatan<br>baik</span>
+                  <span class="text-4xl font-bold text-klh-green-600 leading-none">58%</span>
+                  <span class="text-[11px] text-ink-500 text-center leading-tight mt-1">kerapatan<br>baik</span>
                 </div>
                 <div class="flex-1 min-w-0 flex flex-col justify-center gap-2">
                   <div v-for="s in statusData" :key="s.label" class="flex items-center gap-2">
-                    <span class="text-[10px] text-brand-charcoal/55 w-20 shrink-0 truncate">{{ s.label }}</span>
-                    <div class="flex-1 h-3 rounded-full overflow-hidden bg-brand-charcoal/5">
+                    <span class="text-[11px] text-ink-500 w-20 shrink-0 truncate">{{ s.label }}</span>
+                    <div class="flex-1 h-3 rounded-full overflow-hidden bg-ink-900/5">
                       <div class="h-full rounded-full flex items-center justify-end pr-1.5"
                         :style="{ width: s.pct + '%', background: s.color + '33' }">
-                        <span class="text-[8px] font-bold" :style="{ color: s.color }">{{ s.pct }}%</span>
+                        <span class="text-[11px] font-bold" :style="{ color: s.color }">{{ s.pct }}%</span>
                       </div>
                     </div>
-                    <span class="text-[10px] text-brand-charcoal/30 w-9 text-right shrink-0">{{ s.count.toLocaleString('id') }}</span>
+                    <span class="text-[11px] text-ink-400 w-9 text-right shrink-0">{{ s.count.toLocaleString('id') }}</span>
                   </div>
                 </div>
               </div>
-              <div class="shrink-0 flex items-center gap-3 mt-2 pt-2 border-t border-brand-green/8">
+              <div class="shrink-0 flex items-center gap-3 mt-2 pt-2 border-t border-line">
                 <div v-for="s in statusData" :key="s.label" class="flex items-center gap-1">
                   <span class="w-1.5 h-1.5 rounded-full" :style="{ background: s.color }"></span>
-                  <span class="text-[9px] text-brand-charcoal/35">{{ s.label }}</span>
+                  <span class="text-[11px] text-ink-500">{{ s.label }}</span>
                 </div>
               </div>
             </template>
           </div>
 
-          <div class="flex-1 min-h-0 bg-white/80 backdrop-blur-sm border border-brand-green/10 rounded-xl p-3 shadow-sm flex flex-col">
-            <p class="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/40 shrink-0 mb-2">Ancaman Prioritas</p>
+          <div class="flex-1 min-h-0 bg-surface border border-line rounded-xl p-3 shadow-klh-1 flex flex-col">
+            <p class="text-[11px] font-bold uppercase tracking-widest text-ink-500 shrink-0 mb-2">Ancaman Prioritas</p>
             <template v-if="isLoading">
               <ul class="flex-1 min-h-0 flex flex-col justify-between overflow-hidden">
-                <li v-for="i in 4" :key="i" class="flex items-start gap-2 py-1.5 border-b border-brand-green/8 last:border-0">
+                <li v-for="i in 4" :key="i" class="flex items-start gap-2 py-1.5 border-b border-line last:border-0">
                   <div class="w-1.5 h-1.5 rounded-full mt-1 shrink-0 skel"></div>
                   <div class="flex-1 min-w-0 flex flex-col gap-1">
                     <div class="h-2.5 w-full rounded skel"></div>
@@ -291,15 +248,15 @@ function trenPath(vals: number[], w = 280, h = 60) {
             <template v-else>
               <ul class="flex-1 min-h-0 flex flex-col justify-between overflow-hidden">
                 <li v-for="a in ancaman" :key="a.label"
-                  class="flex items-start gap-2 py-1.5 border-b border-brand-green/8 last:border-0">
+                  class="flex items-start gap-2 py-1.5 border-b border-line last:border-0">
                   <span class="w-1.5 h-1.5 rounded-full mt-1 shrink-0"
-                    :style="{ background: a.level === 'kritis' ? '#C0392B' : '#D97B3A' }"></span>
+                    :style="{ background: a.level === 'kritis' ? '#C03A2B' : '#F97910' }"></span>
                   <div class="flex-1 min-w-0">
-                    <p class="text-brand-charcoal/80 text-[11px] font-medium leading-tight">{{ a.label }}</p>
-                    <p class="text-brand-charcoal/35 text-[10px] truncate">{{ a.lokasi }}</p>
+                    <p class="text-ink-700 text-[11px] font-medium leading-tight">{{ a.label }}</p>
+                    <p class="text-ink-500 text-[11px] truncate">{{ a.lokasi }}</p>
                   </div>
-                  <span class="text-[9px] font-bold uppercase shrink-0 px-1.5 py-0.5 rounded"
-                    :style="a.level === 'kritis' ? { background:'#C0392B18', color:'#C0392B' } : { background:'#D97B3A18', color:'#D97B3A' }"
+                  <span class="text-[11px] font-bold uppercase shrink-0 px-1.5 py-0.5 rounded"
+                    :style="a.level === 'kritis' ? { background: '#FBE3E0', color: '#C03A2B' } : { background: '#F9E4D2', color: '#AE5104' }"
                   >{{ a.level }}</span>
                 </li>
               </ul>
@@ -308,7 +265,7 @@ function trenPath(vals: number[], w = 280, h = 60) {
         </div>
 
         <!-- Col 2: Peta -->
-        <div class="min-h-0 bg-white/80 backdrop-blur-sm border border-brand-green/10 rounded-xl shadow-sm overflow-hidden relative">
+        <div class="min-h-0 bg-surface border border-line rounded-xl shadow-klh-1 overflow-hidden relative">
           <ClientOnly>
             <MapLibre @ready="onMapReady" class="w-full h-full" />
           </ClientOnly>
@@ -316,13 +273,13 @@ function trenPath(vals: number[], w = 280, h = 60) {
             <div v-if="!mapLoaded" class="absolute inset-0 skel" style="z-index:2"></div>
           </Transition>
           <div class="absolute top-2.5 left-3 pointer-events-none" style="z-index:1">
-            <span class="text-[10px] font-bold uppercase tracking-widest text-white/80 drop-shadow bg-black/20 backdrop-blur-sm px-2 py-0.5 rounded-md">Sebaran Mangrove</span>
+            <span class="text-[11px] font-bold uppercase tracking-widest text-white/80 drop-shadow bg-black/20 backdrop-blur-sm px-2 py-0.5 rounded-md">Sebaran Mangrove</span>
           </div>
         </div>
 
         <!-- Col 3: Gallery -->
-        <div class="min-h-0 bg-white/80 backdrop-blur-sm border border-brand-green/10 rounded-xl p-3 shadow-sm flex flex-col">
-          <p class="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/40 shrink-0 mb-2">Kawasan Mangrove Utama</p>
+        <div class="min-h-0 bg-surface border border-line rounded-xl p-3 shadow-klh-1 flex flex-col">
+          <p class="text-[11px] font-bold uppercase tracking-widest text-ink-500 shrink-0 mb-2">Kawasan Mangrove Utama</p>
           <template v-if="isLoading">
             <div class="flex-1 min-h-0 grid grid-cols-2 gap-2 overflow-hidden">
               <div v-for="i in 6" :key="i" class="rounded-lg skel"></div>
@@ -334,8 +291,8 @@ function trenPath(vals: number[], w = 280, h = 60) {
                 class="relative rounded-lg overflow-hidden flex flex-col justify-end cursor-pointer group"
                 :style="thumbStyle(d.hue)">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <span class="absolute top-1.5 right-1.5 text-[9px] font-bold px-1.5 py-0.5 rounded-full"
-                  :style="{ background: ikiColor(d.iki) + 'cc', color: '#fff' }">{{ d.iki }}</span>
+                <span class="absolute top-1.5 right-1.5 text-[11px] font-bold px-1.5 py-0.5 rounded-full"
+                  :style="{ background: ikiColor(d.iki), color: '#fff' }">{{ d.iki }}</span>
                 <div class="absolute inset-0 flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white/20 group-hover:text-white/30 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 2c0 0-4 3-4 7 0 2 1.5 4 4 5 2.5-1 4-3 4-5 0-4-4-7-4-7z"/>
@@ -343,8 +300,8 @@ function trenPath(vals: number[], w = 280, h = 60) {
                   </svg>
                 </div>
                 <div class="relative z-10 px-2 pb-1.5">
-                  <p class="text-white text-[10px] font-semibold leading-tight truncate">{{ d.nama }}</p>
-                  <p class="text-white/55 text-[9px] truncate">{{ d.provinsi }}</p>
+                  <p class="text-white text-[11px] font-semibold leading-tight truncate">{{ d.nama }}</p>
+                  <p class="text-white/55 text-[11px] truncate">{{ d.provinsi }}</p>
                 </div>
               </div>
             </div>
@@ -356,10 +313,10 @@ function trenPath(vals: number[], w = 280, h = 60) {
       <div class="flex-1 min-h-0 grid grid-cols-2 gap-2">
 
         <!-- Col 1: Sebaran per Pulau -->
-        <div class="min-h-0 bg-white/80 backdrop-blur-sm border border-brand-green/10 rounded-xl p-3 shadow-sm flex flex-col">
+        <div class="min-h-0 bg-surface border border-line rounded-xl p-3 shadow-klh-1 flex flex-col">
           <div class="flex items-center justify-between shrink-0 mb-2">
-            <p class="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/40">Sebaran per Pulau</p>
-            <span class="text-[10px] text-brand-charcoal/25">% luas mangrove 2025</span>
+            <p class="text-[11px] font-bold uppercase tracking-widest text-ink-500">Sebaran per Pulau</p>
+            <span class="text-[11px] text-ink-400">% luas mangrove 2025</span>
           </div>
           <template v-if="isLoading">
             <div class="shrink-0 h-5 rounded-full skel mb-2.5"></div>
@@ -380,22 +337,22 @@ function trenPath(vals: number[], w = 280, h = 60) {
               <div v-for="t in sebaranData" :key="t.label" class="flex items-center gap-2.5">
                 <div class="flex items-center gap-1.5 w-20 shrink-0">
                   <span class="w-2 h-2 rounded-sm shrink-0" :style="{ background: t.color }"></span>
-                  <span class="text-[10px] text-brand-charcoal/60 truncate">{{ t.label }}</span>
+                  <span class="text-[11px] text-ink-500 truncate">{{ t.label }}</span>
                 </div>
-                <div class="flex-1 h-3 rounded-full overflow-hidden bg-brand-charcoal/5">
+                <div class="flex-1 h-3 rounded-full overflow-hidden bg-ink-900/5">
                   <div class="h-full rounded-full" :style="{ width: t.pct + '%', background: t.color + '55' }"></div>
                 </div>
-                <span class="text-[10px] font-bold text-brand-charcoal/50 w-8 text-right shrink-0">{{ t.pct }}%</span>
+                <span class="text-[11px] font-bold text-ink-500 w-8 text-right shrink-0">{{ t.pct }}%</span>
               </div>
             </div>
-            <p class="text-[9px] text-brand-charcoal/25 mt-2 shrink-0">Distribusi luas mangrove nasional · KLH/BPLH 2026</p>
+            <p class="text-[11px] text-ink-400 mt-2 shrink-0">Distribusi luas mangrove nasional · KLH/BPLH 2026</p>
           </template>
         </div>
 
         <!-- Col 2: Tren Luas Mangrove -->
-        <div class="min-h-0 bg-white/80 backdrop-blur-sm border border-brand-green/10 rounded-xl p-3 shadow-sm flex flex-col">
+        <div class="min-h-0 bg-surface border border-line rounded-xl p-3 shadow-klh-1 flex flex-col">
           <div class="flex items-center justify-between shrink-0 mb-1">
-            <p class="text-[10px] font-bold uppercase tracking-widest text-brand-charcoal/40">Tren Luas Mangrove (ribu ha)</p>
+            <p class="text-[11px] font-bold uppercase tracking-widest text-ink-500">Tren Luas Mangrove (ribu ha)</p>
             <template v-if="isLoading">
               <div class="flex items-center gap-3">
                 <div v-for="i in 3" :key="i" class="flex items-center gap-1">
@@ -408,7 +365,7 @@ function trenPath(vals: number[], w = 280, h = 60) {
               <div class="flex items-center gap-3">
                 <div v-for="s in trenSeries" :key="s.nama" class="flex items-center gap-1">
                   <span class="w-4 h-0.5 rounded-full" :style="{ background: s.color }"></span>
-                  <span class="text-[9px] text-brand-charcoal/45">{{ s.nama }}</span>
+                  <span class="text-[11px] text-ink-500">{{ s.nama }}</span>
                 </div>
               </div>
             </template>
@@ -426,9 +383,9 @@ function trenPath(vals: number[], w = 280, h = 60) {
             <div class="flex-1 min-h-0 flex flex-col">
               <div class="flex-1 min-h-0 relative">
                 <svg class="w-full h-full" viewBox="0 0 280 60" preserveAspectRatio="none">
-                  <line x1="0" y1="15" x2="280" y2="15" stroke="#1A2A24" stroke-opacity="0.05" stroke-width="1" stroke-dasharray="4 4"/>
-                  <line x1="0" y1="30" x2="280" y2="30" stroke="#1A2A24" stroke-opacity="0.05" stroke-width="1" stroke-dasharray="4 4"/>
-                  <line x1="0" y1="45" x2="280" y2="45" stroke="#1A2A24" stroke-opacity="0.05" stroke-width="1" stroke-dasharray="4 4"/>
+                  <line x1="0" y1="15" x2="280" y2="15" stroke="#10201D" stroke-opacity="0.05" stroke-width="1" stroke-dasharray="4 4"/>
+                  <line x1="0" y1="30" x2="280" y2="30" stroke="#10201D" stroke-opacity="0.05" stroke-width="1" stroke-dasharray="4 4"/>
+                  <line x1="0" y1="45" x2="280" y2="45" stroke="#10201D" stroke-opacity="0.05" stroke-width="1" stroke-dasharray="4 4"/>
                   <path v-for="s in trenSeries" :key="s.nama"
                     :d="trenPath(s.vals, 280, 60)"
                     fill="none" :stroke="s.color" stroke-width="1.8"
@@ -440,10 +397,10 @@ function trenPath(vals: number[], w = 280, h = 60) {
                 </svg>
               </div>
               <div class="flex justify-between shrink-0 mt-1">
-                <span v-for="y in trenYears" :key="y" class="text-[9px] text-brand-charcoal/25">{{ y }}</span>
+                <span v-for="y in trenYears" :key="y" class="text-[11px] text-ink-400">{{ y }}</span>
               </div>
             </div>
-            <p class="text-[9px] text-brand-charcoal/25 mt-1.5 shrink-0">Luas mangrove (ribu ha) per pulau besar · KLH/BPLH 2026</p>
+            <p class="text-[11px] text-ink-400 mt-1.5 shrink-0">Luas mangrove (ribu ha) per pulau besar · KLH/BPLH 2026</p>
           </template>
         </div>
       </div>
@@ -452,10 +409,7 @@ function trenPath(vals: number[], w = 280, h = 60) {
 </template>
 
 <style scoped>
-.gradient-text {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-green to-brand-green-dark;
-}
-.router-link-active { @apply text-brand-green; }
+.router-link-active { @apply text-klh-green-600; }
 .fade-backdrop-enter-active, .fade-backdrop-leave-active { transition: opacity 0.25s ease; }
 .fade-backdrop-enter-from, .fade-backdrop-leave-to { opacity: 0; }
 .slide-drawer-enter-active, .slide-drawer-leave-active { transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); }
@@ -464,9 +418,9 @@ function trenPath(vals: number[], w = 280, h = 60) {
 .fade-enter-from, .fade-leave-to { opacity: 0; }
 .skel {
   background: linear-gradient(90deg,
-    rgba(26,42,36,0.06) 0%, rgba(26,42,36,0.06) 20%,
-    rgba(26,42,36,0.13) 45%, rgba(26,42,36,0.06) 70%,
-    rgba(26,42,36,0.06) 100%);
+    rgba(16,32,29,0.06) 0%, rgba(16,32,29,0.06) 20%,
+    rgba(16,32,29,0.13) 45%, rgba(16,32,29,0.06) 70%,
+    rgba(16,32,29,0.06) 100%);
   background-size: 250% 100%;
   animation: shimmer 1.6s ease-in-out infinite;
 }
