@@ -146,7 +146,7 @@ const dpsaDesa = [
       </div>
 
       <!-- ─── DPSA Section ─────────────────────────────────────── -->
-      <div class="mt-10">
+      <div id="dpsa" class="mt-10" style="scroll-margin-top: calc(var(--klh-header-h) + 24px)">
         <div class="flex items-end justify-between mb-6">
           <div>
             <p class="text-xs font-bold text-ink-500 uppercase tracking-widest mb-1.5">Program Unggulan</p>

@@ -1,5 +1,10 @@
 <script setup lang="ts">
-definePageMeta({ layout: false })
+definePageMeta({
+  layout: false,
+  middleware: [() => {
+    if (useRuntimeConfig().public.localManagement) return navigateTo('/login', { replace: true })
+  }],
+})
 
 const { isLoggedIn, login } = useAuth()
 const { apiFetch } = useApi()
@@ -71,7 +76,7 @@ const handleRegister = async () => {
     })
     successMsg.value = 'Registrasi berhasil! Sedang masuk ke akun Anda…'
     await login(username.value.trim(), password.value)
-    await navigateTo('/my-profiles')
+    await navigateTo('/apps')
   } catch (err: any) {
     errorMsg.value =
       err?.data?.message || err?.message || 'Registrasi gagal. Silakan coba kembali.'

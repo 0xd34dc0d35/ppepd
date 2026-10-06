@@ -30,11 +30,13 @@ Install dependensi:
 npm install
 ```
 
-Jalankan server development di `http://localhost:3000`:
+Jalankan server development di `http://localhost:3003`:
 
 ```bash
 npm run dev
 ```
+
+Panel manajemen akun tersedia di `/admin/system` pada development. Env dev memakai PostgreSQL PPEPD melalui SSH tunnel: jalankan `npm run db:tunnel` pada terminal terpisah, lalu `npm run db:check` sebelum menjalankan dev. Buat administrator pertama melalui panel, lalu kelola akun, role, dan hak akses. Lihat [panduan manajemen](docs/MANAGEMENT.md) untuk konfigurasi dan pengujian.
 
 ## Build & Deployment
 

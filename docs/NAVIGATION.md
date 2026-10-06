@@ -1,5 +1,13 @@
 # Navigasi Berbasis Role
 
+## Profil navigasi halaman
+
+Profil `prodanau` pada `/prodanau` mengikuti menu sumber PRODANAU: Beranda, Tentang, Danau Prioritas, Peta Sebaran, Kebijakan, Kelembagaan, Kontak. Desktop menampilkan empat pertama dan tiga sisanya dalam Lainnya; mobile menampilkan semua dalam drawer. Tujuan konten memakai layanan internal PPEPD.
+
+Bar desktop PPEPD menampilkan Beranda, Data, Layanan, Tentang, dan tombol Lainnya. Publikasi, Regulasi, Zona Integritas, Hubungi serta shortcut pengelola/admin berada dalam Lainnya sesuai izin yang sama dari `useRole`. Pada ponsel seluruh menu tetap dapat diakses lewat drawer. Menu PERMATA tetap menggunakan lima menu portal.
+
+Header menggunakan `useSiteNavigation.ts`. Halaman biasa memakai profil PPEPD dan menu berbasis role dari `useRole.ts`. Halaman portal dapat menetapkan `definePageMeta({ navigation: 'permata' })` untuk memakai identitas dan menu PERMATA yang sama pada desktop dan mobile. Menu portal didefinisikan terpusat dalam `PERMATA_NAV`; tautan konten tetap di dalam PPEPD. Navigasi anchor menutup drawer dan menandai item aktif berdasarkan hash URL. Profil saat ini berupa konfigurasi proyek, belum berupa pengaturan yang dapat diedit melalui panel admin.
+
 Spesifikasi item topbar yang ditampilkan sesuai role pengguna yang mengakses.
 
 ---

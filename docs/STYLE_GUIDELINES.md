@@ -135,6 +135,10 @@ Pemetaan halaman PPEPD ke template: `design/DESIGN-MIGRATION.md §4`.
 
 ## 5. Komponen inti (resep Tailwind)
 
+### Formulir PPEPD: tanpa dialog
+
+Semua input pengguna ditempatkan langsung di halaman atau halaman formulir khusus. Jangan menggunakan dialog/modal/drawer/bottom sheet untuk input, baik desktop maupun mobile. Detail profil dapat ditampilkan sebagai bagian halaman agar alur konsisten. Gunakan satu scroll halaman, label yang terhubung ke input, ukuran input mobile 16px dan target sentuh minimal 44px. Saat membuka bagian formulir, pindahkan fokus ke bagian tersebut; saat batal/tutup, kembalikan fokus ke pemicu. Dialog informasi tanpa input dan drawer navigasi tetap diperbolehkan.
+
 ```html
 <!-- Tombol -->
 <button class="btn bg-klh-green-600 hover:bg-klh-green-700 text-white">Aksi Utama</button>

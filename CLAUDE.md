@@ -1,5 +1,18 @@
 # PPEPD — Panduan untuk AI
 
+## Formulir input
+
+Semua input pengguna harus berada langsung di halaman atau halaman formulir khusus, bukan dialog, modal, drawer, atau bottom sheet. Berlaku untuk desktop dan mobile. Gunakan scroll halaman, label yang terhubung, target sentuh minimal 44px, serta tombol simpan/batal yang jelas. Dialog informasi tanpa input dan drawer navigasi tidak termasuk formulir input.
+
+## Lingkungan development
+
+- Server development PPEPD berada di **http://localhost:3003** (port 3000 dipakai aplikasi lain).
+- Gunakan alamat tersebut untuk membuka dan memeriksa perubahan di dev, termasuk `/login` dan `/admin/system`.
+- `https://ppepd.kemenlh.go.id` adalah lingkungan produksi, bukan server dev.
+- Database manajemen dev: PostgreSQL khusus PPEPD di server SSH `prodanau@prodanau`, bind `127.0.0.1:5434`, database/role aplikasi `ppepd_dev`.
+- Koneksi dev memakai SSH tunnel lokal `127.0.0.1:15434` ke port server 5434. Jalankan `npm run db:tunnel`, lalu `npm run db:check` sebelum dev.
+- Env privat ada di `.env`; jangan menampilkan atau memasukkan kredensial ke Git. Panduan ada di `docs/MANAGEMENT.md`.
+
 Semua guidelines ada di folder `docs/`:
 
 | File | Isi |

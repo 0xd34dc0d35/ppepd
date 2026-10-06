@@ -1,13 +1,15 @@
 export const useApi = () => {
   const config = useRuntimeConfig()
   const token = useCookie<string | null>('token')
+  const requestFetch = useRequestFetch()
 
   const apiFetch = <T>(path: string, options: Parameters<typeof $fetch>[1] = {}) => {
     const headers: Record<string, string> = {}
-    if (token.value) {
+    const local = config.public.localManagement && (path.startsWith('/auth/') || path === '/app')
+    if (!local && token.value) {
       headers['Authorization'] = `Bearer ${token.value}`
     }
-    return $fetch<T>(`${config.public.apiBase}${path}`, {
+    return requestFetch<T>(local ? `/api/management${path}` : `${config.public.apiBase}${path}`, {
       credentials: 'include',
       ...options,
       headers: {

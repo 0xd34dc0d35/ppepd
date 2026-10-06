@@ -2,23 +2,31 @@
 // Header situs — pola "Navbar Sub-Brand" DS KLH/BPLH v2.1 §04:
 // utility bar (tautan ke situs induk + toolbar aksesibilitas) → navbar brand ganda + tautan datar + aksi.
 // Item navigasi bersumber dari useRole() (lihat docs/NAVIGATION.md).
-const { visibleNav } = useRole()
+const { visibleNav, profile, primaryNav, secondaryNav } = useSiteNavigation()
 const { user, isLoggedIn, logout, fetchMe } = useAuth()
 const route = useRoute()
 const router = useRouter()
 
-onMounted(() => { fetchMe() })
+onMounted(() => { fetchMe().catch(() => {}) })
 
 const displayName = computed(() => user.value?.display_name || user.value?.username || '')
 const userInitial = computed(() => displayName.value.charAt(0).toUpperCase())
 
-const isActive = (to: string) => (to === '/' ? route.path === '/' : route.path === to || route.path.startsWith(`${to}/`))
+const isActive = (to: string) => {
+  const [path, hash] = to.split('#')
+  if (hash) return route.path === path && (route.hash === `#${hash}` || (!route.hash && hash === 'beranda'))
+  return to === '/' ? route.path === '/' : route.path === to || route.path.startsWith(`${to}/`)
+}
 
 // ── Menu pengguna ──────────────────────────────────────────────────────────
 const userMenuOpen = ref(false)
+const moreOpen = ref(false)
+const moreRef = ref<HTMLElement | null>(null)
+const moreButtonRef = ref<HTMLButtonElement | null>(null)
 const userMenuRef = ref<HTMLElement | null>(null)
 const onDocClick = (e: MouseEvent) => {
   if (userMenuRef.value && !userMenuRef.value.contains(e.target as Node)) userMenuOpen.value = false
+  if (moreRef.value && !moreRef.value.contains(e.target as Node)) moreOpen.value = false
 }
 const handleLogout = async () => {
   userMenuOpen.value = false
@@ -49,6 +57,7 @@ const closeDrawer = (restoreFocus = false) => {
 }
 const onKeydown = (e: KeyboardEvent) => {
   if (e.key === 'Escape') {
+    if (moreOpen.value) { moreOpen.value = false; moreButtonRef.value?.focus() }
     if (drawerOpen.value) closeDrawer(true)
     userMenuOpen.value = false
     return
@@ -63,7 +72,7 @@ const onKeydown = (e: KeyboardEvent) => {
   }
 }
 
-watch(() => route.path, () => { closeDrawer(); userMenuOpen.value = false })
+watch(() => route.fullPath, () => { closeDrawer(); userMenuOpen.value = false; moreOpen.value = false })
 
 // Tinggi header → --klh-header-h, dipakai halaman setinggi viewport (katalog, beranda).
 // Diukur ulang karena berubah saat teks diperbesar lewat toolbar aksesibilitas.
@@ -108,17 +117,17 @@ onUnmounted(() => {
     <!-- Navbar -->
     <nav class="border-b border-line bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/90" aria-label="Navigasi utama">
       <div class="mx-auto flex h-16 max-w-header items-center justify-between gap-4 px-4 md:px-6">
-        <NuxtLink to="/" class="flex min-w-0 items-center gap-3" aria-label="PPEPD — Beranda">
+        <NuxtLink :to="profile.home" class="flex min-w-0 items-center gap-3" :aria-label="`${profile.brand} — Beranda`">
           <img src="/logo.png" alt="" width="40" height="40" class="h-10 w-10 shrink-0">
           <span class="flex min-w-0 flex-col leading-tight">
-            <span class="font-display text-lg font-extrabold tracking-tight text-klh-green-700">PPEPD</span>
-            <span class="truncate text-[11px] font-medium text-ink-500">Ekosistem Perairan Darat · KLH/BPLH</span>
+            <span class="font-display text-lg font-extrabold tracking-tight text-klh-green-700">{{ profile.brand }}</span>
+            <span class="truncate text-[11px] font-medium text-ink-500">{{ profile.description }}</span>
           </span>
         </NuxtLink>
 
         <!-- Tautan datar (≥1280) -->
         <ul class="hidden items-center gap-1 xl:flex">
-          <li v-for="item in visibleNav" :key="item.to">
+          <li v-for="item in primaryNav" :key="item.to">
             <NuxtLink
               :to="item.to"
               :aria-current="isActive(item.to) ? 'page' : undefined"
@@ -130,9 +139,21 @@ onUnmounted(() => {
               ]"
             >{{ item.label }}</NuxtLink>
           </li>
+          <li v-if="secondaryNav.length" ref="moreRef" class="relative">
+            <button ref="moreButtonRef" type="button" class="inline-flex min-h-[44px] items-center gap-2 rounded-lg px-3 text-sm font-semibold hover:bg-klh-green-50" :class="moreOpen || secondaryNav.some(item => isActive(item.to)) ? 'text-klh-green-700' : 'text-ink-700'" :aria-expanded="moreOpen" aria-controls="ppepd-more-nav" @click="moreOpen = !moreOpen">
+              Lainnya
+              <svg aria-hidden="true" class="icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m6 9 6 6 6-6" /></svg>
+            </button>
+            <ul v-if="moreOpen" id="ppepd-more-nav" class="absolute right-0 top-full mt-2 w-60 rounded-xl border border-line bg-surface p-2 shadow-klh-2">
+              <li v-for="item in secondaryNav" :key="item.to">
+                <NuxtLink :to="item.to" :aria-current="isActive(item.to) ? 'page' : undefined" class="flex min-h-[44px] items-center rounded-lg px-3 text-sm font-semibold hover:bg-klh-green-50" :class="isActive(item.to) ? 'text-klh-green-700 bg-klh-green-50' : 'text-ink-700'">{{ item.label }}</NuxtLink>
+              </li>
+            </ul>
+          </li>
         </ul>
 
         <div class="flex shrink-0 items-center gap-2">
+          <NuxtLink v-if="profile.brand !== 'PPEPD'" to="/" class="btn btn-outline btn-sm hidden sm:inline-flex">PPEPD</NuxtLink>
           <!-- Aksi khusus halaman (mis. CTA dashboard) -->
           <slot name="actions" />
           <!-- Aksi akun -->
@@ -159,6 +180,7 @@ onUnmounted(() => {
                   <p class="truncate text-sm font-semibold text-ink-900">{{ displayName }}</p>
                 </div>
                 <div class="py-1">
+                  <NuxtLink to="/apps" role="menuitem" class="flex min-h-[44px] items-center gap-2 px-4 text-sm text-ink-700 hover:bg-klh-green-50 hover:text-klh-green-700">Aplikasi</NuxtLink>
                   <NuxtLink to="/my-profiles" role="menuitem" class="flex min-h-[44px] items-center gap-2 px-4 text-sm text-ink-700 hover:bg-klh-green-50 hover:text-klh-green-700">
                     <svg class="icon--sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
                     Profil Saya
@@ -228,10 +250,12 @@ onUnmounted(() => {
         </nav>
 
         <div class="shrink-0 space-y-2 border-t border-line p-4">
+          <NuxtLink v-if="profile.brand !== 'PPEPD'" to="/" class="btn btn-outline w-full">Kembali ke PPEPD</NuxtLink>
           <NuxtLink v-if="!isLoggedIn" to="/login" class="btn btn-primary w-full">Masuk</NuxtLink>
           <template v-else>
             <p class="px-1 text-xs text-ink-500">Masuk sebagai <span class="font-semibold text-ink-900">{{ displayName }}</span></p>
             <NuxtLink to="/my-profiles" class="btn btn-outline w-full">Profil Saya</NuxtLink>
+            <NuxtLink to="/apps" class="btn btn-outline w-full">Aplikasi</NuxtLink>
             <button type="button" class="btn w-full text-danger hover:bg-danger-bg" @click="handleLogout">Keluar</button>
           </template>
         </div>

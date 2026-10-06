@@ -28,30 +28,25 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Hubungi',         to: '/hubungi',         roles: ['publik', 'pengelola', 'admin'] },
 
   // ── Pengelola — shortcut portal ekosistem & alat internal ───────────────
-  // Halaman ini bisa diakses publik via URL, tapi hanya muncul di topbar
-  // untuk pengelola sebagai shortcut cepat ke dashboard/peta.
+  // Portal tetap publik; dashboard memakai guard izin dalam mode lokal.
   { label: 'Danau',           to: '/danau',           roles: ['pengelola', 'admin'] },
   { label: 'Mangrove',        to: '/mangrove',        roles: ['pengelola', 'admin'] },
   { label: 'Mata Air',        to: '/mataair',         roles: ['pengelola', 'admin'] },
 
   // ── Admin — panel administrasi sistem ───────────────────────────────────
-  { label: 'Admin',           to: '/admin/share',     roles: ['admin'] },
+  { label: 'Manajemen',       to: '/admin/system',    roles: ['admin'] },
 ]
 
 export function useRole() {
-  // Role disimpan di global useState agar reaktif di SSR.
-  // Default: 'publik' (tanpa autentikasi).
-  // TODO: ganti initializer dengan session dari auth provider ketika diimplementasi.
-  // Contoh: () => useAuth().session.value?.role ?? 'publik'
-  const role = useState<UserRole>('userRole', () => 'publik')
+  const config = useRuntimeConfig()
+  const user = useState<AuthUser | null>('auth:user', () => null)
+  const role = computed<UserRole>(() => user.value?.roles?.includes('admin') ? 'admin' : user.value?.roles?.includes('pengelola') ? 'pengelola' : 'publik')
 
   const visibleNav = computed(() =>
-    NAV_ITEMS.filter(item => item.roles.includes(role.value))
+    NAV_ITEMS.filter(item => item.roles.includes(role.value) &&
+      (!['/danau', '/mangrove', '/mataair'].includes(item.to) || user.value?.allowed?.includes('dashboard.view') || !config.public.localManagement))
+      .map(item => item.to === '/admin/system' && !config.public.localManagement ? { ...item, label: 'Admin', to: '/admin/share' } : item)
   )
 
-  function setRole(r: UserRole) {
-    role.value = r
-  }
-
-  return { role, visibleNav, setRole }
+  return { role, visibleNav }
 }

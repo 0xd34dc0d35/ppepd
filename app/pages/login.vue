@@ -1,12 +1,14 @@
 <script setup lang="ts">
 definePageMeta({ layout: false })
 
-const { login, isLoggedIn } = useAuth()
+const { login, isLoggedIn, fetchMe } = useAuth()
 const router = useRouter()
 const route = useRoute()
+const localManagement = useRuntimeConfig().public.localManagement
+await fetchMe()
 
 if (isLoggedIn.value) {
-  await navigateTo((route.query.redirect as string) || '/')
+  await navigateTo(useSafeRedirect(route.query.redirect, '/'))
 }
 
 const username = ref('')
@@ -21,9 +23,9 @@ const handleLogin = async () => {
   errorMsg.value = ''
   try {
     await login(username.value, password.value)
-    await navigateTo((route.query.redirect as string) || '/my-profiles')
+    await navigateTo(useSafeRedirect(route.query.redirect))
   } catch (err: any) {
-    errorMsg.value = err?.data?.message || err?.message || 'Login gagal. Periksa kembali username dan password.'
+    errorMsg.value = err?.data?.statusMessage || err?.data?.message || 'Login gagal. Periksa kembali username dan password.'
   } finally {
     loading.value = false
   }
@@ -101,8 +103,14 @@ const handleLogin = async () => {
       </div>
 
       <p class="mt-6 text-center text-sm text-ink-500">
+        <template v-if="localManagement">
+          Akun dikelola oleh administrator.
+          <NuxtLink to="/admin/system" class="font-semibold text-klh-blue-600 hover:underline">Pengaturan sistem</NuxtLink>
+        </template>
+        <template v-else>
         Belum punya akun?
         <NuxtLink to="/register" class="font-semibold text-klh-blue-600 hover:underline">Daftar</NuxtLink>
+        </template>
       </p>
     </div>
   </KlhAuthShell>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-definePageMeta({ layout: 'map' })
+definePageMeta({ layout: 'map', middleware: 'dashboard' })
 
 useSeoMeta({
   title: 'Profil Danau | PPEPD',

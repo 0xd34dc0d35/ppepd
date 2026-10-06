@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 
-definePageMeta({ layout: 'map' })
+definePageMeta({ layout: 'map', middleware: 'dashboard' })
 
 const route = useRoute()
 const { visibleNav } = useRole()

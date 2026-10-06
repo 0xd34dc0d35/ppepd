@@ -6,7 +6,9 @@ definePageMeta({ layout: 'data' })
 // --- State ---
 const activeTab = ref<'raw' | 'statistic'>('raw')
 const viewMode = ref<'card' | 'table'>('card')
-const searchQuery = ref('')
+const catalogRoute = useRoute()
+const searchQuery = ref(typeof catalogRoute.query.search === 'string' ? catalogRoute.query.search : '')
+watch(() => catalogRoute.query.search, value => { searchQuery.value = typeof value === 'string' ? value : '' })
 const isLoading = ref(true)
 const allData = ref<any[]>([])
 
