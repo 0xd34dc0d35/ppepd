@@ -21,7 +21,7 @@ const kpis = [
   { label: 'Luas Mangrove',      value: '3,45 jt', unit: 'hektare',    trend: '+42rb', up: true,  num: 3450000, dec: 0, sfx: '', display: '3,45 jt' },
   { label: 'Kawasan Prioritas',  value: '37',       unit: 'unit',       trend: null,   up: null,  num: 37,      dec: 0, sfx: '', display: '37'      },
   { label: 'Laju Pemulihan',     value: '34%',      unit: 'turun 2025', trend: '+34%', up: true,  num: 34,      dec: 0, sfx: '%', display: '34%'   },
-  { label: 'Kerapatan Baik',     value: '58%',      unit: 'dari total', trend: '+2%',  up: true,  num: 58,      dec: 0, sfx: '%', display: '58%'   },
+  { label: 'Kerapatan Lebat',    value: '58%',      unit: 'dari total', trend: '+2%',  up: true,  num: 58,      dec: 0, sfx: '%', display: '58%'   },
 ]
 
 const kpiDisplay = ref(kpis.map(k => k.display))
@@ -49,9 +49,9 @@ function startCountUp() {
 
 // ── Row 2, Col 1: Status ─────────────────────────────────────
 const statusData = [
-  { label: 'Kerapatan Baik',    count: 2001, color: '#005952', pct: 58 },
-  { label: 'Kerapatan Sedang',  count: 1104, color: '#F97910', pct: 32 },
-  { label: 'Kerapatan Jarang',  count: 345,  color: '#C03A2B', pct: 10 },
+  { label: 'Lebat',   count: 2001, color: '#005952', pct: 58 },
+  { label: 'Sedang',  count: 1104, color: '#F97910', pct: 32 },
+  { label: 'Jarang',  count: 345,  color: '#C03A2B', pct: 10 },
 ]
 
 const ancaman = [
@@ -63,7 +63,6 @@ const ancaman = [
 
 // ── Loading state ────────────────────────────────────────────
 const isLoading = ref(true)
-const mapLoaded = ref(false)
 onMounted(() => {
   setTimeout(() => {
     isLoading.value = false
@@ -71,17 +70,7 @@ onMounted(() => {
   }, 1400)
 })
 
-// ── Row 2, Col 2: Peta ───────────────────────────────────────
-const onMapReady = (map: any) => {
-  mapLoaded.value = true
-  map.addSource('mangrove-big', {
-    type: 'raster',
-    tiles: ['https://geoservices.big.go.id/rbi/rest/services/BASEMAP/Rupabumi_Indonesia/MapServer/export?bbox={bbox-epsg-3857}&bboxSR=3857&layers=show:262&size=256,256&imageSR=3857&format=png32&transparent=true&f=image'],
-    tileSize: 256,
-    attribution: '&copy; KLH/BPLH 2026',
-  })
-  map.addLayer({ id: 'mangrove-big', type: 'raster', source: 'mangrove-big' })
-}
+// Peta SI-PPEM dikelola terpisah dari ringkasan dashboard lama.
 
 // ── Row 2, Col 3: Gallery ────────────────────────────────────
 const daftarKawasan = [
@@ -207,7 +196,7 @@ function trenPath(vals: number[], w = 280, h = 60) {
               <div class="flex-1 min-h-0 flex gap-3">
                 <div class="flex flex-col items-center justify-center shrink-0 w-20">
                   <span class="text-4xl font-bold text-klh-green-600 leading-none">58%</span>
-                  <span class="text-[11px] text-ink-500 text-center leading-tight mt-1">kerapatan<br>baik</span>
+                  <span class="text-[11px] text-ink-500 text-center leading-tight mt-1">kerapatan<br>Lebat</span>
                 </div>
                 <div class="flex-1 min-w-0 flex flex-col justify-center gap-2">
                   <div v-for="s in statusData" :key="s.label" class="flex items-center gap-2">
@@ -267,14 +256,9 @@ function trenPath(vals: number[], w = 280, h = 60) {
         <!-- Col 2: Peta -->
         <div class="min-h-0 bg-surface border border-line rounded-xl shadow-klh-1 overflow-hidden relative">
           <ClientOnly>
-            <MapLibre @ready="onMapReady" class="w-full h-full" />
+            <MangroveDashboardMap />
+            <template #fallback><div class="absolute inset-0 skel" role="status" aria-label="Menyiapkan peta SI-PPEM"></div></template>
           </ClientOnly>
-          <Transition name="fade">
-            <div v-if="!mapLoaded" class="absolute inset-0 skel" style="z-index:2"></div>
-          </Transition>
-          <div class="absolute top-2.5 left-3 pointer-events-none" style="z-index:1">
-            <span class="text-[11px] font-bold uppercase tracking-widest text-white/80 drop-shadow bg-black/20 backdrop-blur-sm px-2 py-0.5 rounded-md">Sebaran Mangrove</span>
-          </div>
         </div>
 
         <!-- Col 3: Gallery -->

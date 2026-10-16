@@ -153,6 +153,11 @@ Header bersama `KlhSiteHeader` (`app/components/klh/SiteHeader.vue`) mengambil n
 - **Composable:** `useShare()` — `createShareLink(url, title)`, `copyShareLink(url, title)`
 - Dokumentasi lengkap: `design/PAGE-S.md`
 
+### Dashboard mangrove
+- `/mangrove/dashboard` menggunakan katalog publik SI-PPEM melalui `/api/mangrove/catalog` dan berkas PMTiles bersama pada storage PPEPD.
+- Edisi, legenda, dan detail sumber pada section peta mengikuti katalog; tidak menjumlahkan luas tile untuk statistik nasional. Panel dan angka di luar peta dikembalikan ke implementasi awal atas permintaan pengguna, masih berupa nilai literal dan belum terhubung ke SI-PPEM.
+- Integrasi, batas interpretasi, dan pengujian: `docs/MANGROVE-DASHBOARD.md`.
+
 ---
 
 ## Konvensi Penting
